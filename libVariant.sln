@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVariantTests", "libVariantTests\libVariantTests.vcproj", "{49A04E08-8455-43F7-BBB9-2B03201C1A18}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVariant", "libVariant\libVariant.vcproj", "{9161492D-EC3F-4299-A0B7-3BE2455D4933}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Debug|Win32.ActiveCfg = Debug|Win32
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Debug|Win32.Build.0 = Debug|Win32
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Debug|x64.ActiveCfg = Debug|x64
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Debug|x64.Build.0 = Debug|x64
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Release|Win32.ActiveCfg = Release|Win32
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Release|Win32.Build.0 = Release|Win32
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Release|x64.ActiveCfg = Release|x64
+		{49A04E08-8455-43F7-BBB9-2B03201C1A18}.Release|x64.Build.0 = Release|x64
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Debug|Win32.Build.0 = Debug|Win32
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Debug|x64.ActiveCfg = Debug|x64
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Debug|x64.Build.0 = Debug|x64
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Release|Win32.ActiveCfg = Release|Win32
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Release|Win32.Build.0 = Release|Win32
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Release|x64.ActiveCfg = Release|x64
+		{9161492D-EC3F-4299-A0B7-3BE2455D4933}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,3 +1,5 @@
+
+
 #ifndef TESTSTRINGENCODER_H
 #define TESTSTRINGENCODER_H
 

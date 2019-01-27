@@ -109,18 +109,27 @@ namespace libVariant
     /// Used to know the current internal type of a Variant instance.
     /// </summary>
     enum VariantFormat { 
-      BOOL,
-      UINT8,
-      SINT8,
-      UINT16,
-      SINT16,
-      UINT32,
-      SINT32,
-      UINT64,
-      SINT64,
-      FLOAT32,
-      FLOAT64,
-      STRING,
+      Bool,
+      UInt8,
+      SInt8,
+      UInt16,
+      SInt16,
+      UInt32,
+      SInt32,
+      UInt64,
+      SInt64,
+      Float32,
+      Float64,
+      String,
+    };
+
+    /// <summary>
+    /// An enum which defines the class behavior when the internal value is modified.
+    /// </summary>
+    enum InternalValuePolicy { 
+      INTERNAL_VALUE_OVERFLOW,  //same behavior as native c++ types: overflow (https://en.wikipedia.org/wiki/Integer_overflow).
+      INTERNAL_VALUE_SATURATES, //https://en.wikipedia.org/wiki/Saturation_arithmetic, all operations such as addition and multiplication are limited to a fixed range between a minimum and maximum value.
+      INTERNAL_TYPE_PROMOTION,  //the internal type of the class is promoted to a new type where the new internal value is in range of the internal type's minimum and maximum values.
     };
 
     /// <summary>
@@ -288,6 +297,16 @@ namespace libVariant
     /// </remarks>
     /// <returns>Returns true if the internal format of the Variant was simplified. Returns false otherwise.</returns>
     bool simplify();
+
+    /// <summary>
+    /// Changes the internal value behavior policy.
+    /// </summary>
+    void setInternalValuePolicy(const InternalValuePolicy & iInternalValuePolicy);
+
+    /// <summary>
+    /// Get the Variant's internal value behavior policy.
+    /// </summary>
+    InternalValuePolicy getInternalValuePolicy() const;
 
     /// <summary>
     /// Defines if the Variant has a signed internal format.
@@ -812,6 +831,7 @@ namespace libVariant
     //-----------------
     // private attributes
     //-----------------
+    InternalValuePolicy mInternalValuePolicy;
     VariantFormat mFormat;
     VariantUnion mData;
 
@@ -822,6 +842,7 @@ namespace libVariant
 
     //static constants
     static const DivisionByZeroPolicy DEFAULT_DIVISION_BY_ZERO_POLICY = THROW;
+    static const InternalValuePolicy DEFAULT_INTERNAL_VALUE_POLICY = INTERNAL_VALUE_SATURATES;
   };
 
 } // End namespace

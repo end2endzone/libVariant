@@ -71,6 +71,9 @@
     <ClInclude Include="TestTypeUnion.h">
       <Filter>Tests</Filter>
     </ClInclude>
+    <ClInclude Include="variantpolicyfunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="TestTypeCastSaturation.h">
       <Filter>Tests</Filter>
     </ClInclude>

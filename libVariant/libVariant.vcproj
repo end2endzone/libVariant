@@ -361,6 +361,22 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\IBaseOperatorStrategy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\OperatorNullStrategy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\OperatorOverflowStrategy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\OperatorSaturationStrategy.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Variant.cpp"
 				>
 			</File>
@@ -375,7 +391,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IBaseOperatorStrategy.h"
+				>
+			</File>
+			<File
 				RelativePath=".\libVariantApi.h"
+				>
+			</File>
+			<File
+				RelativePath=".\OperatorNullStrategy.h"
+				>
+			</File>
+			<File
+				RelativePath=".\OperatorOverflowStrategy.h"
+				>
+			</File>
+			<File
+				RelativePath=".\OperatorSaturationStrategy.h"
 				>
 			</File>
 			<File
@@ -417,10 +449,6 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath="..\Copyright.txt"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

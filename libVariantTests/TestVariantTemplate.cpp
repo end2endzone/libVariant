@@ -68,55 +68,55 @@ inline bool isFormatMatches(const Variant::VariantFormat & iExpectedFormat )
 
 TEST_F(TestVariantTemplate, testGetVariantFormat)
 {
-  ASSERT_TRUE( isFormatMatches<          bool     >(Variant::BOOL) );
-  ASSERT_TRUE( isFormatMatches<          char     >(Variant::SINT8) );
-  ASSERT_TRUE( isFormatMatches<  signed  char     >(Variant::SINT8) );
-  ASSERT_TRUE( isFormatMatches<unsigned  char     >(Variant::UINT8) );
-  ASSERT_TRUE( isFormatMatches<         short     >(Variant::SINT16) );
-  ASSERT_TRUE( isFormatMatches<  signed short     >(Variant::SINT16) );
-  ASSERT_TRUE( isFormatMatches<unsigned short     >(Variant::UINT16) );
-  ASSERT_TRUE( isFormatMatches<         short int >(Variant::SINT16) );
-  ASSERT_TRUE( isFormatMatches<  signed short int >(Variant::SINT16) );
-  ASSERT_TRUE( isFormatMatches<unsigned short int >(Variant::UINT16) );
-  ASSERT_TRUE( isFormatMatches<         int       >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<  signed int       >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<unsigned int       >(Variant::UINT32) );
-  ASSERT_TRUE( isFormatMatches<         long      >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<  signed long      >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<unsigned long      >(Variant::UINT32) );
-  ASSERT_TRUE( isFormatMatches<         long int  >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<  signed long int  >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<unsigned long int  >(Variant::UINT32) );
-  ASSERT_TRUE( isFormatMatches<         long long >(Variant::SINT64) );
-  ASSERT_TRUE( isFormatMatches<  signed long long >(Variant::SINT64) );
-  ASSERT_TRUE( isFormatMatches<unsigned long long >(Variant::UINT64) );
+  ASSERT_TRUE( isFormatMatches<          bool     >(Variant::Bool) );
+  ASSERT_TRUE( isFormatMatches<          char     >(Variant::SInt8) );
+  ASSERT_TRUE( isFormatMatches<  signed  char     >(Variant::SInt8) );
+  ASSERT_TRUE( isFormatMatches<unsigned  char     >(Variant::UInt8) );
+  ASSERT_TRUE( isFormatMatches<         short     >(Variant::SInt16) );
+  ASSERT_TRUE( isFormatMatches<  signed short     >(Variant::SInt16) );
+  ASSERT_TRUE( isFormatMatches<unsigned short     >(Variant::UInt16) );
+  ASSERT_TRUE( isFormatMatches<         short int >(Variant::SInt16) );
+  ASSERT_TRUE( isFormatMatches<  signed short int >(Variant::SInt16) );
+  ASSERT_TRUE( isFormatMatches<unsigned short int >(Variant::UInt16) );
+  ASSERT_TRUE( isFormatMatches<         int       >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<  signed int       >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<unsigned int       >(Variant::UInt32) );
+  ASSERT_TRUE( isFormatMatches<         long      >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<  signed long      >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<unsigned long      >(Variant::UInt32) );
+  ASSERT_TRUE( isFormatMatches<         long int  >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<  signed long int  >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<unsigned long int  >(Variant::UInt32) );
+  ASSERT_TRUE( isFormatMatches<         long long >(Variant::SInt64) );
+  ASSERT_TRUE( isFormatMatches<  signed long long >(Variant::SInt64) );
+  ASSERT_TRUE( isFormatMatches<unsigned long long >(Variant::UInt64) );
 
-  ASSERT_TRUE( isFormatMatches<float              >(Variant::FLOAT32) );
-  ASSERT_TRUE( isFormatMatches<double             >(Variant::FLOAT64) );
-  ASSERT_TRUE( isFormatMatches<long double        >(Variant::FLOAT64) );
-  ASSERT_TRUE( isFormatMatches<wchar_t            >(Variant::UINT16) );
+  ASSERT_TRUE( isFormatMatches<float              >(Variant::Float32) );
+  ASSERT_TRUE( isFormatMatches<double             >(Variant::Float64) );
+  ASSERT_TRUE( isFormatMatches<long double        >(Variant::Float64) );
+  ASSERT_TRUE( isFormatMatches<wchar_t            >(Variant::UInt16) );
 
   //microsoft only types
-  ASSERT_TRUE( isFormatMatches<         __int8    >(Variant::SINT8) );
-  ASSERT_TRUE( isFormatMatches<  signed __int8    >(Variant::SINT8) );
-  ASSERT_TRUE( isFormatMatches<unsigned __int8    >(Variant::UINT8) );
-  ASSERT_TRUE( isFormatMatches<         __int16   >(Variant::SINT16) );
-  ASSERT_TRUE( isFormatMatches<  signed __int16   >(Variant::SINT16) );
-  ASSERT_TRUE( isFormatMatches<unsigned __int16   >(Variant::UINT16) );
-  ASSERT_TRUE( isFormatMatches<         __int32   >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<  signed __int32   >(Variant::SINT32) );
-  ASSERT_TRUE( isFormatMatches<unsigned __int32   >(Variant::UINT32) );
-  ASSERT_TRUE( isFormatMatches<         __int64   >(Variant::SINT64) );
-  ASSERT_TRUE( isFormatMatches<  signed __int64   >(Variant::SINT64) );
-  ASSERT_TRUE( isFormatMatches<unsigned __int64   >(Variant::UINT64) );
+  ASSERT_TRUE( isFormatMatches<         __int8    >(Variant::SInt8) );
+  ASSERT_TRUE( isFormatMatches<  signed __int8    >(Variant::SInt8) );
+  ASSERT_TRUE( isFormatMatches<unsigned __int8    >(Variant::UInt8) );
+  ASSERT_TRUE( isFormatMatches<         __int16   >(Variant::SInt16) );
+  ASSERT_TRUE( isFormatMatches<  signed __int16   >(Variant::SInt16) );
+  ASSERT_TRUE( isFormatMatches<unsigned __int16   >(Variant::UInt16) );
+  ASSERT_TRUE( isFormatMatches<         __int32   >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<  signed __int32   >(Variant::SInt32) );
+  ASSERT_TRUE( isFormatMatches<unsigned __int32   >(Variant::UInt32) );
+  ASSERT_TRUE( isFormatMatches<         __int64   >(Variant::SInt64) );
+  ASSERT_TRUE( isFormatMatches<  signed __int64   >(Variant::SInt64) );
+  ASSERT_TRUE( isFormatMatches<unsigned __int64   >(Variant::UInt64) );
 
   {
     const char * value = "cats and gods";
-    ASSERT_EQ( Variant::STRING, getVariantFormat(value) );
+    ASSERT_EQ( Variant::String, getVariantFormat(value) );
   }
   {
     Variant::Str value = "cats and gods";
-    ASSERT_EQ( Variant::STRING, getVariantFormat(value) );
+    ASSERT_EQ( Variant::String, getVariantFormat(value) );
   }
 }
 

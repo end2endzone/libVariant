@@ -54,6 +54,8 @@
 #include "Variant.h"
 #include "VariantTemplates.h"
 
+#include "variantpolicyfunctions.h"
+
 typedef std::vector<std::string> StringList;
 
 using namespace libVariant;
@@ -78,10 +80,7 @@ static const Variant::sint64 sint64_max = std::numeric_limits<Variant::sint64>::
 
 void TestVariant::SetUp()
 {
-  #pragma warning(push)
-  #pragma warning(disable: 4189) // warning C4189: 'helper' : local variable is initialized but not referenced
   gTestHelper & helper = gTestHelper::getInstance();
-  #pragma warning(pop)
 }
 
 void TestVariant::TearDown()
@@ -1460,12 +1459,12 @@ TEST_F(TestVariant, testSimplify)
   {
     Variant v = "true"; // can be simplified to bool
     ASSERT_TRUE( v.simplify() );
-    ASSERT_EQ(Variant::BOOL, v.getFormat());
+    ASSERT_EQ(Variant::Bool, v.getFormat());
     ASSERT_EQ(true, v.getBool());
 
     v = "false";
     ASSERT_TRUE( v.simplify() );
-    ASSERT_EQ(Variant::BOOL, v.getFormat());
+    ASSERT_EQ(Variant::Bool, v.getFormat());
     ASSERT_EQ(false, v.getBool());
   }
 
@@ -1473,18 +1472,18 @@ TEST_F(TestVariant, testSimplify)
   {
     Variant v = "0"; // cannot be simplified to bool
     ASSERT_TRUE( v.simplify() );
-    ASSERT_NE(Variant::BOOL, v.getFormat());
+    ASSERT_NE(Variant::Bool, v.getFormat());
 
     v = "1"; // can be simplified to bool
     ASSERT_TRUE( v.simplify() );
-    ASSERT_NE(Variant::BOOL, v.getFormat());
+    ASSERT_NE(Variant::Bool, v.getFormat());
   }
 
   //simplify a string to integer
   {
     Variant v = "5"; // "5" can be simplified
     ASSERT_TRUE( v.simplify() );
-    ASSERT_NE(Variant::STRING, v.getFormat());
+    ASSERT_NE(Variant::String, v.getFormat());
     ASSERT_EQ(5, v.getSInt32());
   }
 
@@ -1492,7 +1491,7 @@ TEST_F(TestVariant, testSimplify)
   {
     Variant v = "1.2"; // can be simplified to float32
     ASSERT_TRUE( v.simplify() );
-    ASSERT_EQ(Variant::FLOAT32, v.getFormat());
+    ASSERT_EQ(Variant::Float32, v.getFormat());
     ASSERT_NEAR(1.2, v.getFloat32(), 0.00001);
   }
 
@@ -1500,20 +1499,20 @@ TEST_F(TestVariant, testSimplify)
   {
     Variant v = "5.6"; // can be simplified to float64 but not to float32 (which gives 5.599999)
     ASSERT_TRUE( v.simplify() );
-    ASSERT_EQ(Variant::FLOAT64, v.getFormat());
+    ASSERT_EQ(Variant::Float64, v.getFormat());
     ASSERT_NEAR(5.6, v.getFloat64(), 0.0000000001);
   }
 
   //simplify a string fraction to float
   {
-    //Variant::float64 fraction = 2.5/6.0;
+    Variant::float64 fraction = 2.5/6.0;
     Variant v = "0.416666666666667"; // 2.5/6.0 can be simplified
     ASSERT_TRUE( v.simplify() );
-    ASSERT_TRUE(Variant::FLOAT32 == v.getFormat() ||
-                Variant::FLOAT64 == v.getFormat());
-    if (Variant::FLOAT32 == v.getFormat())
+    ASSERT_TRUE(Variant::Float32 == v.getFormat() ||
+                Variant::Float64 == v.getFormat());
+    if (Variant::Float32 == v.getFormat())
       ASSERT_NEAR(0.416666666666667, v.getFloat32(), 0.00000000000001f);
-    else if (Variant::FLOAT64 == v.getFormat())
+    else if (Variant::Float64 == v.getFormat())
       ASSERT_NEAR(0.416666666666667, v.getFloat64(), 0.00000000000001);
     else
       FAIL() << "Unknown Floating type";
@@ -1523,7 +1522,7 @@ TEST_F(TestVariant, testSimplify)
   {
     Variant v = "foo"; // "foo" cannot be simplified. Thus using operator+ should concatenate to the existing string
     ASSERT_FALSE( v.simplify() );
-    ASSERT_EQ(Variant::STRING, v.getFormat());
+    ASSERT_EQ(Variant::String, v.getFormat());
   }
 
   //simplify a float32 to signed integer
@@ -1542,7 +1541,7 @@ TEST_F(TestVariant, testSimplify)
       char message[1024];
       sprintf(message, "Failed at i=%d", i);
 
-      ASSERT_EQ(Variant::SINT8, v.getFormat()) << message;
+      ASSERT_EQ(Variant::SInt8, v.getFormat()) << message;
 
 
       //test the same value with a small offset
@@ -1552,7 +1551,7 @@ TEST_F(TestVariant, testSimplify)
 
       //test simplification has failed
       ASSERT_FALSE( v.simplify() );
-      ASSERT_EQ(Variant::FLOAT32, v.getFormat()) << message;
+      ASSERT_EQ(Variant::Float32, v.getFormat()) << message;
     }
   }
 }
@@ -1565,36 +1564,36 @@ TEST_F(TestVariant, testAutoConversionToSigned)
   //test with +=
   {
     v.set(value);
-    ASSERT_EQ( Variant::UINT16, v.getFormat());
+    ASSERT_EQ( Variant::UInt16, v.getFormat());
     v += 1;
-    ASSERT_EQ( Variant::SINT16, v.getFormat());
+    ASSERT_EQ( Variant::SInt16, v.getFormat());
     ASSERT_EQ( 5, v.getSInt16());
   }
 
   //test with -=
   {
     v.set(value);
-    ASSERT_EQ( Variant::UINT16, v.getFormat());
+    ASSERT_EQ( Variant::UInt16, v.getFormat());
     v -= 1;
-    ASSERT_EQ( Variant::SINT16, v.getFormat());
+    ASSERT_EQ( Variant::SInt16, v.getFormat());
     ASSERT_EQ( 3, v.getSInt16());
   }
 
   //test with *=
   {
     v.set(value);
-    ASSERT_EQ( Variant::UINT16, v.getFormat());
+    ASSERT_EQ( Variant::UInt16, v.getFormat());
     v *= 2;
-    ASSERT_EQ( Variant::SINT16, v.getFormat());
+    ASSERT_EQ( Variant::SInt16, v.getFormat());
     ASSERT_EQ( 8, v.getSInt16());
   }
 
   //test with /=
   {
     v.set(value);
-    ASSERT_EQ( Variant::UINT16, v.getFormat());
+    ASSERT_EQ( Variant::UInt16, v.getFormat());
     v /= 2;
-    ASSERT_EQ( Variant::SINT16, v.getFormat());
+    ASSERT_EQ( Variant::SInt16, v.getFormat());
     ASSERT_EQ( 2, v.getSInt16());
   }
 }
@@ -1608,9 +1607,9 @@ TEST_F(TestVariant, testAutoConversionToFloat)
     Variant::uint8 divisor = 2;
     Variant v;
     v.set(value);
-    ASSERT_EQ( Variant::UINT8, v.getFormat());
+    ASSERT_EQ( Variant::UInt8, v.getFormat());
     v /= divisor;
-    ASSERT_EQ( Variant::UINT8, v.getFormat()); //assert type has not changed
+    ASSERT_EQ( Variant::UInt8, v.getFormat()); //assert type has not changed
     ASSERT_EQ( 8, v.getUInt8());
   }
 
@@ -1627,7 +1626,7 @@ TEST_F(TestVariant, testAutoConversionToFloat)
     Variant::uint8 divisor = 2;
     Variant v;
     v.set(value);
-    ASSERT_EQ( Variant::UINT8, v.getFormat());
+    ASSERT_EQ( Variant::UInt8, v.getFormat());
     v /= divisor;
     ASSERT_TRUE(v.isFloating());
     ASSERT_EQ( 2.5, v.getFloat64());
@@ -1639,7 +1638,7 @@ TEST_F(TestVariant, testSignedToUnsignedValueClamping)
   Variant::sint16 value = -3;
   Variant v = value;
   Variant::uint16 clampedValue = v.getUInt16();
-  ASSERT_EQ( 0, clampedValue ); //clamped to minimum value of uint16
+  ASSERT_EQ( 0, clampedValue ); //clamped to maximum value of sint16
 }
 
 TEST_F(TestVariant, testUnsignedToSignedValueClamping)
@@ -1650,22 +1649,23 @@ TEST_F(TestVariant, testUnsignedToSignedValueClamping)
   ASSERT_EQ( 32767, clampedValue ); //clamped to maximum value of sint16
 }
 
-TEST_F(TestVariant, testUInt8WrapAroundOverflow)
+TEST_F(TestVariant, testUint8ToSint16OutOfRangePromotion)
 {
   Variant::uint8 value = 250;
   Variant::sint8 addition = 10;
   Variant v;
   v.set(value);
-  ASSERT_EQ( Variant::UINT8, v.getFormat());
+  ASSERT_EQ( Variant::UInt8, v.getFormat());
 
   //do the operation
+  v.setInternalValuePolicy(Variant::INTERNAL_TYPE_PROMOTION);
   v += addition;
 
   //expecting format changed from unsigned to signed
   ASSERT_TRUE( v.isSigned() );
 
   //expecting format is now increased in bits to hold a value of 260
-  ASSERT_EQ( Variant::SINT16, v.getFormat());
+  ASSERT_EQ( Variant::SInt16, v.getFormat());
   ASSERT_EQ( 260, v.getSInt16());
 
   //compute the expected wrap around result
@@ -1677,38 +1677,7 @@ TEST_F(TestVariant, testUInt8WrapAroundOverflow)
   ASSERT_EQ( 255, v.getUInt8());
 
   //expect that a user can still get a value as unsigned and get the wrap around value
-  Variant::uint8 wrapAroundValue = v.getUInt64();
-  ASSERT_EQ( expectedWrapAroundValue, wrapAroundValue);
-}
-
-TEST_F(TestVariant, testSInt8WrapAroundOverflow)
-{
-  Variant::sint8 value = 125;
-  Variant::uint8 addition = 10;
-  Variant v;
-  v.set(value);
-  ASSERT_EQ( Variant::SINT8, v.getFormat());
-  
-  //do the operation
-  v += addition;
-
-  //expecting format changed from unsigned to signed
-  ASSERT_TRUE( v.isSigned() );
-
-  //expecting format is now increased in bits to hold a value of 260
-  ASSERT_EQ( Variant::SINT16, v.getFormat());
-  ASSERT_EQ( 135, v.getSInt16());
-
-  //compute the expected wrap around result
-  Variant::sint8 expectedWrapAroundValue = value;
-  expectedWrapAroundValue += addition;
-  ASSERT_TRUE( expectedWrapAroundValue < 125);
-
-  //expect that maximum value is returned if requested as the original internal type
-  ASSERT_EQ( 127, v.getSInt8());
-
-  //expect that a user can still get a value as unsigned and get the wrap around value
-  Variant::sint8 wrapAroundValue = v.getSInt64();
+  Variant::uint8 wrapAroundValue = v.getUInt16();
   ASSERT_EQ( expectedWrapAroundValue, wrapAroundValue);
 }
 
@@ -2614,37 +2583,40 @@ TEST_F(TestVariant, testOperatorDivideEqual)
   }
 }
 
-TEST_F(TestVariant, testInternalTypePromotion)
+TEST_F(TestVariant, testValidateTypeIntegrity)
 {
   {
     //Variant::uint8 to uint16
     Variant::uint8 value = 250;
     Variant v;
+    v.setInternalValuePolicy(Variant::INTERNAL_TYPE_PROMOTION);
     v.set(value);
-    ASSERT_EQ( Variant::UINT8, v.getFormat() );
+    ASSERT_EQ( Variant::UInt8, v.getFormat() );
     v += 10u;
     ASSERT_EQ( 260, v.getUInt16() );
-    ASSERT_EQ( Variant::UINT16, v.getFormat() );
+    ASSERT_EQ( Variant::UInt16, v.getFormat() );
   }
   {
     //Variant::uint16 to uint32
     Variant::uint16 value = 65530;
     Variant v;
+    v.setInternalValuePolicy(Variant::INTERNAL_TYPE_PROMOTION);
     v.set(value);
-    ASSERT_EQ( Variant::UINT16, v.getFormat() );
+    ASSERT_EQ( Variant::UInt16, v.getFormat() );
     v += 10u;
     ASSERT_EQ( 65540, v.getUInt32() );
-    ASSERT_EQ( Variant::UINT32, v.getFormat() );
+    ASSERT_EQ( Variant::UInt32, v.getFormat() );
   }
   {
     //Variant::uint32 to uint64
     Variant::uint32 value = 0xFFFFFFFc;
     Variant v;
+    v.setInternalValuePolicy(Variant::INTERNAL_TYPE_PROMOTION);
     v.set(value);
-    ASSERT_EQ( Variant::UINT32, v.getFormat() );
+    ASSERT_EQ( Variant::UInt32, v.getFormat() );
     v += 10u;
     ASSERT_EQ( 0x100000006, v.getUInt64() );
-    ASSERT_EQ( Variant::UINT64, v.getFormat() );
+    ASSERT_EQ( Variant::UInt64, v.getFormat() );
   }
 }
 
@@ -2778,7 +2750,7 @@ TEST_F(TestVariant, testOperatorPlusPlus)
     v.set(value);
     v++;
     ASSERT_EQ( 251, v.getUInt8() );
-    ASSERT_EQ( Variant::UINT8, v.getFormat() );
+    ASSERT_EQ( Variant::UInt8, v.getFormat() );
   }
   {
     // --
@@ -2787,7 +2759,7 @@ TEST_F(TestVariant, testOperatorPlusPlus)
     v.set(value);
     v--;
     ASSERT_EQ( 249, v.getUInt8() );
-    ASSERT_EQ( Variant::UINT8, v.getFormat() );
+    ASSERT_EQ( Variant::UInt8, v.getFormat() );
   }
 
   {
@@ -2799,7 +2771,7 @@ TEST_F(TestVariant, testOperatorPlusPlus)
     Variant::uint8 value2 = ++value1;
     ASSERT_EQ( value2, variant2.getUInt8() ); //same behavior as native type
     ASSERT_EQ( 251, variant2.getUInt8() ); //expected Variant's value
-    ASSERT_EQ( Variant::UINT8, variant2.getFormat() );
+    ASSERT_EQ( Variant::UInt8, variant2.getFormat() );
   }
 
   {
@@ -2811,7 +2783,7 @@ TEST_F(TestVariant, testOperatorPlusPlus)
     Variant::uint8 value2 = value1++;
     ASSERT_EQ( value2, variant2.getUInt8() ); //same behavior as native type
     ASSERT_EQ( 250, variant2.getUInt8() ); //expected Variant's value
-    ASSERT_EQ( Variant::UINT8, variant2.getFormat() );
+    ASSERT_EQ( Variant::UInt8, variant2.getFormat() );
   }
 }
 
@@ -2837,6 +2809,8 @@ TEST_F(TestVariant, testVbScriptIdenticalBehavior)
     //build Variant instance initialized with file values
     Variant variant1;
     Variant variant2;
+    variant1.setInternalValuePolicy(Variant::INTERNAL_TYPE_PROMOTION);
+    variant2.setInternalValuePolicy(Variant::INTERNAL_TYPE_PROMOTION);
     variant1 = values[0];
     variant2 = values[1];
 
@@ -2957,47 +2931,47 @@ inline bool isAssignOperationsMatchesFormat( const T & iValue, const Variant::Va
 
 TEST_F(TestVariant, testFundamentalTypesAssignOperations)
 {
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<          bool     >(true, Variant::BOOL) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<          char     >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed  char     >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned  char     >(12, Variant::UINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         short     >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed short     >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned short     >(12, Variant::UINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         short int >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed short int >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned short int >(12, Variant::UINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         int       >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed int       >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned int       >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long      >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long      >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long      >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long int  >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long int  >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long int  >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long long >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long long >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long long >(12, Variant::UINT64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<          bool     >(true, Variant::Bool) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<          char     >(12, Variant::SInt8) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed  char     >(12, Variant::SInt8) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned  char     >(12, Variant::UInt8) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         short     >(12, Variant::SInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed short     >(12, Variant::SInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned short     >(12, Variant::UInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         short int >(12, Variant::SInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed short int >(12, Variant::SInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned short int >(12, Variant::UInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         int       >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed int       >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned int       >(12, Variant::UInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long      >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long      >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long      >(12, Variant::UInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long int  >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long int  >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long int  >(12, Variant::UInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long long >(12, Variant::SInt64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long long >(12, Variant::SInt64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long long >(12, Variant::UInt64) );
 
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<float              >(12, Variant::FLOAT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<double             >(12, Variant::FLOAT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<long double        >(12, Variant::FLOAT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<wchar_t            >(12, Variant::UINT16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<float              >(12, Variant::Float32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<double             >(12, Variant::Float64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<long double        >(12, Variant::Float64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<wchar_t            >(12, Variant::UInt16) );
 
   //microsoft only types
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int8    >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int8    >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int8    >(12, Variant::UINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int16   >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int16   >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int16   >(12, Variant::UINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int32   >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int32   >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int32   >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int64   >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int64   >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int64   >(12, Variant::UINT64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int8    >(12, Variant::SInt8) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int8    >(12, Variant::SInt8) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int8    >(12, Variant::UInt8) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int16   >(12, Variant::SInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int16   >(12, Variant::SInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int16   >(12, Variant::UInt16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int32   >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int32   >(12, Variant::SInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int32   >(12, Variant::UInt32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int64   >(12, Variant::SInt64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int64   >(12, Variant::SInt64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int64   >(12, Variant::UInt64) );
 }
 
 template <typename T>
@@ -3144,47 +3118,47 @@ inline bool isMathOperatorsMatchesFormat( const T & iInitialValue, const T & iOp
 
 TEST_F(TestVariant, testFundamentalTypesMathOperators)
 {
-  //ASSERT_TRUE( isMathOperatorsMatchesFormat<          bool     >(10,2,12,8,20,5, Variant::BOOL) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<          char     >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed  char     >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned  char     >(10,2,12,8,20,5, Variant::UINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         short     >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed short     >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned short     >(10,2,12,8,20,5, Variant::UINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         short int >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed short int >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned short int >(10,2,12,8,20,5, Variant::UINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         int       >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed int       >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned int       >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long      >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long      >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long      >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long int  >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long int  >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long int  >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long long >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long long >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long long >(10,2,12,8,20,5, Variant::UINT64) );
+  //ASSERT_TRUE( isMathOperatorsMatchesFormat<          bool     >(10,2,12,8,20,5, Variant::Bool) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<          char     >(10,2,12,8,20,5, Variant::SInt8) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed  char     >(10,2,12,8,20,5, Variant::SInt8) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned  char     >(10,2,12,8,20,5, Variant::UInt8) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         short     >(10,2,12,8,20,5, Variant::SInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed short     >(10,2,12,8,20,5, Variant::SInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned short     >(10,2,12,8,20,5, Variant::UInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         short int >(10,2,12,8,20,5, Variant::SInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed short int >(10,2,12,8,20,5, Variant::SInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned short int >(10,2,12,8,20,5, Variant::UInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         int       >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed int       >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned int       >(10,2,12,8,20,5, Variant::UInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long      >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long      >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long      >(10,2,12,8,20,5, Variant::UInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long int  >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long int  >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long int  >(10,2,12,8,20,5, Variant::UInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long long >(10,2,12,8,20,5, Variant::SInt64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long long >(10,2,12,8,20,5, Variant::SInt64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long long >(10,2,12,8,20,5, Variant::UInt64) );
 
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<float              >(10,2,12,8,20,5, Variant::FLOAT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<double             >(10,2,12,8,20,5, Variant::FLOAT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<long double        >(10,2,12,8,20,5, Variant::FLOAT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<wchar_t            >(10,2,12,8,20,5, Variant::UINT16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<float              >(10,2,12,8,20,5, Variant::Float32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<double             >(10,2,12,8,20,5, Variant::Float64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<long double        >(10,2,12,8,20,5, Variant::Float64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<wchar_t            >(10,2,12,8,20,5, Variant::UInt16) );
 
   //microsoft only types
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int8    >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int8    >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int8    >(10,2,12,8,20,5, Variant::UINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int16   >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int16   >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int16   >(10,2,12,8,20,5, Variant::UINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int32   >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int32   >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int32   >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int64   >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int64   >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int64   >(10,2,12,8,20,5, Variant::UINT64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int8    >(10,2,12,8,20,5, Variant::SInt8) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int8    >(10,2,12,8,20,5, Variant::SInt8) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int8    >(10,2,12,8,20,5, Variant::UInt8) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int16   >(10,2,12,8,20,5, Variant::SInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int16   >(10,2,12,8,20,5, Variant::SInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int16   >(10,2,12,8,20,5, Variant::UInt16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int32   >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int32   >(10,2,12,8,20,5, Variant::SInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int32   >(10,2,12,8,20,5, Variant::UInt32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int64   >(10,2,12,8,20,5, Variant::SInt64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int64   >(10,2,12,8,20,5, Variant::SInt64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int64   >(10,2,12,8,20,5, Variant::UInt64) );
 }
 
 TEST_F(TestVariant, testUnionAlignmentAndPacking)
@@ -3235,63 +3209,129 @@ TEST_F(TestVariant, testImplicitConversions)
 {
   {
     Variant::boolean value = true;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::BOOL) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::Bool) );
   }
 
   //unsigned
   {
     Variant::uint8 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT8) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UInt8) );
   }
   {
     Variant::uint16 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT16) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UInt16) );
   }
   {
     Variant::uint32 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT32) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UInt32) );
   }
   {
     Variant::uint64 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT64) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UInt64) );
   }
 
   //signed
   {
     Variant::sint8 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT8) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SInt8) );
   }
   {
     Variant::sint16 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT16) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SInt16) );
   }
   {
     Variant::sint32 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT32) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SInt32) );
   }
   {
     Variant::sint64 value = 34;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT64) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SInt64) );
   }
 
   //floating point
   {
     Variant::float32 value = 34.23f;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::FLOAT32) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::Float32) );
   }
   {
     Variant::float64 value = 34.23;
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::FLOAT64) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::Float64) );
   }
 
   //string
   {
     Variant::CStr value = "foo";
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::STRING) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::String) );
   }
   {
     Variant::Str value = "bar";
-    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::STRING) );
+    ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::String) );
   }
 
+}
+
+TEST_F(TestVariant, testAddOverflow)
+{
+  Variant::InternalValuePolicy policy = Variant::InternalValuePolicy::INTERNAL_VALUE_OVERFLOW;
+
+  //add int to char
+  {
+    char a = 34;
+    int b = 1122;
+    char expected = a;
+    expected += b;
+    Promotion p = {0};
+    OperatorPolicyResult result = _add(policy, MATH_OPERATOR::PLUS_EQUAL, p, a, b);
+    ASSERT_EQ(OperatorPolicyResult::NO_CHANGE, result);
+    ASSERT_EQ(0,    p._signed);
+    ASSERT_EQ(0,    p._unsigned);
+    ASSERT_EQ(0.0f, p._float32);
+    ASSERT_EQ(0.0,  p._float64);
+    ASSERT_EQ(expected, a);
+  }
+
+  //add char to int
+  {
+    int a = 2147483632;
+    char b = 100;
+    int expected = a;
+    expected += b;
+    Promotion p = {0};
+    OperatorPolicyResult result = _add(policy, MATH_OPERATOR::PLUS_EQUAL, p, a, b);
+    ASSERT_EQ(OperatorPolicyResult::NO_CHANGE, result);
+    ASSERT_EQ(0,    p._signed);
+    ASSERT_EQ(0,    p._unsigned);
+    ASSERT_EQ(0.0f, p._float32);
+    ASSERT_EQ(0.0,  p._float64);
+    ASSERT_EQ(expected, a);
+  }
+}
+
+TEST_F(TestVariant, testAddPromotion)
+{
+  Variant::InternalValuePolicy policy = Variant::InternalValuePolicy::INTERNAL_TYPE_PROMOTION;
+
+  //add int to char
+  {
+    char a = 34;
+    int b = 1122;
+    int expected = a;
+    expected += b;
+    Promotion p = {0};
+    OperatorPolicyResult result = _add(policy, MATH_OPERATOR::PLUS_EQUAL, p, a, b);
+    ASSERT_EQ(OperatorPolicyResult::SIGNED_PROMOTED, result);
+    ASSERT_EQ(1156, p._signed);
+  }
+
+  //add char to int
+  {
+    int a = 2147483632;
+    char b = 100;
+    long long expected = a;
+    expected += b;
+    Promotion p = {0};
+    OperatorPolicyResult result = _add(policy, MATH_OPERATOR::PLUS_EQUAL, p, a, b);
+    ASSERT_EQ(OperatorPolicyResult::SIGNED_PROMOTED, result);
+    ASSERT_EQ(2147483732ll, p._signed);
+  }
 }

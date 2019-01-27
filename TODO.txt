@@ -1,4 +1,32 @@
-- Removed automatic clamping when getting a type as another. Instead return a static cast from the internal value. This will remove most of the code bloat. If a user still wants to clamp values, one should use saturate_cast<> template instead.
+- Add in the header that it is a Variant class compatible with C++ 1998/2003 standard.
+- Specify in the post & header that the class has no ambiguous calls. Each getter is strongly type and the class has no implicit conversions.
+- Write performance tests ?
+- Create or find the existing TC that sets a variant to setUInt8(250); var += 30u; getUInt8() should clamp to 255 instead of showing. CLARIFY when a value is clamped (probably from “signed to unsigned” and “unsigned to signed”) and when it will wrap-around and auto increase.
+- Create method setOutOfRangeBehavior() enum OUT_OF_RANGE_HINT { clamp, wraparound }. Or create 2 sets of methods: uint8 getClampedUInt8()... and getUInt8() which wrap arounds.
+- Rename VariantFormat enums values to uppercase ?
+- Valider les tests avec les descriptions disponibles à http://www.cplusplus.com/articles/DE18T05o/ : voir 
+- Create tests to support the behaviors explained at http://www.cplusplus.com/articles/DE18T05o/ : testTruncation(), testOverflow(), testTypeConversion(), testTypePromotion()...
+
+- Note: Automatic type promotion instead of trunctation: short a;int b=57973;a=b;
+
+    /// <summary>
+    /// An enum which defines the class behavior when the internal value is modified.
+    /// </summary>
+    enum InternalValuePolicy { 
+      INTERNAL_VALUE_OVERFLOW,  //same behavior as native c++ types: overflow (https://en.wikipedia.org/wiki/Integer_overflow) & truncate values.
+      INTERNAL_TYPE_PROMOTION,  //the internal type of the class is promoted to a new type where the new internal value is in range of the internal type's minimum and maximum values.
+      INTERNAL_VALUE_SATURATES, //https://en.wikipedia.org/wiki/Saturation_arithmetic, all operations such as addition and multiplication are limited to a fixed range between a minimum and maximum value.
+    };
+
+
+
+Truncation: 1- short a;int b=57973;a=b;
+            2- short a;long b=70000;a=b;
+            observed with operator =(). However, this operator on a Variant changes the internal type and value to the new value.
+
+promotion:  short a=32000,b=32000;cout<<a+b<<endl;
+conversion: unsigned int a=4294967290;int b=-6; return (a==b);
+
 
 TODO:
 refactor function logicalConvert():

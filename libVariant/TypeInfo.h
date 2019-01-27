@@ -260,14 +260,11 @@ namespace typeinfo
       static const T lowest = std::numeric_limits<T>::lowest();
       return lowest;
 #else
-      #pragma warning(push)
-      #pragma warning(disable:4146) //warning C4146: unary minus operator applied to unsigned type, result still unsigned
-      static const T posmin =  std::numeric_limits<T>::min();
-      static const T negmax = -std::numeric_limits<T>::max(); //equals 1 in case of unsigned value. Safe because 1 is greater than ::min() which is 0
-      #pragma warning(pop)
-      if (posmin < negmax)
-        return posmin;
-      return negmax;
+      static const T lowestMin    =  std::numeric_limits<T>::min();
+      static const T lowestNegMax = -std::numeric_limits<T>::max();
+      if (lowestMin < lowestNegMax)
+        return lowestMin;
+      return lowestNegMax;
 #endif
     }
 

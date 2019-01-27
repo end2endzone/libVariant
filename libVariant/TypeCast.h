@@ -220,7 +220,7 @@ namespace typecast
     TLeft minValue = typeinfo::TypeInfo<TLeft>::minimum();
     TLeft maxValue = typeinfo::TypeInfo<TLeft>::maximum();
     bool isLeftSigned = (minValue < 0);
-    //bool isLeftUnsigned = (minValue == 0);
+    bool isLeftUnsigned = (minValue == 0);
 
     //http://stackoverflow.com/questions/199333/how-to-detect-integer-overflow-in-c-c
     //a *= x;

@@ -838,9 +838,9 @@ template <typename TLeft, typename TRight>
 inline void testAllValuesOverflows()
 {
   TLeft leftStart = typeinfo::TypeInfo<TLeft>::minimum();
-  //TLeft leftEnd   = typeinfo::TypeInfo<TLeft>::maximum();
+  TLeft leftEnd   = typeinfo::TypeInfo<TLeft>::maximum();
   TRight rightStart = typeinfo::TypeInfo<TRight>::minimum();
-  //TRight rightEnd   = typeinfo::TypeInfo<TRight>::maximum();
+  TRight rightEnd   = typeinfo::TypeInfo<TRight>::maximum();
 
   //for each values of TLeft
   TLeft leftCurrent = leftStart;

@@ -76,24 +76,24 @@ namespace libVariant
   //---------------------------------------------
   // getVariantFormat() template specializations
   //---------------------------------------------
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::boolean>(const Variant::boolean &)  {    return Variant::BOOL;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint8>(const Variant::uint8 &)  {    return Variant::UINT8;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint16>(const Variant::uint16 &)  {    return Variant::UINT16;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint32>(const Variant::uint32 &)  {    return Variant::UINT32;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint64>(const Variant::uint64 &)  {    return Variant::UINT64;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint8>(const Variant::sint8 &)  {    return Variant::SINT8;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint16>(const Variant::sint16 &)  {    return Variant::SINT16;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint32>(const Variant::sint32 &)  {    return Variant::SINT32;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint64>(const Variant::sint64 &)  {    return Variant::SINT64;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::float32>(const Variant::float32 &)  {    return Variant::FLOAT32;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::float64>(const Variant::float64 &)  {    return Variant::FLOAT64;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::CStr>(const Variant::CStr &)  {    return Variant::STRING;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<Variant::Str>(const Variant::Str &)  {    return Variant::STRING;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<signed char>(const signed char &)  {    return Variant::SINT8;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<int>(const int &)  {    return Variant::SINT32;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<unsigned int>(const unsigned int &)  {    return Variant::UINT32;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<long double>(const long double &)  {    return Variant::FLOAT64;  }
-  template<>  inline Variant::VariantFormat getVariantFormat<wchar_t  >(const wchar_t   &)  {    return Variant::UINT16;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::boolean>(const Variant::boolean &)  {    return Variant::Bool;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint8>(const Variant::uint8 &)  {    return Variant::UInt8;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint16>(const Variant::uint16 &)  {    return Variant::UInt16;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint32>(const Variant::uint32 &)  {    return Variant::UInt32;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::uint64>(const Variant::uint64 &)  {    return Variant::UInt64;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint8>(const Variant::sint8 &)  {    return Variant::SInt8;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint16>(const Variant::sint16 &)  {    return Variant::SInt16;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint32>(const Variant::sint32 &)  {    return Variant::SInt32;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::sint64>(const Variant::sint64 &)  {    return Variant::SInt64;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::float32>(const Variant::float32 &)  {    return Variant::Float32;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::float64>(const Variant::float64 &)  {    return Variant::Float64;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::CStr>(const Variant::CStr &)  {    return Variant::String;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<Variant::Str>(const Variant::Str &)  {    return Variant::String;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<signed char>(const signed char &)  {    return Variant::SInt8;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<int>(const int &)  {    return Variant::SInt32;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<unsigned int>(const unsigned int &)  {    return Variant::UInt32;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<long double>(const long double &)  {    return Variant::Float64;  }
+  template<>  inline Variant::VariantFormat getVariantFormat<wchar_t  >(const wchar_t   &)  {    return Variant::UInt16;  }
 
   //-------------------------------------------------
   // isNativelyComparable() template specializations

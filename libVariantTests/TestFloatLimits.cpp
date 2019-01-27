@@ -42,41 +42,50 @@
 //
 
 
-// main.cpp : Defines the entry point for the console application.
-//
+#include "TestFloatLimits.h"
+#include "FloatLimits.h"
+#include <float.h>
 
-#pragma once
+using namespace libVariant;
 
-#include "targetver.h"
-
-#include <stdio.h>
-#include <tchar.h>
-
-#include <gtest/gtest.h>
-
-#include "gtesthelper.h"
-
-int main(int argc, char **argv)
+void TestFloatLimits::SetUp()
 {
-  gTestHelper & hlp = gTestHelper::getInstance();
-  if (hlp.isProcessorX86())
-  {
-    if (hlp.isDebugCode())
-      ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x86.debug.xml";
-    else
-      ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x86.release.xml";
-  }
-  else if (hlp.isProcessorX64())
-  {
-    if (hlp.isDebugCode())
-      ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x64.debug.xml";
-    else
-      ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x64.release.xml";
-  }
+}
 
-  ::testing::GTEST_FLAG(filter) = "*";
-  ::testing::InitGoogleTest(&argc, argv);
+void TestFloatLimits::TearDown()
+{
+}
 
-  int wResult = RUN_ALL_TESTS(); //Find and run all tests
-  return wResult; // returns 0 if all the tests are successful, or 1 otherwise
+TEST_F(TestFloatLimits, testStructureSizes)
+{
+  ASSERT_EQ(4, sizeof(floatlimits::float32_IEEE754));
+  ASSERT_EQ(8, sizeof(floatlimits::float64_IEEE754));
+}
+
+TEST_F(TestFloatLimits, testIntMin32)
+{
+  float actualIntMin = typeinfo::TypeInfo<int>::minimum();
+  float intMinSaturation = floatlimits::getMinimumSafeCast32<int>();
+  ASSERT_TRUE(actualIntMin <= intMinSaturation);
+}
+
+TEST_F(TestFloatLimits, testIntMax32)
+{
+  float actualIntMax = typeinfo::TypeInfo<int>::maximum();
+  float intMaxSaturation = floatlimits::getMaximumSafeCast32<int>();
+  ASSERT_TRUE(intMaxSaturation <= actualIntMax);
+}
+
+TEST_F(TestFloatLimits, testIntMin64)
+{
+  double actualIntMin = typeinfo::TypeInfo<int>::minimum();
+  double intMinSaturation = floatlimits::getMinimumSafeCast64<int>();
+  ASSERT_TRUE(actualIntMin <= intMinSaturation);
+}
+
+TEST_F(TestFloatLimits, testIntMax64)
+{
+  double actualIntMax = typeinfo::TypeInfo<int>::maximum();
+  double intMaxSaturation = floatlimits::getMaximumSafeCast64<int>();
+  ASSERT_TRUE(intMaxSaturation <= actualIntMax);
 }

@@ -1,9 +1,54 @@
+//
+//  libVariant Library - v2.0 - 05/26/2017
+//  Copyright (C) 2017 Antoine Beauchamp
+//  The code & updates for the library can be found on http://end2endzone.com
+//
+// AUTHOR/LICENSE:
+//  This library is free software; you can redistribute it and/or
+//  modify it under the terms of the GNU Lesser General Public
+//  License as published by the Free Software Foundation; either
+//  version 3.0 of the License, or (at your option) any later version.
+//
+//  This library is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//  Lesser General Public License (LGPL-3.0) for more details.
+//
+//  You should have received a copy of the GNU Lesser General Public
+//  License along with this library; if not, write to the Free Software
+//  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+//
+// DISCLAIMER:
+//  This software is furnished "as is", without technical support, and with no 
+//  warranty, express or implied, as to its usefulness for any purpose.
+//
+// PURPOSE:
+//  This libVariant library allows one to create an instance of Variant class.
+//  The Variant class allows one to create a type-safe and value safe union
+//  between all known c++ basic types. An instance of a Variant class can hold
+//  any c++ type of value and can easily convert between any type of data when
+//  required.  The class automatically handles all conversion combinations and
+//  minimizes lost of data. Typically used in design where one does not want
+//  to implement conversion of c++ types using templates in every situation.
+//  Variant instance can be used to implement a similar fashion of C# properties
+//  where property editors can edit any type of property.
+//
+// HISTORY:
+// 10/29/2016 v1.0 - Initial release.
+// 05/26/2017 v2.0 - Updated API for cleaner look & updated documentation.
+//                 - Added speed optimizations.
+//                 - Added more operators: +, -, *, /, +=, -=, *=, /=, <, >, <=, >=, == and !=
+//                 - Implemented division by zero handling.
+//
+
+
 #include "gTestHelper.h"
 #include <iostream>
 #include <sstream> //for stringstream
 #include <iostream> //for std::hex
 #include <cstdlib>  //for random
 #include <ctime>    //for random
+#include <gtest/gtest.h>
 
 bool initRandomProvider();
 static bool foo = initRandomProvider();
@@ -29,15 +74,15 @@ bool substringEquals(const char * iValue, const char * iSearchValue, size_t iInd
   return false; //not found
 }
 
-void splitString(gTestHelper::StringVector & oList, const char * iValue, const char * iSplitPattern)
+void gTestHelper::splitString(gTestHelper::StringVector & oList, const char * iText, const char * iSplitPattern)
 {
   oList.clear();
   std::string accumulator;
-  std::string value = iValue;
+  std::string text = iText;
   std::string pattern = iSplitPattern;
-  for(size_t i=0; i<value.size(); i++)
+  for(size_t i=0; i<text.size(); i++)
   {
-    if (substringEquals(iValue, iSplitPattern, i, pattern.size()))
+    if (substringEquals(iText, iSplitPattern, i, pattern.size()))
     {
       //found a split pattern
 
@@ -52,7 +97,7 @@ void splitString(gTestHelper::StringVector & oList, const char * iValue, const c
     }
     else
     {
-      char tmp[] = { iValue[i], '\0' };
+      char tmp[] = { iText[i], '\0' };
       accumulator.append(tmp);
     }
   }
@@ -569,16 +614,10 @@ bool gTestHelper::getTextFileContent(const char* iFilename, gTestHelper::StringV
 	{
     while( fgets(buffer, BUFFER_SIZE, f) != NULL )
     {
-      std::string line = buffer;
-      
       //remove last CRLF at the end of the string
-      if (line.size() > 1)
-      {
-        char & last = line[line.size()-1];
-        if (last == '\n')
-          last = '\0';
-      }
+      removeCRLF(buffer);
 
+      std::string line = buffer;
       oLines.push_back(line);
     }
 		fclose(f);
@@ -708,4 +747,67 @@ bool gTestHelper::isReleaseCode()
 #else
   return false;
 #endif
+}
+
+std::string gTestHelper::getTestSuiteName()
+{
+  std::string name = ::testing::UnitTest::GetInstance()->current_test_info()->test_case_name();
+  return name;
+}
+
+std::string gTestHelper::getTestCaseName()
+{
+  std::string name = ::testing::UnitTest::GetInstance()->current_test_info()->name();
+  return name;
+}
+
+std::string gTestHelper::getTestQualifiedName()
+{
+  const char * testSuiteName = ::testing::UnitTest::GetInstance()->current_test_info()->test_case_name();
+  const char * testCaseName = ::testing::UnitTest::GetInstance()->current_test_info()->name();
+
+  std::string name;
+  name.append(testSuiteName);
+  name.append(".");
+  name.append(testCaseName);
+
+  return name;
+}
+
+void gTestHelper::removeCRLF(char * iBuffer)
+{
+  int index = 0;
+  while(iBuffer[index] != '\0')
+  {
+    if (iBuffer[index] == 10 && iBuffer[index+1] == 13)
+      iBuffer[index] = '\0';
+    if (iBuffer[index] == 10 && iBuffer[index+1] == '\0')
+      iBuffer[index] = '\0';
+
+    index++;
+  }
+}
+
+gTestHelper::StringVector gTestHelper::splitString(const std::string & iText, char iSplitCharacter)
+{
+  gTestHelper::StringVector values;
+  std::string accumulator;
+  for(size_t i=0; i<iText.size(); i++)
+  {
+    char c = iText[i];
+    if (c == iSplitCharacter)
+    {
+      values.push_back(accumulator);
+      accumulator = "";
+    }
+    else
+    {
+      accumulator += c;
+    }
+  }
+  if (!accumulator.empty())
+  {
+    values.push_back(accumulator);
+  }
+  return values;
 }

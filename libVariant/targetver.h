@@ -1,6 +1,6 @@
 //
-//  libVariant Library - v1.0 - 10/29/2016
-//  Copyright (C) 2016 Antoine Beauchamp
+//  libVariant Library - v2.0 - 05/26/2017
+//  Copyright (C) 2017 Antoine Beauchamp
 //  The code & updates for the library can be found on http://end2endzone.com
 //
 // AUTHOR/LICENSE:
@@ -35,6 +35,10 @@
 //
 // HISTORY:
 // 10/29/2016 v1.0 - Initial release.
+// 05/26/2017 v2.0 - Updated API for cleaner look & updated documentation.
+//                 - Added speed optimizations.
+//                 - Added more operators: +, -, *, /, +=, -=, *=, /=, <, >, <=, >=, == and !=
+//                 - Implemented division by zero handling.
 //
 
 

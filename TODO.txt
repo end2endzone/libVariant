@@ -1,0 +1,55 @@
+- Remove the header from all files.
+- Update the header for clarification.
+- Add in the header that it is a Variant class compatible with C++ 1998/2003 standard.
++ Create or find the existing TC that sets a variant to setUInt8(250); var += 30u; getUInt8() should clamp to 255 instead of showing. CLARIFY when a value is clamped (probably from “signed to unsigned” and “unsigned to signed”) and when it will wrap-around and auto increase.
++ Rename VariantFormat enums values to uppercase ? This is a rule from SonarQube & Google C++ Style Guide
+- Removed automatic clamping when getting a type as another. Instead return a static cast from the internal value. This will remove most of the code bloat. If a user still wants to clamp values, one should use saturate_cast<> template instead.
+
++ Declare a type to convert all boolean tests & operations as another type to prevent warnings of type "warning C4804: '<' : unsafe use of type 'bool' in operation". Define a "typedef DEFAULT_BOOLEAN_REDIRECTION_TYPE int" and change all operator +=, -=, *=, /=, <, >, <= and >= of type bool to redirecto to DEFAULT_BOOLEAN_REDIRECTION_TYPE. 
+
+- Define the class's behavior:
+  - Automatic internal type promotion to best fit the user's needs: floating point <=> integers <=> strings. 
+  - Matches the same bahavior's as Visual Basic's Variant type.
+  - Converts from unsigned to signed when executing a mathematical operator with a signed value. See TestVariant.testAutoConversionToSigned(). ie:
+    Variant v;
+    v.setUInt8(45);
+    v -= 10;
+    v => sint8 with a value of 35
+  - Converts from signed/unsigned to floating point if the result of a mathematical operator is a floating point value. See TestVariant.testAutoConversionToFloat(). ie:
+    Variant v;
+    v.setUInt8(5);
+    v /= 2;
+    v => float64 with a value of 2.5
+  - Automatic internal type promotion for no loss of data. See TestVariant.testInternalTypePromotion(). ie:
+    Variant v;
+    v.setUInt8(250);
+    v += 10u;
+    v => uint16 with a value of 260
+  - Clamps the internal value if a getter function is called which does not match the internal type of the Variant. See TestVariant.testSignedToUnsignedValueClamping() and TestVariant.testUnsignedToSignedValueClamping(). ie:
+    Variant v;
+    v.setSInt16(-3);
+    v.getUInt16() => clamped to minimum value of uint16
+    v.setUInt16(65500);
+    v.getSInt16() => clamped to maximum value of sint16
+  - Automatic conversion from/to strings with native C++ types. See TestVariant.testString2BooleanConversion(), TestVariant.testBoolean2StringConversion(), TestVariant.testFloat2StringConversion(). ie:
+    Variant v;
+    v.setString("true");
+    v.getBool() => returns true
+    v.setString("0");
+    v.getBool() => returns false
+    v.setFloat32(0.87654321f);
+    v.getString() => returns "0.87654321"
+
+
+Truncation: 1- short a;int b=57973;a=b;
+            2- short a;long b=70000;a=b;
+            observed with operator =(). However, this operator on a Variant changes the internal type and value to the new value.
+
+promotion:  short a=32000,b=32000;cout<<a+b<<endl;
+conversion: unsigned int a=4294967290;int b=-6; return (a==b);
+
+
+TODO:
+refactor function logicalConvert():
+- Remove min & max arguments by using std::numeric_limits<Variant::uint16>::max(); ...
+- Remove usage of iOutputFormat and use TypeInfo template to know the actual output type using T. ... Or use TypeInfo.isUnsigned()

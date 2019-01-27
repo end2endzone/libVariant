@@ -1,0 +1,11 @@
+Changes for 2.0.114: (05/26/2017)
+
+* New Feature: Updated API for cleaner look & updated documentation.
+* New Feature: Added speed optimizations.
+* New Feature: Added more operators: +, -, *, /, +=, -=, *=, /=, <, >, <=, >=, == and !=
+* New Feature: Implemented division by zero handling.
+
+Changes for 1.0.6: (10/29/2016)
+
+* First public release.
+* Originally released on https://www.end2endzone.com/libvariant-a-c-library-which-encapsulate-any-value-of-variant-types/

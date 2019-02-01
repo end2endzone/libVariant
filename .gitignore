@@ -1,9 +1,3 @@
-/*.sdf
-/Win32
-/ipch
-/libVariant/Win32
-/libVariant/*.user
-/libVariantTests/*.user
-/libVariantCodeGenerator/*.user
-/libVariantCodeGenerator/Win32
-/*.opensdf
+/build
+/install
+/third_parties

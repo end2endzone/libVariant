@@ -9,7 +9,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-#include "Variant.h"
+#include "libvariant/Variant.h"
 #include "VariantTemplates.h"
 
 typedef std::vector<std::string> StringList;
@@ -2839,7 +2839,8 @@ inline bool isAssignOperationsMatchesFormat( const T & iValue, const Variant::Va
 {
   //test direct constructor
   {
-    Variant v(iValue);
+    Variant v;
+    v = iValue;
 
     //assert format
     if (v.getFormat() != iExpectedFormat)

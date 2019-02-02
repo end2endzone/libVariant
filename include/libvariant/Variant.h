@@ -5,7 +5,8 @@
 //---------------
 // Include Files
 //---------------
-#include "libVariantApi.h"
+#include "libvariant/config.h"
+#include "libvariant/version.h"
 #include <string>
 
 //-----------
@@ -17,7 +18,7 @@ namespace libVariant
   //------------------------
   // Class Declarations
   //------------------------
-  class LIBVARIANT_API Variant
+  class LIBVARIANT_EXPORT Variant
   {
   public:
     //--------------------------

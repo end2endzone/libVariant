@@ -1,0 +1,15 @@
+@LICENSE@
+#ifndef LIBVARIANT_CONFIG_H
+#define LIBVARIANT_CONFIG_H
+
+@LIBVARIANT_BUILD_TYPE_CPP_DEFINE@
+
+#ifdef LIBVARIANT_BUILT_AS_SHARED
+#   include "export.h"
+#endif
+
+#ifndef LIBVARIANT_EXPORT
+#   define LIBVARIANT_EXPORT
+#endif
+
+#endif //LIBVARIANT_CONFIG_H

@@ -5,8 +5,7 @@
 //---------------
 // Include Files
 //---------------
-#include "libVariantApi.h"
-#include "Variant.h"
+#include "libvariant/Variant.h"
 
 //-----------
 // Namespace

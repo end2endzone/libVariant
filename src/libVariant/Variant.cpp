@@ -3,7 +3,7 @@
 //---------------
 // Include Files
 //---------------
-#include "Variant.h"
+#include "libvariant/Variant.h"
 #include "StringEncoder.h"
 #include "StringParser.h"
 
@@ -351,26 +351,26 @@ namespace libVariant
     (*this) = iValue;
   }
 
-  inline Variant::Variant(const bool      & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const uint8     & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const sint8     & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const uint16    & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const sint16    & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const uint32    & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const sint32    & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const uint64    & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const sint64    & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const float32   & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const float64   & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const Str       & iValue) { clear(); (*this) = iValue; }
-  inline Variant::Variant(const CStr      & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const bool      & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint8     & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const sint8     & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint16    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const sint16    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint32    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const sint32    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint64    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const sint64    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const float32   & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const float64   & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const Str       & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const CStr      & iValue) { clear(); (*this) = iValue; }
   
   //other fundamental types which are derivative of one of VariantFormat
-  inline Variant::Variant(const   signed char     & iValue) { clear(); (*this) = static_cast<Variant::sint8>(iValue); }
-  inline Variant::Variant(const   signed int      & iValue) { clear(); (*this) = static_cast<Variant::sint32>(iValue); }
-  inline Variant::Variant(const unsigned int      & iValue) { clear(); (*this) = static_cast<Variant::uint32>(iValue); }
-  inline Variant::Variant(const long double       & iValue) { clear(); (*this) = static_cast<Variant::float64>(iValue); }
-  inline Variant::Variant(const wchar_t           & iValue) { clear(); (*this) = static_cast<Variant::uint16>(iValue); }
+  Variant::Variant(const   signed char     & iValue) { clear(); (*this) = static_cast<Variant::sint8>(iValue); }
+  Variant::Variant(const   signed int      & iValue) { clear(); (*this) = static_cast<Variant::sint32>(iValue); }
+  Variant::Variant(const unsigned int      & iValue) { clear(); (*this) = static_cast<Variant::uint32>(iValue); }
+  Variant::Variant(const long double       & iValue) { clear(); (*this) = static_cast<Variant::float64>(iValue); }
+  Variant::Variant(const wchar_t           & iValue) { clear(); (*this) = static_cast<Variant::uint16>(iValue); }
 
   Variant::~Variant(void)
   {

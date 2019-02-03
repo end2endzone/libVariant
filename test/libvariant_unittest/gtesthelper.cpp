@@ -246,7 +246,7 @@ gTestHelper::StringVector gTestHelper::getTestList(const char * iTestCasePath)
   commandLine.append("\"");
 
   //exec
-  system(commandLine.c_str());
+  int status = system(commandLine.c_str());
 
   if (!fileExists(logFilename.c_str()))
     return StringVector();
@@ -304,7 +304,7 @@ gTestHelper::StringVector gTestHelper::getTestList(const char * iTestCasePath)
   commandLine.append("\" 1>NUL 2>NUL");
 
   //exec
-  system(commandLine.c_str());
+  status = system(commandLine.c_str());
 
   return testlist;
 }
@@ -444,7 +444,7 @@ bool gTestHelper::isFileEquals(const char* iFile1, const char* iFile2, std::stri
       ss << ", ";
     static const int BUFFER_SIZE = 1024;
     char buffer[BUFFER_SIZE];
-    sprintf(buffer, "{address %d(0x%X) is 0x%02X instead of 0x%02X}", d.offset, d.offset, d.c1, d.c2);
+    sprintf(buffer, "{address %lu(0x%lX) is 0x%02X instead of 0x%02X}", d.offset, d.offset, d.c1, d.c2);
     ss << buffer;
     //ss << "{at offset " << (d.offset) << "(0x" << std::hex << (int)d.offset << ") has 0x" << std::hex << (int)d.c1 << " vs 0x" << std::hex << (int)d.c2 << "}";
   }
@@ -607,7 +607,7 @@ void gTestHelper::changeFileContent(const char * iFilePath, size_t iOffset, unsi
   unsigned char * buffer = new unsigned char[size];
   if (!buffer)
     return;
-  fread(buffer, 1, size, f);
+  size_t read_size = fread(buffer, 1, size, f);
   fclose(f);
 
   //modify
@@ -618,7 +618,7 @@ void gTestHelper::changeFileContent(const char * iFilePath, size_t iOffset, unsi
   f = fopen(iFilePath, "wb");
   if (!f)
     return;
-  fwrite(buffer, 1, size, f);
+  size_t write_size = fwrite(buffer, 1, size, f);
   fclose(f);
 }
 

@@ -1,8 +1,5 @@
 
 
-#include "TestVariant.h"
-#include "gtesthelper.h"
-
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -12,6 +9,9 @@
 
 #include "libvariant/Variant.h"
 #include "VariantTemplates.h"
+
+#include "gtesthelper.h"
+#include "TestVariant.h"
 
 typedef std::vector<std::string> StringList;
 

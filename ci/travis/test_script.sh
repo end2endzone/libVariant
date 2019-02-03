@@ -12,3 +12,4 @@ echo Testing project
 echo ============================================================================
 cd $TRAVIS_BUILD_DIR/build/bin
 ./libvariant_unittest || true; #do not fail build even if a test fails.
+./libvariant_templates_unittest || true; #do not fail build even if a test fails.

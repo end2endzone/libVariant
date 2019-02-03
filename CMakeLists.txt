@@ -138,6 +138,7 @@ add_subdirectory(src/code_generator)
 # unit tests
 if(LIBVARIANT_BUILD_TEST)
   add_subdirectory(test/libvariant_unittest)
+  add_subdirectory(test/libvariant_templates_unittest)
 endif()
 
 ##############################################################################################################################################

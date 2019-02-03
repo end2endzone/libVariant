@@ -1,6 +1,7 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_TYPECAST_H
+#define LIBVARIANT_TYPECAST_H
 
 //---------------
 // Include Files
@@ -242,3 +243,5 @@ namespace typecast
 
 } //namespace typecast
 } //namespace libVariant
+
+#endif // LIBVARIANT_TYPECAST_H

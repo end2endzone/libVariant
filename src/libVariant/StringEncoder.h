@@ -1,12 +1,11 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_STRINGENCODER_H
+#define LIBVARIANT_STRINGENCODER_H
 
 //---------------
 // Include Files
 //---------------
-#pragma once
- 
 #include <string>
 #include <sstream>
 #include <float.h>
@@ -29,7 +28,7 @@ namespace libVariant
     /// <param name="value">The value to convert as string.</param>
     /// <returns>Returns a std::string representing the given value.</returns>
     template <typename T>
-    static inline std::string toString(const T & value)
+    static std::string toString(const T & value)
     {
       std::stringstream out;
       out << value;
@@ -44,7 +43,7 @@ namespace libVariant
     /// <param name="value">The string value to convert to type T.</param>
     /// <returns>Returns a variable of type T which value is set to the given value.</returns>
     template <typename T>
-    static inline T parse(const std::string & iValue)
+    static T parse(const std::string & iValue)
     {
       //std::string tmp = iValue;
       std::istringstream inputStream(iValue);
@@ -57,7 +56,7 @@ namespace libVariant
   //specializations
  
   template<>
-  static inline std::string StringEncoder::toString<char>(const char & value)
+  std::string StringEncoder::toString<char>(const char & value)
   {
     std::stringstream out;
     out << (int)value;
@@ -67,7 +66,7 @@ namespace libVariant
   }
  
   template<>
-  static inline std::string StringEncoder::toString<signed char>(const signed char & value)
+  std::string StringEncoder::toString<signed char>(const signed char & value)
   {
     std::stringstream out;
     out << (int)value;
@@ -77,7 +76,7 @@ namespace libVariant
   }
  
   template<>
-  static inline std::string StringEncoder::toString<unsigned char>(const unsigned char & value)
+  std::string StringEncoder::toString<unsigned char>(const unsigned char & value)
   {
     std::stringstream out;
     out << (int)value;
@@ -87,7 +86,7 @@ namespace libVariant
   }
  
   template<>
-  static inline std::string StringEncoder::toString<float>(const float & t)
+  std::string StringEncoder::toString<float>(const float & t)
   {
     std::stringstream out;
     out.precision(FLT_DIG+2); //note that FLT_DIG is 6 but more digits can be squeezed out from a float32 using 8 digits
@@ -98,7 +97,7 @@ namespace libVariant
   }
  
   template<>
-  static inline std::string StringEncoder::toString<double>(const double & t)
+  std::string StringEncoder::toString<double>(const double & t)
   {
     std::stringstream out;
     out.precision(DBL_DIG);
@@ -109,7 +108,7 @@ namespace libVariant
   }
  
   template<>
-  static inline std::string StringEncoder::toString<long double>(const long double & t)
+  std::string StringEncoder::toString<long double>(const long double & t)
   {
     std::stringstream out;
     out.precision(LDBL_DIG);
@@ -120,7 +119,7 @@ namespace libVariant
   }
 
   template <>
-  static inline char StringEncoder::parse<char>(const std::string & iValue)
+  char StringEncoder::parse<char>(const std::string & iValue)
   {
     std::istringstream inputStream(iValue);
     int t = 0;
@@ -129,7 +128,7 @@ namespace libVariant
   }
 
   template <>
-  static inline unsigned char StringEncoder::parse<unsigned char>(const std::string & iValue)
+  unsigned char StringEncoder::parse<unsigned char>(const std::string & iValue)
   {
     std::istringstream inputStream(iValue);
     unsigned int t = 0;
@@ -138,7 +137,7 @@ namespace libVariant
   }
 
   template <>
-  static inline signed char StringEncoder::parse<signed char>(const std::string & iValue)
+  signed char StringEncoder::parse<signed char>(const std::string & iValue)
   {
     std::istringstream inputStream(iValue);
     signed int t = 0;
@@ -147,3 +146,5 @@ namespace libVariant
   }
 
 } // End namespace
+
+#endif // LIBVARIANT_STRINGENCODER_H

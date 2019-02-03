@@ -543,7 +543,7 @@ void generateOperatorOrEquals(char iOperator)
   printf("\n");
 }
 
-const char * getTextualOperator(char * iOperator)
+const char * getTextualOperator(const char * iOperator)
 {
   std::string op = iOperator;
   if (op == "==")
@@ -561,7 +561,7 @@ const char * getTextualOperator(char * iOperator)
   return "***";
 }
 
-void generateBooleanOperatorDeclarations(char * iOperator)
+void generateBooleanOperatorDeclarations(const char * iOperator)
 {
   printf("    //----------------------\n");
   printf("    //   operator%s ()\n", iOperator);

@@ -1,6 +1,7 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_FLOATLIMITS_H
+#define LIBVARIANT_FLOATLIMITS_H
 
 //---------------
 // Include Files
@@ -182,3 +183,5 @@ namespace floatlimits
   }
 } //namespace floatlimits
 } //namespace libVariant
+
+#endif // LIBVARIANT_FLOATLIMITS_H

@@ -131,7 +131,7 @@ void zeroize(wchar_t            & value)
   value = 0;
 }
 
-
+#ifdef _WIN32
 //microsoft only types
 //void zeroize(         __int8    & value) //same as char
 //{
@@ -192,4 +192,4 @@ void zeroize(wchar_t            & value)
 //{
 //  value = 0;
 //}
-
+#endif // _WIN32

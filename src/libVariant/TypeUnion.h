@@ -1,6 +1,7 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_TYPEUNION_H
+#define LIBVARIANT_TYPEUNION_H
 
 //---------------
 // Include Files
@@ -173,3 +174,5 @@ namespace typeunion
 
 } //namespace typeunion
 } //namespace libVariant
+
+#endif // LIBVARIANT_TYPEUNION_H

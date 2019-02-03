@@ -1,6 +1,7 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_TYPEINFO_H
+#define LIBVARIANT_TYPEINFO_H
 
 //---------------
 // Include Files
@@ -237,8 +238,8 @@ namespace typeinfo
 
   //specializations
 
-  #define DECLARE_ISNATIVETYPE_SPECIALIZATION(_typename) template<> static bool TypeInfo<_typename>::isNative() { return true; }
-  #define DECLARE_NAME_SPECIALIZATION(_typename) template<> static const char * TypeInfo<_typename>::name() { return #_typename; }
+  #define DECLARE_ISNATIVETYPE_SPECIALIZATION(_typename) template<> bool TypeInfo<_typename>::isNative() { return true; }
+  #define DECLARE_NAME_SPECIALIZATION(_typename) template<> const char * TypeInfo<_typename>::name() { return #_typename; }
 
   #define DECLARE_TYPE_SPECIALIZATION(_typename) \
     DECLARE_ISNATIVETYPE_SPECIALIZATION(_typename) \
@@ -270,13 +271,13 @@ namespace typeinfo
   DECLARE_ALL_SPECIALIZATION(wchar_t           )
 
   //native
-  template<> static bool TypeInfo<float       >::isFloating() { return true; }
-  template<> static bool TypeInfo<double      >::isFloating() { return true; }
-  template<> static bool TypeInfo<long double >::isFloating() { return true; }
+  template<> bool TypeInfo<float       >::isFloating() { return true; }
+  template<> bool TypeInfo<double      >::isFloating() { return true; }
+  template<> bool TypeInfo<long double >::isFloating() { return true; }
   //const native
-  template<> static bool TypeInfo<const float       >::isFloating() { return true; }
-  template<> static bool TypeInfo<const double      >::isFloating() { return true; }
-  template<> static bool TypeInfo<const long double >::isFloating() { return true; }
+  template<> bool TypeInfo<const float       >::isFloating() { return true; }
+  template<> bool TypeInfo<const double      >::isFloating() { return true; }
+  template<> bool TypeInfo<const long double >::isFloating() { return true; }
 
   template <typename T>
   static T computeMaximum()
@@ -347,8 +348,8 @@ namespace typeinfo
   }
 
   #define DECLARE_TYPE_MINMAX_SPECIALIZATION(_typename, _min, _max) \
-    template<> static _typename TypeInfo<_typename>::minimum() { return _min; } \
-    template<> static _typename TypeInfo<_typename>::maximum() { return _max; }
+    template<> _typename TypeInfo<_typename>::minimum() { return _min; } \
+    template<> _typename TypeInfo<_typename>::maximum() { return _max; }
 
   #define DECLARE_ALL_MINMAX_SPECIALIZATION(_typename, _min, _max)  \
     DECLARE_TYPE_MINMAX_SPECIALIZATION(_typename      , _min, _max) \
@@ -377,11 +378,11 @@ namespace typeinfo
   //DECLARE_ALL_MINMAX_SPECIALIZATION(wchar_t           , 0x8000              , 0x7fff            )
 
   //template<>
-  //static bool TypeInfo<int>::isSInt16()
+  //bool TypeInfo<int>::isSInt16()
   //{
   //  return true;
   //}
-  #define DECLARE_IS_SPECIALIZATION(_typename, _methodName) template<> static bool TypeInfo<_typename>::_methodName() { return true; }
+  #define DECLARE_IS_SPECIALIZATION(_typename, _methodName) template<> bool TypeInfo<_typename>::_methodName() { return true; }
   DECLARE_IS_SPECIALIZATION(bool              , isBoolean )
   DECLARE_IS_SPECIALIZATION(unsigned char     , isUInt8   )
   DECLARE_IS_SPECIALIZATION(unsigned short    , isUInt16  )
@@ -403,7 +404,7 @@ namespace typeinfo
 
   //isSigned()
   #define DECLARE_TYPE_SIGNED_SPECIALIZATION(_typename) \
-    template<> static bool TypeInfo<_typename>::isSigned() { return true; } \
+    template<> bool TypeInfo<_typename>::isSigned() { return true; } \
 
   #define DECLARE_ALL_SIGNED_SPECIALIZATION(_typename)  \
     DECLARE_TYPE_SIGNED_SPECIALIZATION(_typename)       \
@@ -419,7 +420,7 @@ namespace typeinfo
 
   //isUnsigned()
   #define DECLARE_TYPE_UNSIGNED_SPECIALIZATION(_typename) \
-    template<> static bool TypeInfo<_typename>::isUnsigned() { return true; } \
+    template<> bool TypeInfo<_typename>::isUnsigned() { return true; } \
 
   #define DECLARE_ALL_UNSIGNED_SPECIALIZATION(_typename)  \
     DECLARE_TYPE_UNSIGNED_SPECIALIZATION(_typename)       \
@@ -433,3 +434,5 @@ namespace typeinfo
 
 } //namespace typeinfo
 } //namespace libVariant
+
+#endif // LIBVARIANT_TYPEINFO_H

@@ -1,12 +1,11 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_STRINGPARSER_H
+#define LIBVARIANT_STRINGPARSER_H
 
 //---------------
 // Include Files
 //---------------
-#pragma once
- 
 #include <string>
 #include <algorithm> //std::transform
 
@@ -247,3 +246,5 @@ namespace libVariant
  
 
 } // End namespace
+
+#endif // LIBVARIANT_STRINGPARSER_H

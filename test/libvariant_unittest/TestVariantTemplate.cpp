@@ -54,6 +54,7 @@ TEST_F(TestVariantTemplate, testGetVariantFormat)
   ASSERT_TRUE( isFormatMatches<long double        >(Variant::FLOAT64) );
   ASSERT_TRUE( isFormatMatches<wchar_t            >(Variant::UINT16) );
 
+#ifdef _WIN32
   //microsoft only types
   ASSERT_TRUE( isFormatMatches<         __int8    >(Variant::SINT8) );
   ASSERT_TRUE( isFormatMatches<  signed __int8    >(Variant::SINT8) );
@@ -67,7 +68,8 @@ TEST_F(TestVariantTemplate, testGetVariantFormat)
   ASSERT_TRUE( isFormatMatches<         __int64   >(Variant::SINT64) );
   ASSERT_TRUE( isFormatMatches<  signed __int64   >(Variant::SINT64) );
   ASSERT_TRUE( isFormatMatches<unsigned __int64   >(Variant::UINT64) );
-
+#endif // _WIN32
+  
   {
     const char * value = "cats and gods";
     ASSERT_EQ( Variant::STRING, getVariantFormat(value) );

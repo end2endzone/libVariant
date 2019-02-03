@@ -1,13 +1,14 @@
 
 
 #include "TestVariant.h"
-#include "gTestHelper.h"
+#include "gtesthelper.h"
 
 #include <string>
 #include <vector>
 #include <algorithm>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <stdint.h>     /* in32_t, int64_t */
 
 #include "libvariant/Variant.h"
 #include "VariantTemplates.h"
@@ -2944,6 +2945,7 @@ TEST_F(TestVariant, testFundamentalTypesAssignOperations)
   ASSERT_TRUE( isAssignOperationsMatchesFormat<long double        >(12, Variant::FLOAT64) );
   ASSERT_TRUE( isAssignOperationsMatchesFormat<wchar_t            >(12, Variant::UINT16) );
 
+ #ifdef _WIN32 
   //microsoft only types
   ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int8    >(12, Variant::SINT8) );
   ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int8    >(12, Variant::SINT8) );
@@ -2957,6 +2959,7 @@ TEST_F(TestVariant, testFundamentalTypesAssignOperations)
   ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int64   >(12, Variant::SINT64) );
   ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int64   >(12, Variant::SINT64) );
   ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int64   >(12, Variant::UINT64) );
+#endif // _WIN32
 }
 
 template <typename T>
@@ -3131,6 +3134,7 @@ TEST_F(TestVariant, testFundamentalTypesMathOperators)
   ASSERT_TRUE( isMathOperatorsMatchesFormat<long double        >(10,2,12,8,20,5, Variant::FLOAT64) );
   ASSERT_TRUE( isMathOperatorsMatchesFormat<wchar_t            >(10,2,12,8,20,5, Variant::UINT16) );
 
+#ifdef _WIN32
   //microsoft only types
   ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int8    >(10,2,12,8,20,5, Variant::SINT8) );
   ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int8    >(10,2,12,8,20,5, Variant::SINT8) );
@@ -3144,11 +3148,12 @@ TEST_F(TestVariant, testFundamentalTypesMathOperators)
   ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int64   >(10,2,12,8,20,5, Variant::SINT64) );
   ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int64   >(10,2,12,8,20,5, Variant::SINT64) );
   ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int64   >(10,2,12,8,20,5, Variant::UINT64) );
+#endif // _WIN32
 }
 
 TEST_F(TestVariant, testUnionAlignmentAndPacking)
 {
-  ASSERT_EQ( sizeof(__int64), sizeof(Variant::VariantUnion) );
+  ASSERT_EQ( sizeof(int64_t), sizeof(Variant::VariantUnion) );
 }
 
 TEST_F(TestVariant, testVariantMemoryFootprint)
@@ -3173,8 +3178,8 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
   Variant::setDivisionByZeroPolicy(Variant::IGNORE);
 #endif
 
-  ASSERT_EQ( sizeof(__int32), sizeof(Variant::VariantFormat) ); //always 4 bytes
-  ASSERT_EQ( sizeof(__int64), sizeof(Variant::VariantUnion) );  //always 8 bytes
+  ASSERT_EQ( sizeof(int32_t), sizeof(Variant::VariantFormat) ); //always 4 bytes
+  ASSERT_EQ( sizeof(int64_t), sizeof(Variant::VariantUnion) );  //always 8 bytes
 
 #ifdef _WIN64
   //x64

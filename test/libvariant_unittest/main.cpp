@@ -3,8 +3,6 @@
 // main.cpp : Defines the entry point for the console application.
 //
 
-#pragma once
-
 #include <stdio.h>
 
 #include <gtest/gtest.h>

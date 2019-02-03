@@ -1,6 +1,6 @@
 
 
-#include "gTestHelper.h"
+#include "gtesthelper.h"
 #include <iostream>
 #include <sstream> //for stringstream
 #include <iostream> //for std::hex
@@ -518,7 +518,7 @@ bool gTestHelper::getFileDifferences(const char* iFile1, const char* iFile2, std
 
 bool initRandomProvider()
 {
-  srand(unsigned int(time(0)));
+  srand((unsigned int)time(NULL));
   return true;
 }
 

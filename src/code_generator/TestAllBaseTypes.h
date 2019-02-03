@@ -28,6 +28,7 @@ void zeroize(double             & value);
 void zeroize(long double        & value);
 void zeroize(wchar_t            & value);
 
+#ifdef _WIN32
 //microsoft only types
 void zeroize(         __int8    & value);
 void zeroize(  signed __int8    & value);
@@ -41,3 +42,4 @@ void zeroize(unsigned __int32   & value);
 //void zeroize(         __int64   & value);
 //void zeroize(  signed __int64   & value);
 //void zeroize(unsigned __int64   & value);
+#endif // _WIN32

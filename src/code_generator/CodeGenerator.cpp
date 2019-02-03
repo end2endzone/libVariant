@@ -3,6 +3,8 @@
 #include "utils.h"
 #include "VariantDefinition.h"
 
+#include <cstdio> // for printf
+
 struct DERIVATIVE_TYPE
 {
   std::string derivativeTypeName;

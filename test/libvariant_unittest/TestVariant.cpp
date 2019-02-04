@@ -2647,7 +2647,7 @@ std::string getVbScriptResult(std::string v1, std::string v2, char iOperator)
   commandLine.append(scriptOutputFile);
 
   //Run script
-  system(commandLine.c_str());
+  int status = system(commandLine.c_str());
   
   //Capture output
   gTestHelper::StringVector lines;
@@ -2694,7 +2694,7 @@ bool isVbScriptIdenticalBehavior(const Variant & v1, const Variant & v2, char iO
     iOperator,
     v2.getString().c_str(),
     actualStr.c_str());
-  printf(infoStr);
+  printf("%s", infoStr);
 
   char errorStr[10240];
   sprintf(errorStr, "Error while running %s%c%s... expecting %s (as with VBScript) but Variant returned %s",

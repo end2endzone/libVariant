@@ -82,7 +82,7 @@ TEST_F(TestVariantTemplate, testGetVariantFormat)
 
 TEST_F(TestVariantTemplate, testIsNativelyComparable)
 {
-#define DO_NATIVE_COMPARE_TEST(expected, typeA, typeB) { typeA a; typeB b; ASSERT_EQ( expected, libVariant::isNativelyComparable(a, b) ) << "Error, types are not comparable: " << #typeA << " and " << #typeB ; }
+#define DO_NATIVE_COMPARE_TEST(expected, typeA, typeB) { typeA a; typeB b; ASSERT_EQ( (int)expected, (int)libVariant::isNativelyComparable(a, b) ) << "Error, types are not comparable: " << #typeA << " and " << #typeB ; }
   DO_NATIVE_COMPARE_TEST(true, int, long);
   DO_NATIVE_COMPARE_TEST(false, int, Variant::Str);
 #undef DO_NATIVE_COMPARE_TEST

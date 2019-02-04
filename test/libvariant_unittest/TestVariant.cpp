@@ -1415,18 +1415,18 @@ TEST_F(TestVariant, testCopyCtor)
 
 TEST_F(TestVariant, testSimplify)
 {
-  ////simplify a string to bool
-  //{
-  //  Variant v = "true"; // can be simplified to bool
-  //  ASSERT_TRUE( v.simplify() );
-  //  ASSERT_EQ(Variant::BOOL, v.getFormat());
-  //  ASSERT_EQ(true, v.getBool());
-
-  //  v = "false";
-  //  ASSERT_TRUE( v.simplify() );
-  //  ASSERT_EQ(Variant::BOOL, v.getFormat());
-  //  ASSERT_EQ(false, v.getBool());
-  //}
+  //simplify a string to bool
+  {
+    Variant v = "true"; // can be simplified to bool
+    ASSERT_TRUE( v.simplify() );
+    ASSERT_EQ(Variant::BOOL, v.getFormat());
+    ASSERT_TRUE(v.getBool());
+  
+    v = "false";
+    ASSERT_TRUE( v.simplify() );
+    ASSERT_EQ(Variant::BOOL, v.getFormat());
+    ASSERT_FALSE(v.getBool());
+  }
 
   //cannot simplify a string to bool
   {
@@ -1674,19 +1674,19 @@ TEST_F(TestVariant, testSInt8WrapAroundOverflow)
 TEST_F(TestVariant, testInvalidString2BooleanConversion)
 {
   Variant v = "foo";
-  ASSERT_EQ(false, v.getBool());
+  ASSERT_FALSE(v.getBool());
 }
 
 TEST_F(TestVariant, testString2BooleanConversion)
 {
   Variant v = "true";
-  ASSERT_EQ(true, v.getBool());
+  ASSERT_TRUE(v.getBool());
   v = "false";
-  ASSERT_EQ(false, v.getBool());
+  ASSERT_FALSE(v.getBool());
   v = "1";
-  ASSERT_EQ(true, v.getBool());
+  ASSERT_TRUE(v.getBool());
   v = "0";
-  ASSERT_EQ(false, v.getBool());
+  ASSERT_FALSE(v.getBool());
 }
 
 TEST_F(TestVariant, testBoolean2StringConversion)

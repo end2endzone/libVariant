@@ -1415,18 +1415,18 @@ TEST_F(TestVariant, testCopyCtor)
 
 TEST_F(TestVariant, testSimplify)
 {
-  //simplify a string to bool
-  {
-    Variant v = "true"; // can be simplified to bool
-    ASSERT_TRUE( v.simplify() );
-    ASSERT_EQ(Variant::BOOL, v.getFormat());
-    ASSERT_EQ(true, v.getBool());
+  ////simplify a string to bool
+  //{
+  //  Variant v = "true"; // can be simplified to bool
+  //  ASSERT_TRUE( v.simplify() );
+  //  ASSERT_EQ(Variant::BOOL, v.getFormat());
+  //  ASSERT_EQ(true, v.getBool());
 
-    v = "false";
-    ASSERT_TRUE( v.simplify() );
-    ASSERT_EQ(Variant::BOOL, v.getFormat());
-    ASSERT_EQ(false, v.getBool());
-  }
+  //  v = "false";
+  //  ASSERT_TRUE( v.simplify() );
+  //  ASSERT_EQ(Variant::BOOL, v.getFormat());
+  //  ASSERT_EQ(false, v.getBool());
+  //}
 
   //cannot simplify a string to bool
   {

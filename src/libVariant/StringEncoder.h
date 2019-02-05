@@ -53,9 +53,9 @@ namespace libVariant
     }
   };
  
-  //specializations
- 
-  template<>
+  //specializations must be inline according to https://stackoverflow.com/questions/4445654/multiple-definition-of-template-specialization-when-using-different-objects
+
+  template<> inline
   std::string StringEncoder::toString<char>(const char & value)
   {
     std::stringstream out;
@@ -65,7 +65,7 @@ namespace libVariant
     return s;
   }
  
-  template<>
+  template<> inline
   std::string StringEncoder::toString<signed char>(const signed char & value)
   {
     std::stringstream out;
@@ -75,7 +75,7 @@ namespace libVariant
     return s;
   }
  
-  template<>
+  template<> inline
   std::string StringEncoder::toString<unsigned char>(const unsigned char & value)
   {
     std::stringstream out;
@@ -85,7 +85,7 @@ namespace libVariant
     return s;
   }
  
-  template<>
+  template<> inline
   std::string StringEncoder::toString<float>(const float & t)
   {
     std::stringstream out;
@@ -96,7 +96,7 @@ namespace libVariant
     return s;
   }
  
-  template<>
+  template<> inline
   std::string StringEncoder::toString<double>(const double & t)
   {
     std::stringstream out;
@@ -107,7 +107,7 @@ namespace libVariant
     return s;
   }
  
-  template<>
+  template<> inline
   std::string StringEncoder::toString<long double>(const long double & t)
   {
     std::stringstream out;
@@ -118,7 +118,7 @@ namespace libVariant
     return s;
   }
 
-  template <>
+  template<> inline
   char StringEncoder::parse<char>(const std::string & iValue)
   {
     std::istringstream inputStream(iValue);
@@ -127,7 +127,7 @@ namespace libVariant
     return (char)t;
   }
 
-  template <>
+  template<> inline
   unsigned char StringEncoder::parse<unsigned char>(const std::string & iValue)
   {
     std::istringstream inputStream(iValue);
@@ -136,7 +136,7 @@ namespace libVariant
     return (unsigned char)t;
   }
 
-  template <>
+  template<> inline
   signed char StringEncoder::parse<signed char>(const std::string & iValue)
   {
     std::istringstream inputStream(iValue);

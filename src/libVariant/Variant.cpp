@@ -775,7 +775,7 @@ namespace libVariant
   {
     return false;
   }
-  template <>
+  template<>
   inline bool isBoolean<Variant::boolean>(const Variant::boolean & /*iValue*/)
   {
     return true;

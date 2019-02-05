@@ -321,7 +321,7 @@ void generateCompareDefinitions()
   printf("  {\n");
   printf("    return false;\n");
   printf("  }\n");
-  printf("  template <>\n");
+  printf("  template<>\n");
   printf("  inline bool isBoolean<Variant::boolean>(const Variant::boolean & /*iValue*/)\n");
   printf("  {\n");
   printf("    return true;\n");
@@ -621,7 +621,7 @@ void generateGetVariantFormatSpecializations()
   for(size_t i=0; i<numInnerTypes; i++)
   {
     const INNER_TYPE & _type = getInnerType(i);
-    printf("  template<>");
+    printf("  template<> inline");
     printf("  inline Variant::VariantFormat getVariantFormat<Variant::%s>(const Variant::%s &)",
       _type.typedefName,
       _type.typedefName
@@ -637,7 +637,7 @@ void generateGetVariantFormatSpecializations()
   {
     const DERIVATIVE_TYPE & d = derivatives[i];
     
-    printf("  template<>");
+    printf("  template<> inline");
     printf("  inline Variant::VariantFormat getVariantFormat<%s>(const %s &)",
       d.derivativeTypeName.c_str(),
       d.derivativeTypeName.c_str()
@@ -691,7 +691,7 @@ void generateIsNativelyComparableSpecializations()
           continue;
         }
       }
-      printf("  template<>");
+      printf("  template<> inline");
       printf("  inline bool isNativelyComparable<%s, %s>(const %s &, const %s &)",
         _type1.c_str(),
         _type2.c_str(),

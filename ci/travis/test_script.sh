@@ -13,11 +13,11 @@ echo ===========================================================================
 cd $TRAVIS_BUILD_DIR/build/bin
 
 echo =======================================================================
-echo Testing project (1 of 2)
+echo Testing project "(1 of 2)"
 echo =======================================================================
 ./libvariant_unittest || true; #do not fail build even if a test fails.
 
 echo =======================================================================
-echo Testing project (2 of 2)
+echo Testing project "(2 of 2)"
 echo =======================================================================
 ./libvariant_templates_unittest || true; #do not fail build even if a test fails.

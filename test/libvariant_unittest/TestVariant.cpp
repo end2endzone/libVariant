@@ -2774,7 +2774,8 @@ TEST_F(TestVariant, testOperatorPlusPlus)
   }
 }
 
-TEST_F(TestVariant, testVbScriptIdenticalBehavior)
+#ifdef _WIN32
+TEST_F(TestVariant, testVbScriptIdenticalBehavior) // requires cscript.exe (Visual Basic script interpreter)
 {
   gTestHelper & hlp = gTestHelper::getInstance();
 
@@ -2816,6 +2817,7 @@ TEST_F(TestVariant, testVbScriptIdenticalBehavior)
     Variant::setDivisionByZeroPolicy(Variant::THROW); //enable default behavior
   }
 }
+#endif // _WIN32
 
 TEST_F(TestVariant, testNativeTypesSize)
 {

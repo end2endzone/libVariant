@@ -237,18 +237,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == 0 );
-    ASSERT_TRUE( b == 0 );
-    ASSERT_TRUE( c == 0 );
-    ASSERT_TRUE( d == 0 );
-    ASSERT_TRUE( e == 0 );
-    ASSERT_TRUE( f == 0 );
-    ASSERT_TRUE( g == 0 );
-    ASSERT_TRUE( h == 0 );
-    ASSERT_TRUE( i == 0 );
-    ASSERT_TRUE( j == 0 );
-    ASSERT_TRUE( k == "false" );
-    ASSERT_TRUE( l == value );
+    ASSERT_EQ( a, 0 );
+    ASSERT_EQ( b, 0 );
+    ASSERT_EQ( c, 0 );
+    ASSERT_EQ( d, 0 );
+    ASSERT_EQ( e, 0 );
+    ASSERT_EQ( f, 0 );
+    ASSERT_EQ( g, 0 );
+    ASSERT_EQ( h, 0 );
+    ASSERT_EQ( i, 0 );
+    ASSERT_EQ( j, 0 );
+    ASSERT_EQ( k, "false" );
+    ASSERT_EQ( l, value );
   }
   {
     Variant v;
@@ -269,18 +269,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == 1 );
-    ASSERT_TRUE( b == 1 );
-    ASSERT_TRUE( c == 1 );
-    ASSERT_TRUE( d == 1 );
-    ASSERT_TRUE( e == 1 );
-    ASSERT_TRUE( f == 1 );
-    ASSERT_TRUE( g == 1 );
-    ASSERT_TRUE( h == 1 );
-    ASSERT_TRUE( i == 1 );
-    ASSERT_TRUE( j == 1 );
-    ASSERT_TRUE( k == "true" );
-    ASSERT_TRUE( l == value );
+    ASSERT_EQ( a, 1 );
+    ASSERT_EQ( b, 1 );
+    ASSERT_EQ( c, 1 );
+    ASSERT_EQ( d, 1 );
+    ASSERT_EQ( e, 1 );
+    ASSERT_EQ( f, 1 );
+    ASSERT_EQ( g, 1 );
+    ASSERT_EQ( h, 1 );
+    ASSERT_EQ( i, 1 );
+    ASSERT_EQ( j, 1 );
+    ASSERT_EQ( k, "true" );
+    ASSERT_EQ( l, value );
   }
 
   //assert Variant::uint8 to *
@@ -303,18 +303,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == value );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == value );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "0" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, value );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, value );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "0" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -335,18 +335,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == value );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "255" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( a, value );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "255" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::sint8 to *
@@ -369,18 +369,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_min );
-    ASSERT_TRUE( b == uint16_min );
-    ASSERT_TRUE( c == uint32_min );
-    ASSERT_TRUE( d == uint64_min );
-    ASSERT_TRUE( e == value );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "-128" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, uint8_min );
+    ASSERT_EQ( b, uint16_min );
+    ASSERT_EQ( c, uint32_min );
+    ASSERT_EQ( d, uint64_min );
+    ASSERT_EQ( e, value );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "-128" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -401,18 +401,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == value );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == value );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "127" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( a, value );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, value );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "127" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::uint16 to *
@@ -435,18 +435,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == value );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == value );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "0" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, value );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, value );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "0" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -467,18 +467,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_max );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == sint16_max );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "65535" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( a, uint8_max );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "65535" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::sint16 to *
@@ -501,18 +501,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_min );
-    ASSERT_TRUE( b == uint16_min );
-    ASSERT_TRUE( c == uint32_min );
-    ASSERT_TRUE( d == uint64_min );
-    ASSERT_TRUE( e == sint8_min );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "-32768" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, uint8_min );
+    ASSERT_EQ( b, uint16_min );
+    ASSERT_EQ( c, uint32_min );
+    ASSERT_EQ( d, uint64_min );
+    ASSERT_EQ( e, sint8_min );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "-32768" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -533,18 +533,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_max );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "32767" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( a, uint8_max );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "32767" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::uint32 to *
@@ -567,18 +567,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == value );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == value );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "0" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, value );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, value );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "0" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -599,21 +599,21 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_max );
-    ASSERT_TRUE( b == uint16_max );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == sint16_max );
-    ASSERT_TRUE( g == sint32_max );
-    ASSERT_TRUE( h == value );
+    ASSERT_EQ( a, uint8_max );
+    ASSERT_EQ( b, uint16_max );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( g, sint32_max );
+    ASSERT_EQ( h, value );
     #ifdef _WIN64
     #else
-    ASSERT_TRUE( i > (value - 100) ); //precision lost
+    ASSERT_GT( i, (value - 100) ); //precision lost
     #endif
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "4294967295" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "4294967295" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::sint32 to *
@@ -636,18 +636,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_min );
-    ASSERT_TRUE( b == uint16_min );
-    ASSERT_TRUE( c == uint32_min );
-    ASSERT_TRUE( d == uint64_min );
-    ASSERT_TRUE( e == sint8_min );
-    ASSERT_TRUE( f == sint16_min );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "-2147483648" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, uint8_min );
+    ASSERT_EQ( b, uint16_min );
+    ASSERT_EQ( c, uint32_min );
+    ASSERT_EQ( d, uint64_min );
+    ASSERT_EQ( e, sint8_min );
+    ASSERT_EQ( f, sint16_min );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "-2147483648" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -668,18 +668,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_max );
-    ASSERT_TRUE( b == uint16_max );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == sint16_max );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i > (value - 100) ); //precision lost
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "2147483647" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( a, uint8_max );
+    ASSERT_EQ( b, uint16_max );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_GT( i, (value - 100) ); //precision lost
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "2147483647" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::uint64 to *
@@ -702,18 +702,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == value );
-    ASSERT_TRUE( b == value );
-    ASSERT_TRUE( c == value );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == value );
-    ASSERT_TRUE( f == value );
-    ASSERT_TRUE( g == value );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "0" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, value );
+    ASSERT_EQ( b, value );
+    ASSERT_EQ( c, value );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, value );
+    ASSERT_EQ( f, value );
+    ASSERT_EQ( g, value );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "0" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -734,18 +734,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_max );
-    ASSERT_TRUE( b == uint16_max );
-    ASSERT_TRUE( c == uint32_max );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == sint16_max );
-    ASSERT_TRUE( g == sint32_max );
-    ASSERT_TRUE( h == sint64_max );
-    ASSERT_TRUE( i > (sint64_max - 100) ); //precision lost, Variant::uint64 value can't be reached in SINT64 format
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "18446744073709551615" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( a, uint8_max );
+    ASSERT_EQ( b, uint16_max );
+    ASSERT_EQ( c, uint32_max );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( g, sint32_max );
+    ASSERT_EQ( h, sint64_max );
+    ASSERT_GT( i, (sint64_max - 100) ); //precision lost, Variant::uint64 value can't be reached in SINT64 format
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "18446744073709551615" );
+    ASSERT_EQ( l, true );
   }
 
   //assert Variant::sint64 to *
@@ -768,18 +768,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_min );
-    ASSERT_TRUE( b == uint16_min );
-    ASSERT_TRUE( c == uint32_min );
-    ASSERT_TRUE( d == uint64_min );
-    ASSERT_TRUE( e == sint8_min );
-    ASSERT_TRUE( f == sint16_min );
-    ASSERT_TRUE( g == sint32_min );
-    ASSERT_TRUE( h == value );
-    ASSERT_TRUE( i == value );
-    ASSERT_TRUE( j == value );
-    ASSERT_TRUE( k == "-9223372036854775808" );
-    ASSERT_TRUE( l == false );
+    ASSERT_EQ( a, uint8_min );
+    ASSERT_EQ( b, uint16_min );
+    ASSERT_EQ( c, uint32_min );
+    ASSERT_EQ( d, uint64_min );
+    ASSERT_EQ( e, sint8_min );
+    ASSERT_EQ( f, sint16_min );
+    ASSERT_EQ( g, sint32_min );
+    ASSERT_EQ( h, value );
+    ASSERT_EQ( i, value );
+    ASSERT_EQ( j, value );
+    ASSERT_EQ( k, "-9223372036854775808" );
+    ASSERT_EQ( l, false );
   }
   {
     Variant v;
@@ -800,21 +800,21 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_TRUE( a == uint8_max );
-    ASSERT_TRUE( b == uint16_max );
-    ASSERT_TRUE( c == uint32_max );
-    ASSERT_TRUE( d == value );
-    ASSERT_TRUE( e == sint8_max );
-    ASSERT_TRUE( f == sint16_max );
-    ASSERT_TRUE( g == sint32_max );
-    ASSERT_TRUE( h == value );
+    ASSERT_EQ( a, uint8_max );
+    ASSERT_EQ( b, uint16_max );
+    ASSERT_EQ( c, uint32_max );
+    ASSERT_EQ( d, value );
+    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( g, sint32_max );
+    ASSERT_EQ( h, value );
     #ifdef _WIN64
     #else
-    ASSERT_TRUE( i > (value - 100) ); //precision lost
-    ASSERT_TRUE( j > (value - 100) ); //precision lost
+    ASSERT_GT( i, (value - 100) ); //precision lost
+    ASSERT_GT( j, (value - 100) ); //precision lost
     #endif
-    ASSERT_TRUE( k == "9223372036854775807" );
-    ASSERT_TRUE( l == true );
+    ASSERT_EQ( k, "9223372036854775807" );
+    ASSERT_EQ( l, true );
   }
 
   //assert simple data lost

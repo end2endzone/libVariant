@@ -696,11 +696,22 @@ inline bool isOperationOverflows(const TLeft & iLeft, const char _operator, cons
 template <typename TLeft, typename TRight>
 inline void printTestValues(const TLeft & iLeft, const char * _operator, const TRight & iRight)
 {
-  static int count = 0;
-  count++;
+  static int display_count = 0;
+  static int newline_count = 0;
+  display_count++;
   //2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199
-  if (count % 127 == 0)
-    std::cout << "testing (" << (long long)iLeft << ")" << _operator << "(" << (long long)iRight << ")..." << "\n";
+  if (display_count % 127 == 0)
+  {
+    //display the current result
+    std::cout << "testing (" << (long long)iLeft << ")" << _operator << "(" << (long long)iRight << ")...";
+
+    //should we add a newline between displays?
+    newline_count++;
+    if (display_count % 20 == 0)
+    {
+      std::cout << "\n"
+    }
+  }
 }
 
 template <typename TLeft, typename TRight>
@@ -711,7 +722,7 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
 
   //add
   {
-    printTestValues(iLeft, "+", iRight);
+    //printTestValues(iLeft, "+", iRight);
     TLeft  a = iLeft;
     TRight b = iRight;
     const TLeft expected = (a+b);
@@ -719,7 +730,9 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
     saturate_add(a,b);
     if (overflows)
     {
-      ASSERT_TRUE(a == leftMin || a == leftMax);
+      std::stringstream msg;
+      msg << "ASSERT_TRUE(" << a << "==" << leftMin << " || " << a << "==" << leftMax << ");";
+      ASSERT_TRUE(a == leftMin || a == leftMax) << msg.str();
     }
     else
     {
@@ -729,7 +742,7 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
 
   //subtract
   {
-    printTestValues(iLeft, "-", iRight);
+    //printTestValues(iLeft, "-", iRight);
     TLeft  a = iLeft;
     TRight b = iRight;
     const TLeft expected = (a-b);
@@ -737,7 +750,9 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
     saturate_substract(a,b);
     if (overflows)
     {
-      ASSERT_TRUE(a == leftMin || a == leftMax);
+      std::stringstream msg;
+      msg << "ASSERT_TRUE(" << a << "==" << leftMin << " || " << a << "==" << leftMax << ");";
+      ASSERT_TRUE(a == leftMin || a == leftMax) << msg.str();
     }
     else
     {
@@ -747,7 +762,7 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
 
   //multiply
   {
-    printTestValues(iLeft, "*", iRight);
+    //printTestValues(iLeft, "*", iRight);
     TLeft  a = iLeft;
     TRight b = iRight;
     const TLeft expected = (a*b);
@@ -755,7 +770,9 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
     saturate_multiply(a,b);
     if (overflows)
     {
-      ASSERT_TRUE(a == leftMin || a == leftMax);
+      std::stringstream msg;
+      msg << "ASSERT_TRUE(" << a << "==" << leftMin << " || " << a << "==" << leftMax << ");";
+      ASSERT_TRUE(a == leftMin || a == leftMax) << msg.str();
     }
     else
     {
@@ -765,23 +782,19 @@ inline void testAllOperations(const TLeft & iLeft, const TRight & iRight)
 
   //divide
   {
-    printTestValues(iLeft, "/", iRight);
+    //printTestValues(iLeft, "/", iRight);
     TLeft  a = iLeft;
     TRight b = iRight;
     if (b != 0)
     {
-      std::string message;
-      message.append("a=");
-      message.append(libVariant::StringEncoder::toString(a));
-      message.append("  b=");
-      message.append(libVariant::StringEncoder::toString(b));
-
       const TLeft expected = (a/b);
       bool overflows = isOperationOverflows(a, '/', b);
       saturate_divide(a,b);
       if (overflows)
       {
-        ASSERT_TRUE(a == leftMin || a == leftMax) << message.c_str();
+        std::stringstream msg;
+        msg << "ASSERT_TRUE(" << a << "==" << leftMin << " || " << a << "==" << leftMax << ");";
+        ASSERT_TRUE(a == leftMin || a == leftMax) << msg.str();
       }
       else
       {

@@ -5,6 +5,16 @@ add_executable(libvariant_unittest
   gtesthelper.cpp
   gtesthelper.h
   main.cpp
+  TestFloatLimits.cpp
+  TestFloatLimits.h
+  TestStringEncoder.cpp
+  TestStringEncoder.h
+  TestTypeCastSaturation.cpp
+  TestTypeCastSaturation.h
+  TestTypeInfo.cpp
+  TestTypeInfo.h
+  TestTypeUnion.cpp
+  TestTypeUnion.h
   TestVariant.cpp
   TestVariant.h
   TestVariant.testVbScriptIdenticalBehavior.input.txt

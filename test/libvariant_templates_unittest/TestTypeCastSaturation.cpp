@@ -709,7 +709,7 @@ inline void printTestValues(const TLeft & iLeft, const char * _operator, const T
     newline_count++;
     if (display_count % 20 == 0)
     {
-      std::cout << "\n"
+      std::cout << "\n";
     }
   }
 }

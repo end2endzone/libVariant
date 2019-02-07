@@ -33,8 +33,6 @@ namespace libVariant
     typedef unsigned int        uint32;
 #endif
     typedef unsigned long long  uint64;
-
-
     typedef char                sint8;
     typedef short               sint16;
 #ifdef _WIN32
@@ -42,6 +40,7 @@ namespace libVariant
 #elif __linux__
     typedef int                 sint32;
 #endif
+    typedef long                sint32;
     typedef long long           sint64;
     typedef float               float32;
     typedef double              float64;

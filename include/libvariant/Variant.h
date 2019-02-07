@@ -27,19 +27,10 @@ namespace libVariant
     typedef bool                boolean;
     typedef unsigned char       uint8;
     typedef unsigned short      uint16;
-#ifdef _WIN32
     typedef unsigned long       uint32;
-#elif __linux__
-    typedef unsigned int        uint32;
-#endif
     typedef unsigned long long  uint64;
     typedef char                sint8;
     typedef short               sint16;
-#ifdef _WIN32
-    typedef long                sint32;
-#elif __linux__
-    typedef int                 sint32;
-#endif
     typedef long                sint32;
     typedef long long           sint64;
     typedef float               float32;

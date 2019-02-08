@@ -16,7 +16,7 @@ add_executable(libvariant_unittest
   TestTypeUnion.cpp
   TestTypeUnion.h
   TestVariant.cpp
-  Testvariant.h
+  TestVariant.h
   TestVariant.testVbScriptIdenticalBehavior.input.txt
   TestVariantTemplate.cpp
   TestVariantTemplate.h

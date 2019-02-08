@@ -1,6 +1,0 @@
-- Removed automatic clamping when getting a type as another. Instead return a static cast from the internal value. This will remove most of the code bloat. If a user still wants to clamp values, one should use saturate_cast<> template instead.
-
-TODO:
-refactor function logicalConvert():
-- Remove min & max arguments by using std::numeric_limits<Variant::uint16>::max(); ...
-- Remove usage of iOutputFormat and use TypeInfo template to know the actual output type using T. ... Or use TypeInfo.isUnsigned()

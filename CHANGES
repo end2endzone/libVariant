@@ -5,7 +5,7 @@ Changes for 2.2.0:
 Changes for 2.1.0:
 
 * New Feature: Implemented CMake support.
-* New Feature: Implemented Linux support.
+* New Feature: Implemented Linux support (limited).
 
 Changes for 2.0.114: (05/26/2017)
 

@@ -5,7 +5,7 @@
 //---------------
 // Include Files
 //---------------
-#include "libvariant/Variant.h"
+#include "libvariant/variant.h"
 
 //-----------
 // Namespace

@@ -3,7 +3,7 @@
 //---------------
 // Include Files
 //---------------
-#include "libvariant/Variant.h"
+#include "libvariant/variant.h"
 #include "StringEncoder.h"
 #include "StringParser.h"
 

@@ -7,7 +7,7 @@
 #include <time.h>       /* time */
 #include <stdint.h>     /* in32_t, int64_t */
 
-#include "libvariant/Variant.h"
+#include "libvariant/variant.h"
 #include "VariantTemplates.h"
 
 #include "gtesthelper.h"

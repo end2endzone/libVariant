@@ -1,5 +1,5 @@
 set(LIBVARIANT_HEADER_FILES ""
-  ${LIBVARIANT_INCLUDE_DIR}/libvariant/Variant.h
+  ${LIBVARIANT_INCLUDE_DIR}/libvariant/variant.h
 )
 
 add_executable(code_generator

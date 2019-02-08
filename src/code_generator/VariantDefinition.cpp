@@ -1,19 +1,19 @@
 #include "VariantDefinition.h"
 
 INNER_TYPE innerTypes[] = {
-  {"boolean", "bool"              , "BOOL"    },
-  {"uint8"  , "unsigned char"     , "UINT8"   },
-  {"uint16" , "unsigned short"    , "UINT16"  },
-  {"uint32" , "unsigned long"     , "UINT32"  },
-  {"uint64" , "unsigned long long", "UINT64"  },
-  {"sint8"  , "char"              , "SINT8"   },
-  {"sint16" , "short"             , "SINT16"  },
-  {"sint32" , "long"              , "SINT32"  },
-  {"sint64" , "long long"         , "SINT64"  },
-  {"float32", "float"             , "FLOAT32" },
-  {"float64", "double"            , "FLOAT64" },
-  {"CStr"   , "const char*"       , "STRING"  },
-  {"Str"    , "std::string"       , "STRING"  },
+  {"boolean"  , "bool"              , "BOOL"    },
+  {"uint8_t"  , "unsigned char"     , "UINT8"   },
+  {"uint16_t" , "unsigned short"    , "UINT16"  },
+  {"uint32_t" , "unsigned long"     , "UINT32"  },
+  {"uint64_t" , "unsigned long long", "UINT64"  },
+  {"int8_t"   , "char"              , "SINT8"   },
+  {"int16_t"  , "short"             , "SINT16"  },
+  {"int32_t"  , "long"              , "SINT32"  },
+  {"int64_t"  , "long long"         , "SINT64"  },
+  {"float32"  , "float"             , "FLOAT32" },
+  {"float64"  , "double"            , "FLOAT64" },
+  {"CStr"     , "const char*"       , "STRING"  },
+  {"Str"      , "std::string"       , "STRING"  },
 };
 size_t numInnerTypes = sizeof(innerTypes)/sizeof(innerTypes[0]);
 
@@ -44,19 +44,19 @@ std::string getVariantTypedefFromType(const std::string & iBaseType)
 
 std::string getGetSetFunctionNameFromInnerType(const std::string & iInnerType)
 {
-  if (iInnerType == "boolean") return "BOOL";
-  if (iInnerType == "uint8"  ) return "UINT8";
-  if (iInnerType == "sint8"  ) return "SINT8";
-  if (iInnerType == "uint16" ) return "UINT16";
-  if (iInnerType == "sint16" ) return "SINT16";
-  if (iInnerType == "uint32" ) return "UINT32";
-  if (iInnerType == "sint32" ) return "SINT32";
-  if (iInnerType == "uint64" ) return "UINT64";
-  if (iInnerType == "sint64" ) return "SINT64";
-  if (iInnerType == "float32") return "FLOAT32";
-  if (iInnerType == "float64") return "FLOAT64";
-  if (iInnerType == "Str"    ) return "STRING";
-  if (iInnerType == "CStr"   ) return "STRING";
+  if (iInnerType == "boolean" ) return "BOOL";
+  if (iInnerType == "uint8_t" ) return "UINT8";
+  if (iInnerType == "int8_t"  ) return "SINT8";
+  if (iInnerType == "uint16_t") return "UINT16";
+  if (iInnerType == "int16_t" ) return "SINT16";
+  if (iInnerType == "uint32_t") return "UINT32";
+  if (iInnerType == "int32_t" ) return "SINT32";
+  if (iInnerType == "uint64_t") return "UINT64";
+  if (iInnerType == "int64_t" ) return "SINT64";
+  if (iInnerType == "float32" ) return "FLOAT32";
+  if (iInnerType == "float64" ) return "FLOAT64";
+  if (iInnerType == "Str"     ) return "STRING";
+  if (iInnerType == "CStr"    ) return "STRING";
   return "";
 }
 

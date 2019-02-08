@@ -28,14 +28,14 @@ namespace libVariant
     // Typedef
     //--------------------------
     typedef bool                boolean;
-    typedef unsigned char       uint8;
-    typedef unsigned short      uint16;
-    typedef unsigned long       uint32;
-    typedef unsigned long long  uint64;
-    typedef char                sint8;
-    typedef short               sint16;
-    typedef long                sint32;
-    typedef long long           sint64;
+    typedef unsigned char       uint8_t;
+    typedef unsigned short      uint16_t;
+    typedef unsigned long       uint32_t;
+    typedef unsigned long long  uint64_t;
+    typedef char                int8_t;
+    typedef short               int16_t;
+    typedef long                int32_t;
+    typedef long long           int64_t;
     typedef float               float32;
     typedef double              float64;
     typedef std::string         Str;
@@ -139,14 +139,14 @@ namespace libVariant
     /// <seealso cref="testFloatParse"/>
     void parse(float32 iValue)
     {
-      testFloatParse<float32, uint8 >(iValue, parsed_uint8 , is_UInt8 );
-      testFloatParse<float32, sint8 >(iValue, parsed_sint8 , is_SInt8 );
-      testFloatParse<float32, uint16>(iValue, parsed_uint16, is_UInt16);
-      testFloatParse<float32, sint16>(iValue, parsed_sint16, is_SInt16);
-      testFloatParse<float32, uint32>(iValue, parsed_uint32, is_UInt32);
-      testFloatParse<float32, sint32>(iValue, parsed_sint32, is_SInt32);
-      testFloatParse<float32, uint64>(iValue, parsed_uint64, is_UInt64);
-      testFloatParse<float32, sint64>(iValue, parsed_sint64, is_SInt64);
+      testFloatParse<float32, uint8_t >(iValue, parsed_uint8 , is_UInt8 );
+      testFloatParse<float32, int8_t  >(iValue, parsed_sint8 , is_SInt8 );
+      testFloatParse<float32, uint16_t>(iValue, parsed_uint16, is_UInt16);
+      testFloatParse<float32, int16_t >(iValue, parsed_sint16, is_SInt16);
+      testFloatParse<float32, uint32_t>(iValue, parsed_uint32, is_UInt32);
+      testFloatParse<float32, int32_t >(iValue, parsed_sint32, is_SInt32);
+      testFloatParse<float32, uint64_t>(iValue, parsed_uint64, is_UInt64);
+      testFloatParse<float32, int64_t >(iValue, parsed_sint64, is_SInt64);
     }
 
     /// <summary>
@@ -161,14 +161,14 @@ namespace libVariant
     /// <seealso cref="testFloatParse"/>
     void parse(float64 iValue)
     {
-      testFloatParse<float64, uint8 >(iValue, parsed_uint8 , is_UInt8 );
-      testFloatParse<float64, sint8 >(iValue, parsed_sint8 , is_SInt8 );
-      testFloatParse<float64, uint16>(iValue, parsed_uint16, is_UInt16);
-      testFloatParse<float64, sint16>(iValue, parsed_sint16, is_SInt16);
-      testFloatParse<float64, uint32>(iValue, parsed_uint32, is_UInt32);
-      testFloatParse<float64, sint32>(iValue, parsed_sint32, is_SInt32);
-      testFloatParse<float64, uint64>(iValue, parsed_uint64, is_UInt64);
-      testFloatParse<float64, sint64>(iValue, parsed_sint64, is_SInt64);
+      testFloatParse<float64, uint8_t >(iValue, parsed_uint8 , is_UInt8 );
+      testFloatParse<float64, int8_t  >(iValue, parsed_sint8 , is_SInt8 );
+      testFloatParse<float64, uint16_t>(iValue, parsed_uint16, is_UInt16);
+      testFloatParse<float64, int16_t >(iValue, parsed_sint16, is_SInt16);
+      testFloatParse<float64, uint32_t>(iValue, parsed_uint32, is_UInt32);
+      testFloatParse<float64, int32_t >(iValue, parsed_sint32, is_SInt32);
+      testFloatParse<float64, uint64_t>(iValue, parsed_uint64, is_UInt64);
+      testFloatParse<float64, int64_t >(iValue, parsed_sint64, is_SInt64);
     }
 
     /// <summary>
@@ -204,28 +204,28 @@ namespace libVariant
         }
       }
 
-      testStringParse<uint8  >(strValue, parsed_uint8  , is_UInt8  );
-      testStringParse<sint8  >(strValue, parsed_sint8  , is_SInt8  );
-      testStringParse<uint16 >(strValue, parsed_uint16 , is_UInt16 );
-      testStringParse<sint16 >(strValue, parsed_sint16 , is_SInt16 );
-      testStringParse<uint32 >(strValue, parsed_uint32 , is_UInt32 );
-      testStringParse<sint32 >(strValue, parsed_sint32 , is_SInt32 );
-      testStringParse<uint64 >(strValue, parsed_uint64 , is_UInt64 );
-      testStringParse<sint64 >(strValue, parsed_sint64 , is_SInt64 );
-      testStringParse<float32>(strValue, parsed_float32, is_Float32);
-      testStringParse<float64>(strValue, parsed_float64, is_Float64);
+      testStringParse<uint8_t  >(strValue, parsed_uint8  , is_UInt8  );
+      testStringParse<int8_t   >(strValue, parsed_sint8  , is_SInt8  );
+      testStringParse<uint16_t >(strValue, parsed_uint16 , is_UInt16 );
+      testStringParse<int16_t  >(strValue, parsed_sint16 , is_SInt16 );
+      testStringParse<uint32_t >(strValue, parsed_uint32 , is_UInt32 );
+      testStringParse<int32_t  >(strValue, parsed_sint32 , is_SInt32 );
+      testStringParse<uint64_t >(strValue, parsed_uint64 , is_UInt64 );
+      testStringParse<int64_t  >(strValue, parsed_sint64 , is_SInt64 );
+      testStringParse<float32  >(strValue, parsed_float32, is_Float32);
+      testStringParse<float64  >(strValue, parsed_float64, is_Float64);
     }
 
     //parsed results
     bool     parsed_boolean;
-    uint8    parsed_uint8  ;
-    uint16   parsed_uint16 ;
-    uint32   parsed_uint32 ;
-    uint64   parsed_uint64 ;
-    sint8    parsed_sint8  ;
-    sint16   parsed_sint16 ;
-    sint32   parsed_sint32 ;
-    sint64   parsed_sint64 ;
+    uint8_t  parsed_uint8  ;
+    uint16_t parsed_uint16 ;
+    uint32_t parsed_uint32 ;
+    uint64_t parsed_uint64 ;
+    int8_t   parsed_sint8  ;
+    int16_t  parsed_sint16 ;
+    int32_t  parsed_sint32 ;
+    int64_t  parsed_sint64 ;
     float32  parsed_float32;
     float64  parsed_float64;
 

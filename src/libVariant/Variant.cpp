@@ -25,23 +25,23 @@ namespace libVariant
   const char * gStringTrue  = "true";
   const char * gStringFalse = "false";
 
-  static const Variant::uint8 uint8_min = std::numeric_limits<Variant::uint8>::min();
-  static const Variant::uint8 uint8_max = std::numeric_limits<Variant::uint8>::max();
-  static const Variant::uint16 uint16_min = std::numeric_limits<Variant::uint16>::min();
-  static const Variant::uint16 uint16_max = std::numeric_limits<Variant::uint16>::max();
-  static const Variant::uint32 uint32_min = std::numeric_limits<Variant::uint32>::min();
-  static const Variant::uint32 uint32_max = std::numeric_limits<Variant::uint32>::max();
-  static const Variant::uint64 uint64_min = std::numeric_limits<Variant::uint64>::min();
-  static const Variant::uint64 uint64_max = std::numeric_limits<Variant::uint64>::max();
+  static const std::uint8_t  uint8_min  = std::numeric_limits<std::uint8_t >::min();
+  static const std::uint8_t  uint8_max  = std::numeric_limits<std::uint8_t >::max();
+  static const std::uint16_t uint16_min = std::numeric_limits<std::uint16_t>::min();
+  static const std::uint16_t uint16_max = std::numeric_limits<std::uint16_t>::max();
+  static const std::uint32_t uint32_min = std::numeric_limits<std::uint32_t>::min();
+  static const std::uint32_t uint32_max = std::numeric_limits<std::uint32_t>::max();
+  static const std::uint64_t uint64_min = std::numeric_limits<std::uint64_t>::min();
+  static const std::uint64_t uint64_max = std::numeric_limits<std::uint64_t>::max();
 
-  static const Variant::sint8 sint8_min = std::numeric_limits<Variant::sint8>::min();
-  static const Variant::sint8 sint8_max = std::numeric_limits<Variant::sint8>::max();
-  static const Variant::sint16 sint16_min = std::numeric_limits<Variant::sint16>::min();
-  static const Variant::sint16 sint16_max = std::numeric_limits<Variant::sint16>::max();
-  static const Variant::sint32 sint32_min = std::numeric_limits<Variant::sint32>::min();
-  static const Variant::sint32 sint32_max = std::numeric_limits<Variant::sint32>::max();
-  static const Variant::sint64 sint64_min = std::numeric_limits<Variant::sint64>::min();
-  static const Variant::sint64 sint64_max = std::numeric_limits<Variant::sint64>::max();
+  static const std::int8_t  sint8_min  = std::numeric_limits<std::int8_t >::min();
+  static const std::int8_t  sint8_max  = std::numeric_limits<std::int8_t >::max();
+  static const std::int16_t sint16_min = std::numeric_limits<std::int16_t>::min();
+  static const std::int16_t sint16_max = std::numeric_limits<std::int16_t>::max();
+  static const std::int32_t sint32_min = std::numeric_limits<std::int32_t>::min();
+  static const std::int32_t sint32_max = std::numeric_limits<std::int32_t>::max();
+  static const std::int64_t sint64_min = std::numeric_limits<std::int64_t>::min();
+  static const std::int64_t sint64_max = std::numeric_limits<std::int64_t>::max();
 
   template <typename T>
   inline void _applyOperator(Variant::MATH_OPERATOR iOperator, T & iLeftValue, const T & iRightValue)
@@ -143,7 +143,7 @@ namespace libVariant
   {
     #pragma warning(push)
     #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::UINT64' to 'const libVariant::UINT8', possible loss of data
-    #pragma warning(disable:4800) //warning C4800: 'const libVariant::sint64' : forcing value to bool 'true' or 'false' (performance warning)
+    #pragma warning(disable:4800) //warning C4800: 'const libVariant::int64_t' : forcing value to bool 'true' or 'false' (performance warning)
     
     switch(iFormat)
     {
@@ -173,7 +173,7 @@ namespace libVariant
     #pragma warning(pop)
   }
 
-  inline static void getSignedRanges(const Variant::VariantFormat & iFormat, Variant::sint64 & oMin, Variant::sint64 & oMax)
+  inline static void getSignedRanges(const Variant::VariantFormat & iFormat, std::int64_t & oMin, std::int64_t & oMax)
   {
     switch(iFormat)
     {
@@ -219,7 +219,7 @@ namespace libVariant
     };
   }
 
-  inline static void getUnsignedRanges(const Variant::VariantFormat & iFormat, Variant::uint64 & oMin, Variant::uint64 & oMax)
+  inline static void getUnsignedRanges(const Variant::VariantFormat & iFormat, std::uint64_t & oMin, std::uint64_t & oMax)
   {
     switch(iFormat)
     {
@@ -278,8 +278,8 @@ namespace libVariant
     case Variant::UINT64:
       //from unsigned to ?
       {
-        Variant::uint64 low = 0;
-        Variant::uint64 high = 0;
+        std::uint64_t low = 0;
+        std::uint64_t high = 0;
         getUnsignedRanges(iOutputFormat, low, high);
         if (iData.vuint64 < low)
         {
@@ -292,7 +292,7 @@ namespace libVariant
       }
       #pragma warning(push)
       #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::UINT64' to 'const libVariant::UINT8', possible loss of data
-      #pragma warning(disable:4800) //warning C4800: 'const libVariant::Variant::uint64' : forcing value to bool 'true' or 'false' (performance warning)
+      #pragma warning(disable:4800) //warning C4800: 'const libVariant::std::uint64_t' : forcing value to bool 'true' or 'false' (performance warning)
       return iData.vuint64;
       #pragma warning(pop)
     case Variant::SINT8:
@@ -301,8 +301,8 @@ namespace libVariant
     case Variant::SINT64:
       //from signed to ?
       {
-        Variant::sint64 low = 0;
-        Variant::sint64 high = 0;
+        std::int64_t low = 0;
+        std::int64_t high = 0;
         getSignedRanges(iOutputFormat, low, high);
         if (iData.vsint64 < low)
         {
@@ -315,7 +315,7 @@ namespace libVariant
       }
       #pragma warning(push)
       #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::SINT64' to 'const libVariant::UINT8', possible loss of data
-      #pragma warning(disable:4800) //warning C4800: 'const libVariant::Variant::sint64' : forcing value to bool 'true' or 'false' (performance warning)
+      #pragma warning(disable:4800) //warning C4800: 'const libVariant::std::int64_t' : forcing value to bool 'true' or 'false' (performance warning)
       return iData.vsint64;
       #pragma warning(pop)
     case Variant::FLOAT32:
@@ -352,25 +352,25 @@ namespace libVariant
   }
 
   Variant::Variant(const bool      & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint8     & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const sint8     & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint16    & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const sint16    & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint32    & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const sint32    & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint64    & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const sint64    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint8_t   & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const int8_t    & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint16_t  & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const int16_t   & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint32_t  & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const int32_t   & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint64_t  & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const int64_t   & iValue) { clear(); (*this) = iValue; }
   Variant::Variant(const float32   & iValue) { clear(); (*this) = iValue; }
   Variant::Variant(const float64   & iValue) { clear(); (*this) = iValue; }
   Variant::Variant(const Str       & iValue) { clear(); (*this) = iValue; }
   Variant::Variant(const CStr      & iValue) { clear(); (*this) = iValue; }
   
   //other fundamental types which are derivative of one of VariantFormat
-  Variant::Variant(const   signed char     & iValue) { clear(); (*this) = static_cast<Variant::sint8>(iValue); }
-  Variant::Variant(const   signed int      & iValue) { clear(); (*this) = static_cast<Variant::sint32>(iValue); }
-  Variant::Variant(const unsigned int      & iValue) { clear(); (*this) = static_cast<Variant::uint32>(iValue); }
+  Variant::Variant(const   signed char     & iValue) { clear(); (*this) = static_cast<std::int8_t>(iValue); }
+  Variant::Variant(const   signed int      & iValue) { clear(); (*this) = static_cast<std::int32_t>(iValue); }
+  Variant::Variant(const unsigned int      & iValue) { clear(); (*this) = static_cast<std::uint32_t>(iValue); }
   Variant::Variant(const long double       & iValue) { clear(); (*this) = static_cast<Variant::float64>(iValue); }
-  Variant::Variant(const wchar_t           & iValue) { clear(); (*this) = static_cast<Variant::uint16>(iValue); }
+  Variant::Variant(const wchar_t           & iValue) { clear(); (*this) = static_cast<std::uint16_t>(iValue); }
 
   Variant::~Variant(void)
   {
@@ -411,81 +411,81 @@ namespace libVariant
         return p.parsed_boolean;
 
       //might be 0, 1, or any other value
-      return StringEncoder::parse<Variant::uint8>( mData.str->c_str() ) != 0;
+      return StringEncoder::parse<std::uint8_t>( mData.str->c_str() ) != 0;
     }
     return logicalConvert<bool>(mFormat, Variant::BOOL, mData, true, false);
   }
 
-  Variant::uint8     Variant::getUInt8  () const
+  std::uint8_t     Variant::getUInt8  () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::uint8>( mData.str->c_str() );
+      return StringEncoder::parse<std::uint8_t>( mData.str->c_str() );
     }
-    return logicalConvert<uint8>(mFormat, Variant::UINT8, mData, uint8_max, uint8_min);
+    return logicalConvert<uint8_t>(mFormat, Variant::UINT8, mData, uint8_max, uint8_min);
   }
 
-  Variant::sint8     Variant::getSInt8  () const
+  std::int8_t     Variant::getSInt8  () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::sint8>( mData.str->c_str() );
+      return StringEncoder::parse<std::int8_t>( mData.str->c_str() );
     }
-    return logicalConvert<sint8>(mFormat, Variant::SINT8, mData, sint8_max, sint8_min);
+    return logicalConvert<int8_t>(mFormat, Variant::SINT8, mData, sint8_max, sint8_min);
   }
 
-  Variant::uint16    Variant::getUInt16 () const
+  std::uint16_t    Variant::getUInt16 () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::uint16>( mData.str->c_str() );
+      return StringEncoder::parse<std::uint16_t>( mData.str->c_str() );
     }
-    return logicalConvert<uint16>(mFormat, Variant::UINT16, mData, uint16_max, uint16_min);
+    return logicalConvert<uint16_t>(mFormat, Variant::UINT16, mData, uint16_max, uint16_min);
   }
 
-  Variant::sint16    Variant::getSInt16 () const
+  std::int16_t    Variant::getSInt16 () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::sint16>( mData.str->c_str() );
+      return StringEncoder::parse<std::int16_t>( mData.str->c_str() );
     }
-    return logicalConvert<sint16>(mFormat, Variant::SINT16, mData, sint16_max, sint16_min);
+    return logicalConvert<int16_t>(mFormat, Variant::SINT16, mData, sint16_max, sint16_min);
   }
 
-  Variant::uint32    Variant::getUInt32 () const
+  std::uint32_t    Variant::getUInt32 () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::uint32>( mData.str->c_str() );
+      return StringEncoder::parse<std::uint32_t>( mData.str->c_str() );
     }
-    return logicalConvert<uint32>(mFormat, Variant::UINT32, mData, uint32_max, uint32_min);
+    return logicalConvert<uint32_t>(mFormat, Variant::UINT32, mData, uint32_max, uint32_min);
   }
 
-  Variant::sint32    Variant::getSInt32 () const
+  std::int32_t    Variant::getSInt32 () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::sint32>( mData.str->c_str() );
+      return StringEncoder::parse<std::int32_t>( mData.str->c_str() );
     }
-    return logicalConvert<sint32>(mFormat, Variant::SINT32, mData, sint32_max, sint32_min);
+    return logicalConvert<int32_t>(mFormat, Variant::SINT32, mData, sint32_max, sint32_min);
   }
 
-  Variant::uint64    Variant::getUInt64 () const
+  std::uint64_t    Variant::getUInt64 () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::uint64>( mData.str->c_str() );
+      return StringEncoder::parse<std::uint64_t>( mData.str->c_str() );
     }
-    return logicalConvert<uint64>(mFormat, Variant::UINT64, mData, uint64_max, uint64_min);
+    return logicalConvert<uint64_t>(mFormat, Variant::UINT64, mData, uint64_max, uint64_min);
   }
 
-  Variant::sint64    Variant::getSInt64 () const
+  std::int64_t    Variant::getSInt64 () const
   {
     if (mFormat == Variant::STRING)
     {
-      return StringEncoder::parse<Variant::sint64>( mData.str->c_str() );
+      return StringEncoder::parse<std::int64_t>( mData.str->c_str() );
     }
-    return logicalConvert<sint64>(mFormat, Variant::SINT64, mData, sint64_max, sint64_min);
+    return logicalConvert<int64_t>(mFormat, Variant::SINT64, mData, sint64_max, sint64_min);
   }
 
   Variant::float32   Variant::getFloat32() const
@@ -543,56 +543,56 @@ namespace libVariant
     mData.vuint64 = iValue;
   }
 
-  void Variant::setUInt8  (const uint8     & iValue)
+  void Variant::setUInt8  (const uint8_t     & iValue)
   {
     clear();
     mFormat = Variant::UINT8;
     mData.vuint64 = iValue;
   }
 
-  void Variant::setSInt8  (const sint8     & iValue)
+  void Variant::setSInt8  (const int8_t     & iValue)
   {
     clear();
     mFormat = Variant::SINT8;
     mData.vsint64 = iValue;
   }
 
-  void Variant::setUInt16 (const uint16    & iValue)
+  void Variant::setUInt16 (const uint16_t    & iValue)
   {
     clear();
     mFormat = Variant::UINT16;
     mData.vuint64 = iValue;
   }
 
-  void Variant::setSInt16 (const sint16    & iValue)
+  void Variant::setSInt16 (const int16_t    & iValue)
   {
     clear();
     mFormat = Variant::SINT16;
     mData.vsint64 = iValue;
   }
 
-  void Variant::setUInt32 (const uint32    & iValue)
+  void Variant::setUInt32 (const uint32_t    & iValue)
   {
     clear();
     mFormat = Variant::UINT32;
     mData.vuint64 = iValue;
   }
 
-  void Variant::setSInt32 (const sint32    & iValue)
+  void Variant::setSInt32 (const int32_t    & iValue)
   {
     clear();
     mFormat = Variant::SINT32;
     mData.vsint64 = iValue;
   }
 
-  void Variant::setUInt64 (const uint64    & iValue)
+  void Variant::setUInt64 (const uint64_t    & iValue)
   {
     clear();
     mFormat = Variant::UINT64;
     mData.vuint64 = iValue;
   }
 
-  void Variant::setSInt64 (const sint64    & iValue)
+  void Variant::setSInt64 (const int64_t    & iValue)
   {
     clear();
     mFormat = Variant::SINT64;
@@ -666,16 +666,16 @@ namespace libVariant
       return true;
       break;
     case Variant::SINT8:
-      return mData.vsint8 >= (Variant::sint8)0;
+      return mData.vsint8 >= (std::int8_t)0;
       break;
     case Variant::SINT16:
-      return mData.vsint16 >= (Variant::sint16)0;
+      return mData.vsint16 >= (std::int16_t)0;
       break;
     case Variant::SINT32:
-      return mData.vsint32 >= (Variant::sint32)0;
+      return mData.vsint32 >= (std::int32_t)0;
       break;
     case Variant::SINT64:
-      return mData.vsint64 >= (Variant::sint64)0;
+      return mData.vsint64 >= (std::int64_t)0;
       break;
     case Variant::FLOAT32:
       return mData.vfloat32 >= (Variant::float32)0.0f;
@@ -705,16 +705,16 @@ namespace libVariant
       return false;
       break;
     case Variant::SINT8:
-      return mData.vsint8 < (Variant::sint8)0;
+      return mData.vsint8 < (std::int8_t)0;
       break;
     case Variant::SINT16:
-      return mData.vsint16 < (Variant::sint16)0;
+      return mData.vsint16 < (std::int16_t)0;
       break;
     case Variant::SINT32:
-      return mData.vsint32 < (Variant::sint32)0;
+      return mData.vsint32 < (std::int32_t)0;
       break;
     case Variant::SINT64:
-      return mData.vsint64 < (Variant::sint64)0;
+      return mData.vsint64 < (std::int64_t)0;
       break;
     case Variant::FLOAT32:
       return mData.vfloat32 < (Variant::float32)0.0f;
@@ -783,11 +783,11 @@ namespace libVariant
   template <typename T, typename U>
   inline int compareNativeTypes(const T & iLocalValue, const U & iRemoteValue)
   {
-    //force boolean to be compared as sint8 to prevent undefined behavior
+    //force boolean to be compared as int8_t to prevent undefined behavior
     if (isBoolean(iLocalValue))
-      return compareNativeTypes( static_cast<Variant::sint8>(iLocalValue), iRemoteValue );
+      return compareNativeTypes( static_cast<std::int8_t>(iLocalValue), iRemoteValue );
     if (isBoolean(iRemoteValue))
-      return compareNativeTypes( iLocalValue, static_cast<Variant::sint8>(iRemoteValue) );
+      return compareNativeTypes( iLocalValue, static_cast<std::int8_t>(iRemoteValue) );
 
     #pragma warning(push)
     #pragma warning(disable:4804) //warning C4804: '>' : unsafe use of type 'bool' in operation
@@ -892,7 +892,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const uint8        & iValue) const
+  int Variant::compare(const uint8_t        & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -914,7 +914,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const uint16       & iValue) const
+  int Variant::compare(const uint16_t       & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -936,7 +936,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const uint32       & iValue) const
+  int Variant::compare(const uint32_t       & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -958,7 +958,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const uint64       & iValue) const
+  int Variant::compare(const uint64_t       & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -980,7 +980,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const sint8        & iValue) const
+  int Variant::compare(const int8_t        & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -1002,7 +1002,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const sint16       & iValue) const
+  int Variant::compare(const int16_t       & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -1024,7 +1024,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const sint32       & iValue) const
+  int Variant::compare(const int32_t       & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -1046,7 +1046,7 @@ namespace libVariant
     return compareStrings( (*mData.str), Variant(iValue).getString() );
   }
 
-  int Variant::compare(const sint64       & iValue) const
+  int Variant::compare(const int64_t       & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, iValue))
@@ -1167,7 +1167,7 @@ namespace libVariant
       };
     }
 
-    //at this point, local variant is not a string. ie uint16=2518
+    //at this point, local variant is not a string. ie uint16_t=2518
     //argument is not simplifiable. ie: "foobar"
     //local Variant must be converted to a string to be compared: "2518" compared to "foobar"
     return compareStrings( this->getString(), iValue );
@@ -1217,49 +1217,49 @@ namespace libVariant
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const uint8     & iValue)
+  const Variant & Variant::operator += (const uint8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const sint8     & iValue)
+  const Variant & Variant::operator += (const int8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const uint16    & iValue)
+  const Variant & Variant::operator += (const uint16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const sint16    & iValue)
+  const Variant & Variant::operator += (const int16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const uint32    & iValue)
+  const Variant & Variant::operator += (const uint32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const sint32    & iValue)
+  const Variant & Variant::operator += (const int32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const uint64    & iValue)
+  const Variant & Variant::operator += (const uint64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
   }
 
-  const Variant & Variant::operator += (const sint64    & iValue)
+  const Variant & Variant::operator += (const int64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) += tmp;
@@ -1304,49 +1304,49 @@ namespace libVariant
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const uint8     & iValue)
+  const Variant & Variant::operator -= (const uint8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const sint8     & iValue)
+  const Variant & Variant::operator -= (const int8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const uint16    & iValue)
+  const Variant & Variant::operator -= (const uint16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const sint16    & iValue)
+  const Variant & Variant::operator -= (const int16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const uint32    & iValue)
+  const Variant & Variant::operator -= (const uint32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const sint32    & iValue)
+  const Variant & Variant::operator -= (const int32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const uint64    & iValue)
+  const Variant & Variant::operator -= (const uint64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
   }
 
-  const Variant & Variant::operator -= (const sint64    & iValue)
+  const Variant & Variant::operator -= (const int64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) -= tmp;
@@ -1391,49 +1391,49 @@ namespace libVariant
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const uint8     & iValue)
+  const Variant & Variant::operator *= (const uint8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const sint8     & iValue)
+  const Variant & Variant::operator *= (const int8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const uint16    & iValue)
+  const Variant & Variant::operator *= (const uint16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const sint16    & iValue)
+  const Variant & Variant::operator *= (const int16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const uint32    & iValue)
+  const Variant & Variant::operator *= (const uint32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const sint32    & iValue)
+  const Variant & Variant::operator *= (const int32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const uint64    & iValue)
+  const Variant & Variant::operator *= (const uint64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
   }
 
-  const Variant & Variant::operator *= (const sint64    & iValue)
+  const Variant & Variant::operator *= (const int64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) *= tmp;
@@ -1478,49 +1478,49 @@ namespace libVariant
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const uint8     & iValue)
+  const Variant & Variant::operator /= (const uint8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const sint8     & iValue)
+  const Variant & Variant::operator /= (const int8_t     & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const uint16    & iValue)
+  const Variant & Variant::operator /= (const uint16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const sint16    & iValue)
+  const Variant & Variant::operator /= (const int16_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const uint32    & iValue)
+  const Variant & Variant::operator /= (const uint32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const sint32    & iValue)
+  const Variant & Variant::operator /= (const int32_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const uint64    & iValue)
+  const Variant & Variant::operator /= (const uint64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
   }
 
-  const Variant & Variant::operator /= (const sint64    & iValue)
+  const Variant & Variant::operator /= (const int64_t    & iValue)
   {
     Variant tmp = iValue;
     return (*this) /= tmp;
@@ -1562,26 +1562,26 @@ namespace libVariant
     //prefix
     const Variant & Variant::operator ++ ()
     {
-      return (*this) += (Variant::uint8) 1;
+      return (*this) += (std::uint8_t) 1;
     }
 
     const Variant & Variant::operator -- ()
     {
-      return (*this) -= (Variant::uint8) 1;
+      return (*this) -= (std::uint8_t) 1;
     }
 
     //postfix
     const Variant Variant::operator ++ (int)
     {
       Variant tmp = (*this);
-      (*this) += (Variant::uint8) 1;
+      (*this) += (std::uint8_t) 1;
       return tmp;
     }
 
     const Variant Variant::operator -- (int)
     {
       Variant tmp = (*this);
-      (*this) -= (Variant::uint8) 1;
+      (*this) -= (std::uint8_t) 1;
       return tmp;
     }
 #endif
@@ -1591,7 +1591,7 @@ namespace libVariant
 
 #define PROCESS_DIVISION_VALIDATION(targetVariable, sourceVariable) \
     {\
-      Variant::sint64 modulo = (iOperator == Variant::DIVIDE_EQUAL && sourceVariable != 0) ? targetVariable % sourceVariable : 0;\
+      std::int64_t modulo = (iOperator == Variant::DIVIDE_EQUAL && sourceVariable != 0) ? targetVariable % sourceVariable : 0;\
       if (modulo != 0)\
       {\
         forceFormat(Variant::FLOAT64);\
@@ -1752,8 +1752,8 @@ namespace libVariant
       //they must be compared as the same type as the local variant
 
       //apply operator
-      PROCESS_DIVISION_VALIDATION(mData.vsint64, static_cast<Variant::sint64>(iValue.mData.vuint64));
-      _applyOperator(iOperator, mData.vsint64, static_cast<Variant::sint64>(iValue.mData.vuint64));
+      PROCESS_DIVISION_VALIDATION(mData.vsint64, static_cast<std::int64_t>(iValue.mData.vuint64));
+      _applyOperator(iOperator, mData.vsint64, static_cast<std::int64_t>(iValue.mData.vuint64));
       processInternalTypePromotion();
 
       return (*this);
@@ -1763,7 +1763,7 @@ namespace libVariant
       //Rule #4 - if + - / * on an unsigned with a signed, then elevate local to signed
 
       //Note:
-      //Variant::uint8 value = 4;
+      //std::uint8_t value = 4;
       //Variant v;
       //v.setUInt8(value);
       //v *= -2;
@@ -1948,15 +1948,15 @@ namespace libVariant
     case Variant::UINT16:
     case Variant::UINT32:
     case Variant::UINT64:
-      if (mData.vuint64 > (Variant::uint64)uint32_max)
+      if (mData.vuint64 > (std::uint64_t)uint32_max)
       {
         mFormat = Variant::UINT64;
       }
-      else if (mData.vuint64 > (Variant::uint64)uint16_max)
+      else if (mData.vuint64 > (std::uint64_t)uint16_max)
       {
         mFormat = Variant::UINT32;
       }
-      else if (mData.vuint64 > (Variant::uint64)uint8_max)
+      else if (mData.vuint64 > (std::uint64_t)uint8_max)
       {
         mFormat = Variant::UINT16;
       }
@@ -1965,15 +1965,15 @@ namespace libVariant
     case Variant::SINT16:
     case Variant::SINT32:
     case Variant::SINT64:
-      if (mData.vsint64 > (Variant::sint64)sint32_max)
+      if (mData.vsint64 > (std::int64_t)sint32_max)
       {
         mFormat = Variant::SINT64;
       }
-      else if (mData.vsint64 > (Variant::sint64)sint16_max)
+      else if (mData.vsint64 > (std::int64_t)sint16_max)
       {
         mFormat = Variant::SINT32;
       }
-      else if (mData.vsint64 > (Variant::sint64)sint8_max)
+      else if (mData.vsint64 > (std::int64_t)sint8_max)
       {
         mFormat = Variant::SINT16;
       }
@@ -1997,28 +1997,28 @@ namespace libVariant
       mData.vbool = (mData.vuint64 != 0);
       break;
     case Variant::UINT8:
-      mData.vuint8 = typecast::saturate_cast<uint8>(mData.vuint64);
+      mData.vuint8 = typecast::saturate_cast<uint8_t>(mData.vuint64);
       break;
     case Variant::UINT16:
-      mData.vuint16 = typecast::saturate_cast<uint16>(mData.vuint64);
+      mData.vuint16 = typecast::saturate_cast<uint16_t>(mData.vuint64);
       break;
     case Variant::UINT32:
-      mData.vuint32 = typecast::saturate_cast<uint32>(mData.vuint64);
+      mData.vuint32 = typecast::saturate_cast<uint32_t>(mData.vuint64);
       break;
     case Variant::UINT64:
-      //nothing to do: mData.vuint64 = typecast::saturate_cast<uint64>(mData.vuint64);
+      //nothing to do: mData.vuint64 = typecast::saturate_cast<uint64_t>(mData.vuint64);
       break;
     case Variant::SINT8:
-      mData.vsint8 = typecast::saturate_cast<sint8>(mData.vsint64);
+      mData.vsint8 = typecast::saturate_cast<int8_t>(mData.vsint64);
       break;
     case Variant::SINT16:
-      mData.vsint16 = typecast::saturate_cast<sint16>(mData.vsint64);
+      mData.vsint16 = typecast::saturate_cast<int16_t>(mData.vsint64);
       break;
     case Variant::SINT32:
-      mData.vsint32 = typecast::saturate_cast<sint32>(mData.vsint64);
+      mData.vsint32 = typecast::saturate_cast<int32_t>(mData.vsint64);
       break;
     case Variant::SINT64:
-      //nothing to do: mData.vsint64 = typecast::saturate_cast<sint64>(mData.vsint64);
+      //nothing to do: mData.vsint64 = typecast::saturate_cast<int64_t>(mData.vsint64);
       break;
     case Variant::FLOAT32:
     case Variant::FLOAT64:

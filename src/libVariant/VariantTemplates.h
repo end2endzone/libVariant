@@ -34,14 +34,14 @@ namespace libVariant
   // getVariantFormat() template specializations
   //---------------------------------------------
   template<> inline  Variant::VariantFormat getVariantFormat<Variant::boolean>(const Variant::boolean &)  {    return Variant::BOOL;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::uint8>(const Variant::uint8 &)  {    return Variant::UINT8;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::uint16>(const Variant::uint16 &)  {    return Variant::UINT16;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::uint32>(const Variant::uint32 &)  {    return Variant::UINT32;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::uint64>(const Variant::uint64 &)  {    return Variant::UINT64;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::sint8>(const Variant::sint8 &)  {    return Variant::SINT8;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::sint16>(const Variant::sint16 &)  {    return Variant::SINT16;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::sint32>(const Variant::sint32 &)  {    return Variant::SINT32;  }
-  template<> inline  Variant::VariantFormat getVariantFormat<Variant::sint64>(const Variant::sint64 &)  {    return Variant::SINT64;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::uint8_t >(const std::uint8_t  &)  {    return Variant::UINT8;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::uint16_t>(const std::uint16_t &)  {    return Variant::UINT16;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::uint32_t>(const std::uint32_t &)  {    return Variant::UINT32;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::uint64_t>(const std::uint64_t &)  {    return Variant::UINT64;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::int8_t  >(const std::int8_t   &)  {    return Variant::SINT8;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::int16_t >(const std::int16_t  &)  {    return Variant::SINT16;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::int32_t >(const std::int32_t  &)  {    return Variant::SINT32;  }
+  template<> inline  Variant::VariantFormat getVariantFormat<std::int64_t >(const std::int64_t  &)  {    return Variant::SINT64;  }
   template<> inline  Variant::VariantFormat getVariantFormat<Variant::float32>(const Variant::float32 &)  {    return Variant::FLOAT32;  }
   template<> inline  Variant::VariantFormat getVariantFormat<Variant::float64>(const Variant::float64 &)  {    return Variant::FLOAT64;  }
   template<> inline  Variant::VariantFormat getVariantFormat<Variant::CStr>(const Variant::CStr &)  {    return Variant::STRING;  }
@@ -56,14 +56,14 @@ namespace libVariant
   // isNativelyComparable() template specializations
   //-------------------------------------------------
   template<> inline  bool isNativelyComparable<Variant::boolean, Variant::boolean>(const Variant::boolean &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::uint8>(const Variant::boolean &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::uint16>(const Variant::boolean &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::uint32>(const Variant::boolean &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::uint64>(const Variant::boolean &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::sint8>(const Variant::boolean &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::sint16>(const Variant::boolean &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::sint32>(const Variant::boolean &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::boolean, Variant::sint64>(const Variant::boolean &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::uint8_t>(const Variant::boolean &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::uint16_t>(const Variant::boolean &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::uint32_t>(const Variant::boolean &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::uint64_t>(const Variant::boolean &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::int8_t>(const Variant::boolean &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::int16_t>(const Variant::boolean &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::int32_t>(const Variant::boolean &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::boolean, std::int64_t>(const Variant::boolean &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::boolean, Variant::float32>(const Variant::boolean &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::boolean, Variant::float64>(const Variant::boolean &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::boolean, signed char>(const Variant::boolean &, const signed char &)  {    return true;  }
@@ -71,143 +71,143 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<Variant::boolean, unsigned int>(const Variant::boolean &, const unsigned int &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::boolean, long double>(const Variant::boolean &, const long double &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::boolean, wchar_t  >(const Variant::boolean &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::boolean>(const Variant::uint8 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::uint8>(const Variant::uint8 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::uint16>(const Variant::uint8 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::uint32>(const Variant::uint8 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::uint64>(const Variant::uint8 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::sint8>(const Variant::uint8 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::sint16>(const Variant::uint8 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::sint32>(const Variant::uint8 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::sint64>(const Variant::uint8 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::float32>(const Variant::uint8 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, Variant::float64>(const Variant::uint8 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, signed char>(const Variant::uint8 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, int>(const Variant::uint8 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, unsigned int>(const Variant::uint8 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, long double>(const Variant::uint8 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint8, wchar_t  >(const Variant::uint8 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::boolean>(const Variant::uint16 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::uint8>(const Variant::uint16 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::uint16>(const Variant::uint16 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::uint32>(const Variant::uint16 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::uint64>(const Variant::uint16 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::sint8>(const Variant::uint16 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::sint16>(const Variant::uint16 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::sint32>(const Variant::uint16 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::sint64>(const Variant::uint16 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::float32>(const Variant::uint16 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, Variant::float64>(const Variant::uint16 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, signed char>(const Variant::uint16 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, int>(const Variant::uint16 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, unsigned int>(const Variant::uint16 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, long double>(const Variant::uint16 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint16, wchar_t  >(const Variant::uint16 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::boolean>(const Variant::uint32 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::uint8>(const Variant::uint32 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::uint16>(const Variant::uint32 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::uint32>(const Variant::uint32 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::uint64>(const Variant::uint32 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::sint8>(const Variant::uint32 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::sint16>(const Variant::uint32 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::sint32>(const Variant::uint32 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::sint64>(const Variant::uint32 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::float32>(const Variant::uint32 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, Variant::float64>(const Variant::uint32 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, signed char>(const Variant::uint32 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, int>(const Variant::uint32 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, unsigned int>(const Variant::uint32 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, long double>(const Variant::uint32 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint32, wchar_t  >(const Variant::uint32 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::boolean>(const Variant::uint64 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::uint8>(const Variant::uint64 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::uint16>(const Variant::uint64 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::uint32>(const Variant::uint64 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::uint64>(const Variant::uint64 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::sint8>(const Variant::uint64 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::sint16>(const Variant::uint64 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::sint32>(const Variant::uint64 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::sint64>(const Variant::uint64 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::float32>(const Variant::uint64 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, Variant::float64>(const Variant::uint64 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, signed char>(const Variant::uint64 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, int>(const Variant::uint64 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, unsigned int>(const Variant::uint64 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, long double>(const Variant::uint64 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::uint64, wchar_t  >(const Variant::uint64 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::boolean>(const Variant::sint8 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::uint8>(const Variant::sint8 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::uint16>(const Variant::sint8 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::uint32>(const Variant::sint8 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::uint64>(const Variant::sint8 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::sint8>(const Variant::sint8 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::sint16>(const Variant::sint8 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::sint32>(const Variant::sint8 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::sint64>(const Variant::sint8 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::float32>(const Variant::sint8 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, Variant::float64>(const Variant::sint8 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, signed char>(const Variant::sint8 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, int>(const Variant::sint8 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, unsigned int>(const Variant::sint8 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, long double>(const Variant::sint8 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint8, wchar_t  >(const Variant::sint8 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::boolean>(const Variant::sint16 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::uint8>(const Variant::sint16 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::uint16>(const Variant::sint16 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::uint32>(const Variant::sint16 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::uint64>(const Variant::sint16 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::sint8>(const Variant::sint16 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::sint16>(const Variant::sint16 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::sint32>(const Variant::sint16 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::sint64>(const Variant::sint16 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::float32>(const Variant::sint16 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, Variant::float64>(const Variant::sint16 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, signed char>(const Variant::sint16 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, int>(const Variant::sint16 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, unsigned int>(const Variant::sint16 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, long double>(const Variant::sint16 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint16, wchar_t  >(const Variant::sint16 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::boolean>(const Variant::sint32 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::uint8>(const Variant::sint32 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::uint16>(const Variant::sint32 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::uint32>(const Variant::sint32 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::uint64>(const Variant::sint32 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::sint8>(const Variant::sint32 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::sint16>(const Variant::sint32 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::sint32>(const Variant::sint32 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::sint64>(const Variant::sint32 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::float32>(const Variant::sint32 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, Variant::float64>(const Variant::sint32 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, signed char>(const Variant::sint32 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, int>(const Variant::sint32 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, unsigned int>(const Variant::sint32 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, long double>(const Variant::sint32 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint32, wchar_t  >(const Variant::sint32 &, const wchar_t   &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::boolean>(const Variant::sint64 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::uint8>(const Variant::sint64 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::uint16>(const Variant::sint64 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::uint32>(const Variant::sint64 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::uint64>(const Variant::sint64 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::sint8>(const Variant::sint64 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::sint16>(const Variant::sint64 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::sint32>(const Variant::sint64 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::sint64>(const Variant::sint64 &, const Variant::sint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::float32>(const Variant::sint64 &, const Variant::float32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, Variant::float64>(const Variant::sint64 &, const Variant::float64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, signed char>(const Variant::sint64 &, const signed char &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, int>(const Variant::sint64 &, const int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, unsigned int>(const Variant::sint64 &, const unsigned int &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, long double>(const Variant::sint64 &, const long double &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::sint64, wchar_t  >(const Variant::sint64 &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, Variant::boolean>(const std::uint8_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::uint8_t>(const std::uint8_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::uint16_t>(const std::uint8_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::uint32_t>(const std::uint8_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::uint64_t>(const std::uint8_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::int8_t>(const std::uint8_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::int16_t>(const std::uint8_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::int32_t>(const std::uint8_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, std::int64_t>(const std::uint8_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, Variant::float32>(const std::uint8_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, Variant::float64>(const std::uint8_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, signed char>(const std::uint8_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, int>(const std::uint8_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, unsigned int>(const std::uint8_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, long double>(const std::uint8_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint8_t, wchar_t  >(const std::uint8_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, Variant::boolean>(const std::uint16_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::uint8_t>(const std::uint16_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::uint16_t>(const std::uint16_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::uint32_t>(const std::uint16_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::uint64_t>(const std::uint16_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::int8_t>(const std::uint16_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::int16_t>(const std::uint16_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::int32_t>(const std::uint16_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, std::int64_t>(const std::uint16_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, Variant::float32>(const std::uint16_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, Variant::float64>(const std::uint16_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, signed char>(const std::uint16_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, int>(const std::uint16_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, unsigned int>(const std::uint16_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, long double>(const std::uint16_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint16_t, wchar_t  >(const std::uint16_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, Variant::boolean>(const std::uint32_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::uint8_t>(const std::uint32_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::uint16_t>(const std::uint32_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::uint32_t>(const std::uint32_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::uint64_t>(const std::uint32_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::int8_t>(const std::uint32_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::int16_t>(const std::uint32_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::int32_t>(const std::uint32_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, std::int64_t>(const std::uint32_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, Variant::float32>(const std::uint32_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, Variant::float64>(const std::uint32_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, signed char>(const std::uint32_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, int>(const std::uint32_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, unsigned int>(const std::uint32_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, long double>(const std::uint32_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint32_t, wchar_t  >(const std::uint32_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, Variant::boolean>(const std::uint64_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::uint8_t>(const std::uint64_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::uint16_t>(const std::uint64_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::uint32_t>(const std::uint64_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::uint64_t>(const std::uint64_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::int8_t>(const std::uint64_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::int16_t>(const std::uint64_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::int32_t>(const std::uint64_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, std::int64_t>(const std::uint64_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, Variant::float32>(const std::uint64_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, Variant::float64>(const std::uint64_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, signed char>(const std::uint64_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, int>(const std::uint64_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, unsigned int>(const std::uint64_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, long double>(const std::uint64_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::uint64_t, wchar_t  >(const std::uint64_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, Variant::boolean>(const std::int8_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::uint8_t>(const std::int8_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::uint16_t>(const std::int8_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::uint32_t>(const std::int8_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::uint64_t>(const std::int8_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::int8_t>(const std::int8_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::int16_t>(const std::int8_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::int32_t>(const std::int8_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, std::int64_t>(const std::int8_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, Variant::float32>(const std::int8_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, Variant::float64>(const std::int8_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, signed char>(const std::int8_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, int>(const std::int8_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, unsigned int>(const std::int8_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, long double>(const std::int8_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int8_t, wchar_t  >(const std::int8_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, Variant::boolean>(const std::int16_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::uint8_t>(const std::int16_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::uint16_t>(const std::int16_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::uint32_t>(const std::int16_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::uint64_t>(const std::int16_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::int8_t>(const std::int16_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::int16_t>(const std::int16_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::int32_t>(const std::int16_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, std::int64_t>(const std::int16_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, Variant::float32>(const std::int16_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, Variant::float64>(const std::int16_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, signed char>(const std::int16_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, int>(const std::int16_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, unsigned int>(const std::int16_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, long double>(const std::int16_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int16_t, wchar_t  >(const std::int16_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, Variant::boolean>(const std::int32_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::uint8_t>(const std::int32_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::uint16_t>(const std::int32_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::uint32_t>(const std::int32_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::uint64_t>(const std::int32_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::int8_t>(const std::int32_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::int16_t>(const std::int32_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::int32_t>(const std::int32_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, std::int64_t>(const std::int32_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, Variant::float32>(const std::int32_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, Variant::float64>(const std::int32_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, signed char>(const std::int32_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, int>(const std::int32_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, unsigned int>(const std::int32_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, long double>(const std::int32_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int32_t, wchar_t  >(const std::int32_t &, const wchar_t   &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, Variant::boolean>(const std::int64_t &, const Variant::boolean &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::uint8_t>(const std::int64_t &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::uint16_t>(const std::int64_t &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::uint32_t>(const std::int64_t &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::uint64_t>(const std::int64_t &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::int8_t>(const std::int64_t &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::int16_t>(const std::int64_t &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::int32_t>(const std::int64_t &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, std::int64_t>(const std::int64_t &, const std::int64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, Variant::float32>(const std::int64_t &, const Variant::float32 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, Variant::float64>(const std::int64_t &, const Variant::float64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, signed char>(const std::int64_t &, const signed char &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, int>(const std::int64_t &, const int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, unsigned int>(const std::int64_t &, const unsigned int &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, long double>(const std::int64_t &, const long double &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<std::int64_t, wchar_t  >(const std::int64_t &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float32, Variant::boolean>(const Variant::float32 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::uint8>(const Variant::float32 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::uint16>(const Variant::float32 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::uint32>(const Variant::float32 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::uint64>(const Variant::float32 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::sint8>(const Variant::float32 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::sint16>(const Variant::float32 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::sint32>(const Variant::float32 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float32, Variant::sint64>(const Variant::float32 &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::uint8_t>(const Variant::float32 &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::uint16_t>(const Variant::float32 &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::uint32_t>(const Variant::float32 &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::uint64_t>(const Variant::float32 &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::int8_t>(const Variant::float32 &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::int16_t>(const Variant::float32 &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::int32_t>(const Variant::float32 &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float32, std::int64_t>(const Variant::float32 &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float32, Variant::float32>(const Variant::float32 &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float32, Variant::float64>(const Variant::float32 &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float32, signed char>(const Variant::float32 &, const signed char &)  {    return true;  }
@@ -216,14 +216,14 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<Variant::float32, long double>(const Variant::float32 &, const long double &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float32, wchar_t  >(const Variant::float32 &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float64, Variant::boolean>(const Variant::float64 &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::uint8>(const Variant::float64 &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::uint16>(const Variant::float64 &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::uint32>(const Variant::float64 &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::uint64>(const Variant::float64 &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::sint8>(const Variant::float64 &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::sint16>(const Variant::float64 &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::sint32>(const Variant::float64 &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<Variant::float64, Variant::sint64>(const Variant::float64 &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::uint8_t>(const Variant::float64 &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::uint16_t>(const Variant::float64 &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::uint32_t>(const Variant::float64 &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::uint64_t>(const Variant::float64 &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::int8_t>(const Variant::float64 &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::int16_t>(const Variant::float64 &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::int32_t>(const Variant::float64 &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<Variant::float64, std::int64_t>(const Variant::float64 &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float64, Variant::float32>(const Variant::float64 &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float64, Variant::float64>(const Variant::float64 &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::float64, signed char>(const Variant::float64 &, const signed char &)  {    return true;  }
@@ -233,14 +233,14 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<Variant::float64, wchar_t  >(const Variant::float64 &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<Variant::Str, Variant::Str>(const Variant::Str &, const Variant::Str &)  {    return true;  }
   template<> inline  bool isNativelyComparable<signed char, Variant::boolean>(const signed char &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::uint8>(const signed char &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::uint16>(const signed char &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::uint32>(const signed char &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::uint64>(const signed char &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::sint8>(const signed char &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::sint16>(const signed char &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::sint32>(const signed char &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<signed char, Variant::sint64>(const signed char &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::uint8_t>(const signed char &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::uint16_t>(const signed char &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::uint32_t>(const signed char &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::uint64_t>(const signed char &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::int8_t>(const signed char &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::int16_t>(const signed char &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::int32_t>(const signed char &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<signed char, std::int64_t>(const signed char &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<signed char, Variant::float32>(const signed char &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<signed char, Variant::float64>(const signed char &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<signed char, signed char>(const signed char &, const signed char &)  {    return true;  }
@@ -249,14 +249,14 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<signed char, long double>(const signed char &, const long double &)  {    return true;  }
   template<> inline  bool isNativelyComparable<signed char, wchar_t  >(const signed char &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<int, Variant::boolean>(const int &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::uint8>(const int &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::uint16>(const int &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::uint32>(const int &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::uint64>(const int &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::sint8>(const int &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::sint16>(const int &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::sint32>(const int &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<int, Variant::sint64>(const int &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::uint8_t>(const int &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::uint16_t>(const int &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::uint32_t>(const int &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::uint64_t>(const int &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::int8_t>(const int &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::int16_t>(const int &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::int32_t>(const int &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<int, std::int64_t>(const int &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<int, Variant::float32>(const int &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<int, Variant::float64>(const int &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<int, signed char>(const int &, const signed char &)  {    return true;  }
@@ -265,14 +265,14 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<int, long double>(const int &, const long double &)  {    return true;  }
   template<> inline  bool isNativelyComparable<int, wchar_t  >(const int &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<unsigned int, Variant::boolean>(const unsigned int &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::uint8>(const unsigned int &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::uint16>(const unsigned int &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::uint32>(const unsigned int &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::uint64>(const unsigned int &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::sint8>(const unsigned int &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::sint16>(const unsigned int &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::sint32>(const unsigned int &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<unsigned int, Variant::sint64>(const unsigned int &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::uint8_t>(const unsigned int &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::uint16_t>(const unsigned int &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::uint32_t>(const unsigned int &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::uint64_t>(const unsigned int &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::int8_t>(const unsigned int &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::int16_t>(const unsigned int &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::int32_t>(const unsigned int &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<unsigned int, std::int64_t>(const unsigned int &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<unsigned int, Variant::float32>(const unsigned int &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<unsigned int, Variant::float64>(const unsigned int &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<unsigned int, signed char>(const unsigned int &, const signed char &)  {    return true;  }
@@ -281,14 +281,14 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<unsigned int, long double>(const unsigned int &, const long double &)  {    return true;  }
   template<> inline  bool isNativelyComparable<unsigned int, wchar_t  >(const unsigned int &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<long double, Variant::boolean>(const long double &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::uint8>(const long double &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::uint16>(const long double &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::uint32>(const long double &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::uint64>(const long double &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::sint8>(const long double &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::sint16>(const long double &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::sint32>(const long double &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<long double, Variant::sint64>(const long double &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::uint8_t>(const long double &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::uint16_t>(const long double &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::uint32_t>(const long double &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::uint64_t>(const long double &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::int8_t>(const long double &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::int16_t>(const long double &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::int32_t>(const long double &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<long double, std::int64_t>(const long double &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<long double, Variant::float32>(const long double &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<long double, Variant::float64>(const long double &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<long double, signed char>(const long double &, const signed char &)  {    return true;  }
@@ -297,14 +297,14 @@ namespace libVariant
   template<> inline  bool isNativelyComparable<long double, long double>(const long double &, const long double &)  {    return true;  }
   template<> inline  bool isNativelyComparable<long double, wchar_t  >(const long double &, const wchar_t   &)  {    return true;  }
   template<> inline  bool isNativelyComparable<wchar_t  , Variant::boolean>(const wchar_t   &, const Variant::boolean &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::uint8>(const wchar_t   &, const Variant::uint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::uint16>(const wchar_t   &, const Variant::uint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::uint32>(const wchar_t   &, const Variant::uint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::uint64>(const wchar_t   &, const Variant::uint64 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::sint8>(const wchar_t   &, const Variant::sint8 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::sint16>(const wchar_t   &, const Variant::sint16 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::sint32>(const wchar_t   &, const Variant::sint32 &)  {    return true;  }
-  template<> inline  bool isNativelyComparable<wchar_t  , Variant::sint64>(const wchar_t   &, const Variant::sint64 &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::uint8_t>(const wchar_t   &, const std::uint8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::uint16_t>(const wchar_t   &, const std::uint16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::uint32_t>(const wchar_t   &, const std::uint32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::uint64_t>(const wchar_t   &, const std::uint64_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::int8_t>(const wchar_t   &, const std::int8_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::int16_t>(const wchar_t   &, const std::int16_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::int32_t>(const wchar_t   &, const std::int32_t &)  {    return true;  }
+  template<> inline  bool isNativelyComparable<wchar_t  , std::int64_t>(const wchar_t   &, const std::int64_t &)  {    return true;  }
   template<> inline  bool isNativelyComparable<wchar_t  , Variant::float32>(const wchar_t   &, const Variant::float32 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<wchar_t  , Variant::float64>(const wchar_t   &, const Variant::float64 &)  {    return true;  }
   template<> inline  bool isNativelyComparable<wchar_t  , signed char>(const wchar_t   &, const signed char &)  {    return true;  }

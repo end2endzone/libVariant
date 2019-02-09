@@ -15,7 +15,7 @@ echo ===========================================================================
 cd /d %APPVEYOR_BUILD_FOLDER%
 mkdir build >NUL 2>NUL
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%INSTALL_LOCATION% -DLIBVARIANT_BUILD_TEST=ON -DBUILD_SHARED_LIBS=OFF ..
+cmake -DCMAKE_INSTALL_PREFIX=%INSTALL_LOCATION% -DLIBVARIANT_BUILD_TEST=ON -DBUILD_SHARED_LIBS=OFF -DLIBVARIANT_BUILD_STDINT_TYPES_TEST=ON ..
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo ============================================================================

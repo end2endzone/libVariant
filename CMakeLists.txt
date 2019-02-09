@@ -97,6 +97,7 @@ set(LIBVARIANT_INSTALL_CMAKE_DIR    ${LIBVARIANT_INSTALL_LIB_DIR}) # CMake files
 
 # Build options
 option(LIBVARIANT_BUILD_TEST "Build all libVariant's unit tests" OFF)
+option(LIBVARIANT_BUILD_STDINT_TYPES_TEST "Build a code sample for testing stdint types on all platforms" OFF)
 
 # Force a debug postfix if none specified.
 # This allows publishing both release and debug binaries to the same location
@@ -134,6 +135,11 @@ endif()
 
 add_subdirectory(src/libVariant)
 add_subdirectory(src/code_generator)
+
+#stdint types test
+if(LIBVARIANT_BUILD_STDINT_TYPES_TEST)
+  add_subdirectory(test/stdint_types_test)
+endif()
 
 # unit tests
 if(LIBVARIANT_BUILD_TEST)

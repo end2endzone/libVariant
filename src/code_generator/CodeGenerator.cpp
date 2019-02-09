@@ -322,14 +322,14 @@ void generateCompareDefinitions()
   printf("    return false;\n");
   printf("  }\n");
   printf("  template<>\n");
-  printf("  inline bool isBoolean<Variant::boolean>(const Variant::boolean & /*iValue*/)\n");
+  printf("  inline bool isBoolean<bool>(const bool & /*iValue*/)\n");
   printf("  {\n");
   printf("    return true;\n");
   printf("  }\n");
   printf("  template <typename T, typename U>\n");
   printf("  inline int compareNativeTypes(const T & iLocalValue, const U & iRemoteValue)\n");
   printf("  {\n");
-  printf("    //force boolean to be compared as int8_t to prevent undefined behavior\n");
+  printf("    //force bool to be compared as int8_t to prevent undefined behavior\n");
   printf("    if (isBoolean(iLocalValue))\n");
   printf("      return compareNativeTypes( static_cast<std::int8_t>(iLocalValue), iRemoteValue );\n");
   printf("    if (isBoolean(iRemoteValue))\n");
@@ -338,7 +338,7 @@ void generateCompareDefinitions()
   printf("    #pragma warning(push)\n");
   printf("    #pragma warning(disable:4804) //warning C4804: '>' : unsafe use of type 'bool' in operation\n");
   printf("    #pragma warning(disable:4018) //warning C4018: '<' : signed/unsigned mismatch\n");
-  printf("    //none of the 2 arguments is a boolean\n");
+  printf("    //none of the 2 arguments is a bool\n");
   printf("    if (iLocalValue < iRemoteValue)\n");
   printf("    {\n");
   printf("      return -1;\n");

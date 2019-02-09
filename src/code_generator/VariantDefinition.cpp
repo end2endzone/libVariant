@@ -1,7 +1,7 @@
 #include "VariantDefinition.h"
 
 INNER_TYPE innerTypes[] = {
-  {"boolean"  , "bool"              , "BOOL"    },
+  {"bool"  , "bool"              , "BOOL"    },
   {"uint8_t"  , "unsigned char"     , "UINT8"   },
   {"uint16_t" , "unsigned short"    , "UINT16"  },
   {"uint32_t" , "unsigned long"     , "UINT32"  },
@@ -44,7 +44,7 @@ std::string getVariantTypedefFromType(const std::string & iBaseType)
 
 std::string getGetSetFunctionNameFromInnerType(const std::string & iInnerType)
 {
-  if (iInnerType == "boolean" ) return "BOOL";
+  if (iInnerType == "bool" ) return "BOOL";
   if (iInnerType == "uint8_t" ) return "UINT8";
   if (iInnerType == "int8_t"  ) return "SINT8";
   if (iInnerType == "uint16_t") return "UINT16";

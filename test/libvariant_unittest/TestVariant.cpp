@@ -2919,49 +2919,18 @@ inline bool isAssignOperationsMatchesFormat( const T & iValue, const Variant::Va
 
 TEST_F(TestVariant, testFundamentalTypesAssignOperations)
 {
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<          bool     >(true, Variant::BOOL) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<          char     >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed  char     >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned  char     >(12, Variant::UINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         short     >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed short     >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned short     >(12, Variant::UINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         short int >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed short int >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned short int >(12, Variant::UINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         int       >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed int       >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned int       >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long      >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long      >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long      >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long int  >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long int  >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long int  >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         long long >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed long long >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned long long >(12, Variant::UINT64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<bool      >(true, Variant::BOOL) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<int8_t    >(12, Variant::SINT8 ) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<uint8_t   >(12, Variant::UINT8 ) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<int16_t   >(12, Variant::SINT16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<uint16_t  >(12, Variant::UINT16) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<int32_t   >(12, Variant::SINT32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<uint32_t  >(12, Variant::UINT32) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<int64_t   >(12, Variant::SINT64) );
+  ASSERT_TRUE( isAssignOperationsMatchesFormat<uint64_t  >(12, Variant::UINT64) );
 
   ASSERT_TRUE( isAssignOperationsMatchesFormat<float              >(12, Variant::FLOAT32) );
   ASSERT_TRUE( isAssignOperationsMatchesFormat<double             >(12, Variant::FLOAT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<long double        >(12, Variant::FLOAT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<wchar_t            >(12, Variant::UINT16) );
-
- #ifdef _WIN32 
-  //microsoft only types
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int8    >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int8    >(12, Variant::SINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int8    >(12, Variant::UINT8) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int16   >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int16   >(12, Variant::SINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int16   >(12, Variant::UINT16) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int32   >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int32   >(12, Variant::SINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int32   >(12, Variant::UINT32) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<         __int64   >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<  signed __int64   >(12, Variant::SINT64) );
-  ASSERT_TRUE( isAssignOperationsMatchesFormat<unsigned __int64   >(12, Variant::UINT64) );
-#endif // _WIN32
 }
 
 template <typename T>
@@ -3109,48 +3078,17 @@ inline bool isMathOperatorsMatchesFormat( const T & iInitialValue, const T & iOp
 TEST_F(TestVariant, testFundamentalTypesMathOperators)
 {
   //ASSERT_TRUE( isMathOperatorsMatchesFormat<          bool     >(10,2,12,8,20,5, Variant::BOOL) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<          char     >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed  char     >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned  char     >(10,2,12,8,20,5, Variant::UINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         short     >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed short     >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned short     >(10,2,12,8,20,5, Variant::UINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         short int >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed short int >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned short int >(10,2,12,8,20,5, Variant::UINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         int       >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed int       >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned int       >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long      >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long      >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long      >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long int  >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long int  >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long int  >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         long long >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed long long >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned long long >(10,2,12,8,20,5, Variant::UINT64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<int8_t    >(10,2,12,8,20,5, Variant::SINT8 ) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<uint8_t   >(10,2,12,8,20,5, Variant::UINT8 ) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<int16_t   >(10,2,12,8,20,5, Variant::SINT16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<uint16_t  >(10,2,12,8,20,5, Variant::UINT16) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<int32_t   >(10,2,12,8,20,5, Variant::SINT32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<uint32_t  >(10,2,12,8,20,5, Variant::UINT32) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<int64_t   >(10,2,12,8,20,5, Variant::SINT64) );
+  ASSERT_TRUE( isMathOperatorsMatchesFormat<uint64_t  >(10,2,12,8,20,5, Variant::UINT64) );
 
   ASSERT_TRUE( isMathOperatorsMatchesFormat<float              >(10,2,12,8,20,5, Variant::FLOAT32) );
   ASSERT_TRUE( isMathOperatorsMatchesFormat<double             >(10,2,12,8,20,5, Variant::FLOAT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<long double        >(10,2,12,8,20,5, Variant::FLOAT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<wchar_t            >(10,2,12,8,20,5, Variant::UINT16) );
-
-#ifdef _WIN32
-  //microsoft only types
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int8    >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int8    >(10,2,12,8,20,5, Variant::SINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int8    >(10,2,12,8,20,5, Variant::UINT8) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int16   >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int16   >(10,2,12,8,20,5, Variant::SINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int16   >(10,2,12,8,20,5, Variant::UINT16) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int32   >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int32   >(10,2,12,8,20,5, Variant::SINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int32   >(10,2,12,8,20,5, Variant::UINT32) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<         __int64   >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<  signed __int64   >(10,2,12,8,20,5, Variant::SINT64) );
-  ASSERT_TRUE( isMathOperatorsMatchesFormat<unsigned __int64   >(10,2,12,8,20,5, Variant::UINT64) );
-#endif // _WIN32
 }
 
 TEST_F(TestVariant, testUnionAlignmentAndPacking)
@@ -3200,7 +3138,7 @@ bool isVariantMatchesExpectedFormat(Variant v, const Variant::VariantFormat & iE
 TEST_F(TestVariant, testImplicitConversions)
 {
   {
-    Variant::boolean value = true;
+    bool value = true;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::BOOL) );
   }
 

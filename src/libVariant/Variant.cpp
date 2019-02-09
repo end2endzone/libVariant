@@ -365,13 +365,6 @@ namespace libVariant
   Variant::Variant(const Str       & iValue) { clear(); (*this) = iValue; }
   Variant::Variant(const CStr      & iValue) { clear(); (*this) = iValue; }
   
-  //other fundamental types which are derivative of one of VariantFormat
-  Variant::Variant(const   signed char     & iValue) { clear(); (*this) = static_cast<std::int8_t>(iValue); }
-  Variant::Variant(const   signed int      & iValue) { clear(); (*this) = static_cast<std::int32_t>(iValue); }
-  Variant::Variant(const unsigned int      & iValue) { clear(); (*this) = static_cast<std::uint32_t>(iValue); }
-  Variant::Variant(const long double       & iValue) { clear(); (*this) = static_cast<Variant::float64>(iValue); }
-  Variant::Variant(const wchar_t           & iValue) { clear(); (*this) = static_cast<std::uint16_t>(iValue); }
-
   Variant::~Variant(void)
   {
     clear();
@@ -776,14 +769,14 @@ namespace libVariant
     return false;
   }
   template<>
-  inline bool isBoolean<Variant::boolean>(const Variant::boolean & /*iValue*/)
+  inline bool isBoolean<bool>(const bool & /*iValue*/)
   {
     return true;
   }
   template <typename T, typename U>
   inline int compareNativeTypes(const T & iLocalValue, const U & iRemoteValue)
   {
-    //force boolean to be compared as int8_t to prevent undefined behavior
+    //force bool to be compared as int8_t to prevent undefined behavior
     if (isBoolean(iLocalValue))
       return compareNativeTypes( static_cast<std::int8_t>(iLocalValue), iRemoteValue );
     if (isBoolean(iRemoteValue))
@@ -792,7 +785,7 @@ namespace libVariant
     #pragma warning(push)
     #pragma warning(disable:4804) //warning C4804: '>' : unsafe use of type 'bool' in operation
     #pragma warning(disable:4018) //warning C4018: '<' : signed/unsigned mismatch
-    //none of the 2 arguments is a boolean
+    //none of the 2 arguments is a bool
     if (iLocalValue < iRemoteValue)
     {
       return -1;
@@ -870,7 +863,7 @@ namespace libVariant
     };
   }
 
-  int Variant::compare(const boolean        & iValue) const
+  int Variant::compare(const bool        & iValue) const
   {
     int result = 0;
     if (hasNativeCompare(mFormat, mData, result, static_cast<DEFAULT_BOOLEAN_REDIRECTION_TYPE>(iValue)))

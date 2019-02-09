@@ -8,6 +8,7 @@
 //---------------
 #include <string>
 #include <algorithm> //std::transform
+#include <cstdint>
 
 //-----------
 // Namespace
@@ -27,15 +28,6 @@ namespace libVariant
     //--------------------------
     // Typedef
     //--------------------------
-    typedef bool                boolean;
-    typedef unsigned char       uint8_t;
-    typedef unsigned short      uint16_t;
-    typedef unsigned long       uint32_t;
-    typedef unsigned long long  uint64_t;
-    typedef char                int8_t;
-    typedef short               int16_t;
-    typedef long                int32_t;
-    typedef long long           int64_t;
     typedef float               float32;
     typedef double              float64;
     typedef std::string         Str;

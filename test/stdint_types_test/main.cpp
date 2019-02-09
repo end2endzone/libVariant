@@ -3,7 +3,7 @@
 #include <string>
 #include <cstdio> //for printf
 #include <typeinfo>
-#include <cstdint>
+#include <stdint.h>
 
 //http://www.cplusplus.com/reference/cstdint/
 
@@ -53,7 +53,14 @@ DECLARE_TYPE_SPECIALIZATION(     uintptr_t)
 
 int main(int /*argc*/, char** /*argv[]*/)
 {
-  #define TEST_TYPE(_TYPE) printf("Type '%18s' : size=%2lu (%3lu bit), isStdInt=%3s, typeinfo.hash_code=%20lu, typeinfo.name=%s\n", #_TYPE, sizeof(_TYPE), sizeof(_TYPE)*8, (isStdInt<_TYPE>() ? "yes" : "no"), typeid(_TYPE).hash_code(), typeid(_TYPE).name());
+  //Verify support for C++11 which contains typeid(x).hash_code() method.
+  #if __cplusplus > 199711L
+  #  define TYPEID_HASH_CODE(x) typeid(x).hash_code()
+  #else
+  #  define TYPEID_HASH_CODE(x) ((size_t)0)
+  #endif
+
+  #define TEST_TYPE(_TYPE) printf("Type '%18s' : size=%2lu (%3lu bit), isStdInt=%3s, typeinfo.hash_code=%20lu, typeinfo.name=%s\n", #_TYPE, sizeof(_TYPE), sizeof(_TYPE)*8, (isStdInt<_TYPE>() ? "yes" : "no"), TYPEID_HASH_CODE(_TYPE), typeid(_TYPE).name());
 
   printf("stdint types:\n");
   TEST_TYPE(        int8_t);

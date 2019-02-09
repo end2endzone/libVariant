@@ -8,7 +8,7 @@
 #include "libvariant/config.h"
 #include "libvariant/version.h"
 #include <string>
-#include <cstdint>
+#include <stdint.h>
 
 //-----------
 // Namespace

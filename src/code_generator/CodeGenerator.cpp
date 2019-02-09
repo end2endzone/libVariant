@@ -179,7 +179,7 @@ void generateInlineSetters()
   {
     const DERIVATIVE_TYPE & d = derivatives[i];
     
-    //      virtual void set(const signed char       & iValue) { setSInt8 ( static_cast<std::int8_t> (iValue)); }
+    //      virtual void set(const signed char       & iValue) { setSInt8 ( static_cast<int8_t> (iValue)); }
     printf("    virtual void set(const %s & iValue) { set%s ( static_cast<Variant::%s> (iValue)); }\n",
       formatString(d.derivativeTypeName, 12).c_str(),
       formatString(d.functionName, 7).c_str(),
@@ -216,7 +216,7 @@ void generateInlineGetters()
   {
     const DERIVATIVE_TYPE & d = derivatives[i];
     
-    //      virtual void get(signed char       & iValue) { setSInt8 ( static_cast<std::int8_t> (iValue)); }
+    //      virtual void get(signed char       & iValue) { setSInt8 ( static_cast<int8_t> (iValue)); }
     printf("    virtual void get(%s & iValue) const { iValue = get%s(); }\n", 
       formatString(d.derivativeTypeName.c_str(), 12).c_str(),
       formatString(d.functionName.c_str(), 7).c_str()
@@ -252,7 +252,7 @@ void generateOperatorEquals()
   {
     const DERIVATIVE_TYPE & d = derivatives[i];
     
-    //      virtual const Variant & operator = (const signed char       & iValue) { setSInt8 ( static_cast<std::int8_t> (iValue)); return (*this); }
+    //      virtual const Variant & operator = (const signed char       & iValue) { setSInt8 ( static_cast<int8_t> (iValue)); return (*this); }
     printf("    virtual const Variant & operator = (const %s & iValue) { set%s( static_cast<Variant::%s> (iValue)); return (*this); }\n", 
       formatString(d.derivativeTypeName.c_str(), 12).c_str(),
       formatString(d.functionName, 7).c_str(),
@@ -331,9 +331,9 @@ void generateCompareDefinitions()
   printf("  {\n");
   printf("    //force bool to be compared as int8_t to prevent undefined behavior\n");
   printf("    if (isBoolean(iLocalValue))\n");
-  printf("      return compareNativeTypes( static_cast<std::int8_t>(iLocalValue), iRemoteValue );\n");
+  printf("      return compareNativeTypes( static_cast<int8_t>(iLocalValue), iRemoteValue );\n");
   printf("    if (isBoolean(iRemoteValue))\n");
-  printf("      return compareNativeTypes( iLocalValue, static_cast<std::int8_t>(iRemoteValue) );\n");
+  printf("      return compareNativeTypes( iLocalValue, static_cast<int8_t>(iRemoteValue) );\n");
   printf("\n");
   printf("    #pragma warning(push)\n");
   printf("    #pragma warning(disable:4804) //warning C4804: '>' : unsafe use of type 'bool' in operation\n");
@@ -489,7 +489,7 @@ void generateOperator(char iOperator)
   {
     const DERIVATIVE_TYPE & d = derivatives[i];
     
-    //      virtual Variant operator + (const unsigned long     & iValue) const { Variant tmpCopy(*this); tmpCopy += static_cast<std::uint32_t> (iValue); return tmpCopy; }
+    //      virtual Variant operator + (const unsigned long     & iValue) const { Variant tmpCopy(*this); tmpCopy += static_cast<uint32_t> (iValue); return tmpCopy; }
     printf("    virtual Variant operator %c (const %s & iValue) const { Variant tmpCopy(*this); tmpCopy %c= static_cast<Variant::%s> (iValue); return tmpCopy; }\n", 
       iOperator,
       formatString(d.derivativeTypeName.c_str(), 12).c_str(),
@@ -533,7 +533,7 @@ void generateOperatorOrEquals(char iOperator)
   {
     const DERIVATIVE_TYPE & d = derivatives[i];
     
-    //      virtual const Variant & operator += (const unsigned long     & iValue) { return ( (*this) += static_cast<std::uint32_t> (iValue) ); }
+    //      virtual const Variant & operator += (const unsigned long     & iValue) { return ( (*this) += static_cast<uint32_t> (iValue) ); }
     printf("    virtual const Variant & operator %c= (const %s & iValue) { return ( (*this) %c= static_cast<Variant::%s> (iValue) ); }\n", 
       iOperator,
       formatString(d.derivativeTypeName.c_str(), 12).c_str(),

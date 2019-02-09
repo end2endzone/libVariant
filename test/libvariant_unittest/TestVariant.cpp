@@ -17,23 +17,23 @@ typedef std::vector<std::string> StringList;
 
 using namespace libVariant;
 
-static const std::uint8_t  uint8_min = std::numeric_limits<std::uint8_t  >::min();
-static const std::uint8_t  uint8_max = std::numeric_limits<std::uint8_t  >::max();
-static const std::uint16_t uint16_min = std::numeric_limits<std::uint16_t>::min();
-static const std::uint16_t uint16_max = std::numeric_limits<std::uint16_t>::max();
-static const std::uint32_t uint32_min = std::numeric_limits<std::uint32_t>::min();
-static const std::uint32_t uint32_max = std::numeric_limits<std::uint32_t>::max();
-static const std::uint64_t uint64_min = std::numeric_limits<std::uint64_t>::min();
-static const std::uint64_t uint64_max = std::numeric_limits<std::uint64_t>::max();
+static const uint8_t  uint8_min = std::numeric_limits<uint8_t  >::min();
+static const uint8_t  uint8_max = std::numeric_limits<uint8_t  >::max();
+static const uint16_t uint16_min = std::numeric_limits<uint16_t>::min();
+static const uint16_t uint16_max = std::numeric_limits<uint16_t>::max();
+static const uint32_t uint32_min = std::numeric_limits<uint32_t>::min();
+static const uint32_t uint32_max = std::numeric_limits<uint32_t>::max();
+static const uint64_t uint64_min = std::numeric_limits<uint64_t>::min();
+static const uint64_t uint64_max = std::numeric_limits<uint64_t>::max();
 
-static const std::int8_t  sint8_min = std::numeric_limits<std::int8_t  >::min();
-static const std::int8_t  sint8_max = std::numeric_limits<std::int8_t  >::max();
-static const std::int16_t sint16_min = std::numeric_limits<std::int16_t>::min();
-static const std::int16_t sint16_max = std::numeric_limits<std::int16_t>::max();
-static const std::int32_t sint32_min = std::numeric_limits<std::int32_t>::min();
-static const std::int32_t sint32_max = std::numeric_limits<std::int32_t>::max();
-static const std::int64_t sint64_min = std::numeric_limits<std::int64_t>::min();
-static const std::int64_t sint64_max = std::numeric_limits<std::int64_t>::max();
+static const int8_t  sint8_min = std::numeric_limits<int8_t  >::min();
+static const int8_t  sint8_max = std::numeric_limits<int8_t  >::max();
+static const int16_t sint16_min = std::numeric_limits<int16_t>::min();
+static const int16_t sint16_max = std::numeric_limits<int16_t>::max();
+static const int32_t sint32_min = std::numeric_limits<int32_t>::min();
+static const int32_t sint32_max = std::numeric_limits<int32_t>::max();
+static const int64_t sint64_min = std::numeric_limits<int64_t>::min();
+static const int64_t sint64_max = std::numeric_limits<int64_t>::max();
 
 void TestVariant::SetUp()
 {
@@ -59,10 +59,10 @@ TEST_F(TestVariant, testBasic)
   v.setUInt8  ( 0xFF-1 );
   ASSERT_TRUE( v.getUInt8() == 0xFF-1 );
 
-  v.setSInt8  ( (std::int8_t)-5 );
+  v.setSInt8  ( (int8_t)-5 );
   ASSERT_TRUE( v.getSInt8() == -5 );
 
-  v.setUInt16 ( (std::uint16_t)(0xFFFF-1) );
+  v.setUInt16 ( (uint16_t)(0xFFFF-1) );
   ASSERT_TRUE( v.getUInt16() == 0xFFFF-1 );
 
   v.setSInt16 (  -300 );
@@ -107,28 +107,28 @@ TEST_F(TestVariant, testAssignOperator)
   v = false;
   ASSERT_TRUE( v.getBool() == false );
 
-  v = std::uint8_t( 0xFF-1 );
+  v = uint8_t( 0xFF-1 );
   ASSERT_TRUE( v.getUInt8() == 0xFF-1 );
 
-  v = std::int8_t(  -5 );
+  v = int8_t(  -5 );
   ASSERT_TRUE( v.getSInt8() == -5 );
 
-  v = std::uint16_t( 0xFFFF-1 );
+  v = uint16_t( 0xFFFF-1 );
   ASSERT_TRUE( v.getUInt16() == 0xFFFF-1 );
 
-  v = std::int16_t(  -300 );
+  v = int16_t(  -300 );
   ASSERT_TRUE( v.getSInt16() == -300 );
 
-  v = std::uint32_t( 0xFFFFFFFF-1 );
+  v = uint32_t( 0xFFFFFFFF-1 );
   ASSERT_TRUE( v.getUInt32() == 0xFFFFFFFF-1 );
 
-  v = std::int32_t( -40000 );
+  v = int32_t( -40000 );
   ASSERT_TRUE( v.getSInt32() == -40000 );
 
-  v = std::uint64_t( 0xFFFFFFFFFFFFFFFF-1 );
+  v = uint64_t( 0xFFFFFFFFFFFFFFFF-1 );
   ASSERT_TRUE( v.getUInt64() == 0xFFFFFFFFFFFFFFFF-1 );
 
-  v = std::int64_t( -5000000000 );
+  v = int64_t( -5000000000 );
   ASSERT_TRUE( v.getSInt64() == -5000000000 );
 
   v = (Variant::float32)( 3.5f );
@@ -223,14 +223,14 @@ TEST_F(TestVariant, testConversions)
     bool value = false;
     v.setBool(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -255,14 +255,14 @@ TEST_F(TestVariant, testConversions)
     bool value = true;
     v.setBool(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -283,20 +283,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, value );
   }
 
-  //assert std::uint8_t to *
+  //assert uint8_t to *
   {
     Variant v;
-    std::uint8_t value = uint8_min;
+    uint8_t value = uint8_min;
     v.setUInt8(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -318,17 +318,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::uint8_t value = uint8_max;
+    uint8_t value = uint8_max;
     v.setUInt8(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -349,20 +349,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, true );
   }
 
-  //assert std::int8_t to *
+  //assert int8_t to *
   {
     Variant v;
-    std::int8_t value = sint8_min;
+    int8_t value = sint8_min;
     v.setSInt8(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -384,17 +384,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::int8_t value = sint8_max;
+    int8_t value = sint8_max;
     v.setSInt8(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -415,20 +415,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, true );
   }
 
-  //assert std::uint16_t to *
+  //assert uint16_t to *
   {
     Variant v;
-    std::uint16_t value = uint16_min;
+    uint16_t value = uint16_min;
     v.setUInt16(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -450,17 +450,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::uint16_t value = uint16_max;
+    uint16_t value = uint16_max;
     v.setUInt16(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -481,20 +481,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, true );
   }
 
-  //assert std::int16_t to *
+  //assert int16_t to *
   {
     Variant v;
-    std::int16_t value = sint16_min;
+    int16_t value = sint16_min;
     v.setSInt16(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -516,17 +516,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::int16_t value = sint16_max;
+    int16_t value = sint16_max;
     v.setSInt16(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -547,20 +547,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, true );
   }
 
-  //assert std::uint32_t to *
+  //assert uint32_t to *
   {
     Variant v;
-    std::uint32_t value = uint32_min;
+    uint32_t value = uint32_min;
     v.setUInt32(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -582,17 +582,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::uint32_t value = uint32_max;
+    uint32_t value = uint32_max;
     v.setUInt32(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -616,20 +616,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, true );
   }
 
-  //assert std::int32_t to *
+  //assert int32_t to *
   {
     Variant v;
-    std::int32_t value = sint32_min;
+    int32_t value = sint32_min;
     v.setSInt32(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -651,17 +651,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::int32_t value = sint32_max;
+    int32_t value = sint32_max;
     v.setSInt32(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -682,20 +682,20 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( l, true );
   }
 
-  //assert std::uint64_t to *
+  //assert uint64_t to *
   {
     Variant v;
-    std::uint64_t value = uint64_min;
+    uint64_t value = uint64_min;
     v.setUInt64(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -717,17 +717,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::uint64_t value = uint64_max;
+    uint64_t value = uint64_max;
     v.setUInt64(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -742,26 +742,26 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( f, sint16_max );
     ASSERT_EQ( g, sint32_max );
     ASSERT_EQ( h, sint64_max );
-    ASSERT_GT( i, (sint64_max - 100) ); //precision lost, std::uint64_t value can't be reached in SINT64 format
+    ASSERT_GT( i, (sint64_max - 100) ); //precision lost, uint64_t value can't be reached in SINT64 format
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "18446744073709551615" );
     ASSERT_EQ( l, true );
   }
 
-  //assert std::int64_t to *
+  //assert int64_t to *
   {
     Variant v;
-    std::int64_t value = sint64_min;
+    int64_t value = sint64_min;
     v.setSInt64(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -783,17 +783,17 @@ TEST_F(TestVariant, testConversions)
   }
   {
     Variant v;
-    std::int64_t value = sint64_max;
+    int64_t value = sint64_max;
     v.setSInt64(value);
 
-    std::uint8_t    a = v.getUInt8();
-    std::uint16_t   b = v.getUInt16();
-    std::uint32_t   c = v.getUInt32();
-    std::uint64_t   d = v.getUInt64();
-    std::int8_t     e = v.getSInt8();
-    std::int16_t    f = v.getSInt16();
-    std::int32_t    g = v.getSInt32();
-    std::int64_t    h = v.getSInt64();
+    uint8_t    a = v.getUInt8();
+    uint16_t   b = v.getUInt16();
+    uint32_t   c = v.getUInt32();
+    uint64_t   d = v.getUInt64();
+    int8_t     e = v.getSInt8();
+    int16_t    f = v.getSInt16();
+    int32_t    g = v.getSInt32();
+    int64_t    h = v.getSInt64();
     Variant::float32   i = v.getFloat32();
     Variant::float64   j = v.getFloat64();
     Variant::Str k = v.getString();
@@ -822,8 +822,8 @@ TEST_F(TestVariant, testConversions)
     {
       Variant v;
       v.setFloat64(-3.5);
-      std::uint8_t uint8Value = v.getUInt8();
-      std::int8_t sint8Value = v.getSInt8();
+      uint8_t uint8Value = v.getUInt8();
+      int8_t sint8Value = v.getSInt8();
       ASSERT_TRUE( uint8Value == 0 );
       ASSERT_TRUE( sint8Value == -3 );
     }
@@ -831,8 +831,8 @@ TEST_F(TestVariant, testConversions)
     {
       Variant v;
       v.setFloat64(3.5);
-      std::uint8_t uint8Value = v.getUInt8();
-      std::int8_t sint8Value = v.getSInt8();
+      uint8_t uint8Value = v.getUInt8();
+      int8_t sint8Value = v.getSInt8();
       ASSERT_TRUE( uint8Value == 3 );
       ASSERT_TRUE( sint8Value == 3 );
     }
@@ -840,8 +840,8 @@ TEST_F(TestVariant, testConversions)
     {
       Variant v;
       v.setFloat64(200.0);
-      std::uint8_t uint8Value = v.getUInt8();
-      std::int8_t sint8Value = v.getSInt8();
+      uint8_t uint8Value = v.getUInt8();
+      int8_t sint8Value = v.getSInt8();
       ASSERT_TRUE( uint8Value == 200 );
       ASSERT_TRUE( sint8Value == 127 );
     }
@@ -849,8 +849,8 @@ TEST_F(TestVariant, testConversions)
     {
       Variant v;
       v.setFloat64(2000000.0);
-      std::uint8_t uint8Value = v.getUInt8();
-      std::int8_t sint8Value = v.getSInt8();
+      uint8_t uint8Value = v.getUInt8();
+      int8_t sint8Value = v.getSInt8();
       ASSERT_TRUE( uint8Value == 255 );
       ASSERT_TRUE( sint8Value == 127 );
     }
@@ -858,8 +858,8 @@ TEST_F(TestVariant, testConversions)
     {
       Variant v;
       v.setFloat64(-2000000.0);
-      std::uint8_t uint8Value = v.getUInt8();
-      std::int8_t sint8Value = v.getSInt8();
+      uint8_t uint8Value = v.getUInt8();
+      int8_t sint8Value = v.getSInt8();
       ASSERT_TRUE( uint8Value == 0 );
       ASSERT_TRUE( sint8Value == -128 );
     }
@@ -883,8 +883,8 @@ TEST_F(TestVariant, testOperatorEqual)
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v1;
       Variant v2;
       v1.setUInt8(value);
@@ -894,19 +894,19 @@ TEST_F(TestVariant, testOperatorEqual)
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v1;
       Variant v2;
       v1.setUInt16(value);
       v2.setUInt16(value);
       ASSERT_TRUE( v1 == v2 );
-      v2.setUInt16( (std::uint16_t)(value+1) );
+      v2.setUInt16( (uint16_t)(value+1) );
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v1;
       Variant v2;
       v1.setUInt32(value);
@@ -916,8 +916,8 @@ TEST_F(TestVariant, testOperatorEqual)
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v1;
       Variant v2;
       v1.setUInt64(value);
@@ -927,19 +927,19 @@ TEST_F(TestVariant, testOperatorEqual)
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v1;
       Variant v2;
       v1.setSInt8(value);
       v2.setSInt8(value);
       ASSERT_TRUE( v1 == v2 );
-      v2.setSInt8( (std::int8_t)(value+1) );
+      v2.setSInt8( (int8_t)(value+1) );
       ASSERT_TRUE( v1 != v2 );
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v1;
       Variant v2;
       v1.setSInt16(value);
@@ -950,7 +950,7 @@ TEST_F(TestVariant, testOperatorEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v1;
       Variant v2;
       v1.setSInt32(value);
@@ -961,7 +961,7 @@ TEST_F(TestVariant, testOperatorEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v1;
       Variant v2;
       v1.setSInt64(value);
@@ -1036,8 +1036,8 @@ TEST_F(TestVariant, testOperatorEqual)
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v1;
       Variant v2;
       v1.setUInt8(value);
@@ -1047,19 +1047,19 @@ TEST_F(TestVariant, testOperatorEqual)
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v1;
       Variant v2;
       v1.setUInt16(value);
       v2.setUInt64(value);
       ASSERT_TRUE( v1 == v2 );
-      v2.setUInt16( (std::uint16_t)(value+1) );
+      v2.setUInt16( (uint16_t)(value+1) );
       ASSERT_TRUE( v1 != v2 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v1;
       Variant v2;
       v1.setUInt32(value);
@@ -1073,19 +1073,19 @@ TEST_F(TestVariant, testOperatorEqual)
   //but both variant are signed
   {
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v1;
       Variant v2;
       v1.setSInt8(value);
       v2.setSInt64(value);
       ASSERT_TRUE( v1 == v2 );
-      v2.setSInt8( (std::int8_t)(value+1) );
+      v2.setSInt8( (int8_t)(value+1) );
       ASSERT_TRUE( v1 != v2 );
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v1;
       Variant v2;
       v1.setSInt16(value);
@@ -1096,7 +1096,7 @@ TEST_F(TestVariant, testOperatorEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v1;
       Variant v2;
       v1.setSInt32(value);
@@ -1111,14 +1111,14 @@ TEST_F(TestVariant, testOperatorEqual)
   //and both variant are too different
   {
     {
-      //std::int8_t vs string
-      std::int8_t value = -4;
+      //int8_t vs string
+      int8_t value = -4;
       Variant v1;
       Variant v2;
       v1.setSInt8(value);
       v2.setString("-4");
       ASSERT_TRUE( v1 == v2 );
-      v1.setSInt8( (std::int8_t)(value+1) );
+      v1.setSInt8( (int8_t)(value+1) );
       ASSERT_TRUE( v1 != v2 );
     }
   }
@@ -1138,9 +1138,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint8_t
-      std::uint8_t value1 = 4;
-      std::uint8_t value2 = value1+1;
+      //uint8_t
+      uint8_t value1 = 4;
+      uint8_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setUInt8(value1);
@@ -1149,9 +1149,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value1 = 2345;
-      std::uint16_t value2 = value1+1;
+      //uint16_t
+      uint16_t value1 = 2345;
+      uint16_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setUInt16(value1);
@@ -1160,9 +1160,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value1 = 2362727;
-      std::uint32_t value2 = value1+1;
+      //uint32_t
+      uint32_t value1 = 2362727;
+      uint32_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setUInt32(value1);
@@ -1171,9 +1171,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint64_t
-      std::uint64_t value1 = 234356362727;
-      std::uint64_t value2 = value1+1;
+      //uint64_t
+      uint64_t value1 = 234356362727;
+      uint64_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setUInt64(value1);
@@ -1182,9 +1182,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::int8_t
-      std::int8_t value1 = -4;
-      std::int8_t value2 = value1+1;
+      //int8_t
+      int8_t value1 = -4;
+      int8_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setSInt8(value1);
@@ -1194,8 +1194,8 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
     }
     {
       //Sint16
-      std::int16_t value1 = -2345;
-      std::int16_t value2 = value1+1;
+      int16_t value1 = -2345;
+      int16_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setSInt16(value1);
@@ -1205,8 +1205,8 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
     }
     {
       //Sint32
-      std::int32_t value1 = -2362727;
-      std::int32_t value2 = value1+1;
+      int32_t value1 = -2362727;
+      int32_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setSInt32(value1);
@@ -1216,8 +1216,8 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
     }
     {
       //Sint64
-      std::int64_t value1 = -234356362727;
-      std::int64_t value2 = value1+1;
+      int64_t value1 = -234356362727;
+      int64_t value2 = value1+1;
       Variant v1;
       Variant v2;
       v1.setSInt64(value1);
@@ -1282,7 +1282,7 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
     {
       //bool
       bool value1 = true;
-      std::uint64_t value2 = 50;
+      uint64_t value2 = 50;
       Variant v1;
       Variant v2;
       v1.setBool(value1);
@@ -1291,9 +1291,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint8_t
-      std::uint8_t value1 = 4;
-      std::uint64_t value2 = 50;
+      //uint8_t
+      uint8_t value1 = 4;
+      uint64_t value2 = 50;
       Variant v1;
       Variant v2;
       v1.setUInt8(value1);
@@ -1302,9 +1302,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value1 = 2345;
-      std::uint64_t value2 = 5000;
+      //uint16_t
+      uint16_t value1 = 2345;
+      uint64_t value2 = 5000;
       Variant v1;
       Variant v2;
       v1.setUInt16(value1);
@@ -1313,9 +1313,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
       ASSERT_TRUE( v2 > v1 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value1 = 2362727;
-      std::uint64_t value2 = 5000000;
+      //uint32_t
+      uint32_t value1 = 2362727;
+      uint64_t value2 = 5000000;
       Variant v1;
       Variant v2;
       v1.setUInt32(value1);
@@ -1328,9 +1328,9 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
   //but both variant are signed
   {
     {
-      //std::int8_t
-      std::int8_t  value1 = -4;
-      std::int64_t value2 = 5000000;
+      //int8_t
+      int8_t  value1 = -4;
+      int64_t value2 = 5000000;
       Variant v1;
       Variant v2;
       v1.setSInt8(value1);
@@ -1340,8 +1340,8 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
     }
     {
       //Sint16
-      std::int16_t value1 = -2345;
-      std::int64_t value2 = 5000000;
+      int16_t value1 = -2345;
+      int64_t value2 = 5000000;
       Variant v1;
       Variant v2;
       v1.setSInt16(value1);
@@ -1351,8 +1351,8 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
     }
     {
       //Sint32
-      std::int32_t value1 = -2362727;
-      std::int64_t value2 = 5000000;
+      int32_t value1 = -2362727;
+      int64_t value2 = 5000000;
       Variant v1;
       Variant v2;
       v1.setSInt32(value1);
@@ -1366,8 +1366,8 @@ TEST_F(TestVariant, testOperatorSmallerBiggerThan)
   //and both variant are too different
   {
     {
-      //std::int8_t vs string
-      std::int8_t value1 = -4;
+      //int8_t vs string
+      int8_t value1 = -4;
       Variant::Str value2 = "400";
       Variant v1;
       Variant v2;
@@ -1393,7 +1393,7 @@ TEST_F(TestVariant, testCopyCtor)
   }
   {
     //Sint16
-    std::int16_t value = -2345;
+    int16_t value = -2345;
     Variant v1;
     Variant v2;
     v1.setSInt16(value);
@@ -1487,7 +1487,7 @@ TEST_F(TestVariant, testSimplify)
 
   //simplify a float32 to signed integer
   {
-    for(std::int8_t i=-120; i<=+120; i++)
+    for(int8_t i=-120; i<=+120; i++)
     {
       Variant::float32 value = (Variant::float32)i;
 
@@ -1518,7 +1518,7 @@ TEST_F(TestVariant, testSimplify)
 
 TEST_F(TestVariant, testAutoConversionToSigned)
 {
-  std::uint16_t value = 4;
+  uint16_t value = 4;
   Variant v;
 
   //test with +=
@@ -1563,8 +1563,8 @@ TEST_F(TestVariant, testAutoConversionToFloat)
   //test with a perfect division
   //which keeps the internal type as is
   {
-    std::uint8_t value = 16;
-    std::uint8_t divisor = 2;
+    uint8_t value = 16;
+    uint8_t divisor = 2;
     Variant v;
     v.set(value);
     ASSERT_EQ( Variant::UINT8, v.getFormat());
@@ -1582,8 +1582,8 @@ TEST_F(TestVariant, testAutoConversionToFloat)
     //  a = a / 2
     //  WScript.Echo a 'outputs 2.5
 
-    std::uint8_t value = 5;
-    std::uint8_t divisor = 2;
+    uint8_t value = 5;
+    uint8_t divisor = 2;
     Variant v;
     v.set(value);
     ASSERT_EQ( Variant::UINT8, v.getFormat());
@@ -1595,24 +1595,24 @@ TEST_F(TestVariant, testAutoConversionToFloat)
 
 TEST_F(TestVariant, testSignedToUnsignedValueClamping)
 {
-  std::int16_t value = -3;
+  int16_t value = -3;
   Variant v = value;
-  std::uint16_t clampedValue = v.getUInt16();
+  uint16_t clampedValue = v.getUInt16();
   ASSERT_EQ( 0, clampedValue ); //clamped to minimum value of uint16_t
 }
 
 TEST_F(TestVariant, testUnsignedToSignedValueClamping)
 {
-  std::uint16_t value = 65500;
+  uint16_t value = 65500;
   Variant v = value;
-  std::int16_t clampedValue = v.getSInt16();
+  int16_t clampedValue = v.getSInt16();
   ASSERT_EQ( 32767, clampedValue ); //clamped to maximum value of int16_t
 }
 
 TEST_F(TestVariant, testUInt8WrapAroundOverflow)
 {
-  std::uint8_t value = 250;
-  std::int8_t addition = 10;
+  uint8_t value = 250;
+  int8_t addition = 10;
   Variant v;
   v.set(value);
   ASSERT_EQ( Variant::UINT8, v.getFormat());
@@ -1628,7 +1628,7 @@ TEST_F(TestVariant, testUInt8WrapAroundOverflow)
   ASSERT_EQ( 260, v.getSInt16());
 
   //compute the expected wrap around result
-  std::uint8_t expectedWrapAroundValue = value;
+  uint8_t expectedWrapAroundValue = value;
   expectedWrapAroundValue += addition;
   ASSERT_TRUE( expectedWrapAroundValue < 250);
 
@@ -1636,14 +1636,14 @@ TEST_F(TestVariant, testUInt8WrapAroundOverflow)
   ASSERT_EQ( 255, v.getUInt8());
 
   //expect that a user can still get a value as unsigned and get the wrap around value
-  std::uint8_t wrapAroundValue = v.getUInt64();
+  uint8_t wrapAroundValue = v.getUInt64();
   ASSERT_EQ( expectedWrapAroundValue, wrapAroundValue);
 }
 
 TEST_F(TestVariant, testSInt8WrapAroundOverflow)
 {
-  std::int8_t value = 125;
-  std::uint8_t addition = 10;
+  int8_t value = 125;
+  uint8_t addition = 10;
   Variant v;
   v.set(value);
   ASSERT_EQ( Variant::SINT8, v.getFormat());
@@ -1659,7 +1659,7 @@ TEST_F(TestVariant, testSInt8WrapAroundOverflow)
   ASSERT_EQ( 135, v.getSInt16());
 
   //compute the expected wrap around result
-  std::int8_t expectedWrapAroundValue = value;
+  int8_t expectedWrapAroundValue = value;
   expectedWrapAroundValue += addition;
   ASSERT_TRUE( expectedWrapAroundValue < 125);
 
@@ -1667,7 +1667,7 @@ TEST_F(TestVariant, testSInt8WrapAroundOverflow)
   ASSERT_EQ( 127, v.getSInt8());
 
   //expect that a user can still get a value as unsigned and get the wrap around value
-  std::int8_t wrapAroundValue = v.getSInt64();
+  int8_t wrapAroundValue = v.getSInt64();
   ASSERT_EQ( expectedWrapAroundValue, wrapAroundValue);
 }
 
@@ -1742,40 +1742,40 @@ TEST_F(TestVariant, testOperatorPlusEqual)
       ASSERT_TRUE( v.getBool() == true );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v += 1;
       ASSERT_TRUE( v.getUInt8() == 5 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v += 1;
       ASSERT_TRUE( v.getUInt16() == 2346 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v += 1;
       ASSERT_TRUE( v.getUInt32() == 2362728 );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v += 1;
       ASSERT_TRUE( v.getUInt64() == 234356362728 );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v += 1;
@@ -1783,7 +1783,7 @@ TEST_F(TestVariant, testOperatorPlusEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v += 1;
@@ -1791,7 +1791,7 @@ TEST_F(TestVariant, testOperatorPlusEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v += 1;
@@ -1799,7 +1799,7 @@ TEST_F(TestVariant, testOperatorPlusEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v += 1;
@@ -1842,40 +1842,40 @@ TEST_F(TestVariant, testOperatorPlusEqual)
       ASSERT_TRUE( v.getBool() == false );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v += -1;
       ASSERT_TRUE( v.getUInt8() == 3 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v += -1;
       ASSERT_TRUE( v.getUInt16() == 2344 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v += -1;
       ASSERT_TRUE( v.getUInt32() == 2362726 );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v += -1;
       ASSERT_TRUE( v.getUInt64() == 234356362726 );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v += -1;
@@ -1883,7 +1883,7 @@ TEST_F(TestVariant, testOperatorPlusEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v += -1;
@@ -1891,7 +1891,7 @@ TEST_F(TestVariant, testOperatorPlusEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v += -1;
@@ -1899,7 +1899,7 @@ TEST_F(TestVariant, testOperatorPlusEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v += -1;
@@ -1945,40 +1945,40 @@ TEST_F(TestVariant, testOperatorMinusEqual)
       ASSERT_TRUE( v.getBool() == false );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v -= 1;
       ASSERT_TRUE( v.getUInt8() == 3 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v -= 1;
       ASSERT_TRUE( v.getUInt16() == 2344 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v -= 1;
       ASSERT_TRUE( v.getUInt32() == 2362726 );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v -= 1;
       ASSERT_TRUE( v.getUInt64() == 234356362726 );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v -= 1;
@@ -1986,7 +1986,7 @@ TEST_F(TestVariant, testOperatorMinusEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v -= 1;
@@ -1994,7 +1994,7 @@ TEST_F(TestVariant, testOperatorMinusEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v -= 1;
@@ -2002,7 +2002,7 @@ TEST_F(TestVariant, testOperatorMinusEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v -= 1;
@@ -2045,40 +2045,40 @@ TEST_F(TestVariant, testOperatorMinusEqual)
       ASSERT_TRUE( v.getBool() == false );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v -= -1;
       ASSERT_TRUE( v.getUInt8() == 5 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v -= -1;
       ASSERT_TRUE( v.getUInt16() == 2346 );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v -= -1;
       ASSERT_TRUE( v.getUInt32() == 2362728 );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v -= -1;
       ASSERT_TRUE( v.getUInt64() == 234356362728 );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v -= -1;
@@ -2086,7 +2086,7 @@ TEST_F(TestVariant, testOperatorMinusEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v -= -1;
@@ -2094,7 +2094,7 @@ TEST_F(TestVariant, testOperatorMinusEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v -= -1;
@@ -2102,7 +2102,7 @@ TEST_F(TestVariant, testOperatorMinusEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v -= -1;
@@ -2154,40 +2154,40 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
       ASSERT_TRUE( v.getBool() == false );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v *= 2;
       ASSERT_TRUE( v.getUInt8() == 8 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v *= 2;
       ASSERT_TRUE( v.getUInt16() == (2345*2) );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v *= 2;
       ASSERT_TRUE( v.getUInt32() == (2362727*2) );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v *= 2;
       ASSERT_TRUE( v.getUInt64() == (234356362727*2) );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v *= 2;
@@ -2195,7 +2195,7 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v *= 2;
@@ -2203,7 +2203,7 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v *= 2;
@@ -2211,7 +2211,7 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v *= 2;
@@ -2260,40 +2260,40 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
       ASSERT_TRUE( v.getBool() == false );
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v *= -2;
       ASSERT_TRUE( v.getSInt8() == -8 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v *= -2;
       ASSERT_TRUE( v.getSInt16() == -(2345*2) );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v *= -2;
       ASSERT_TRUE( v.getSInt32() == -(2362727*2) );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v *= -2;
       ASSERT_TRUE( v.getSInt64() == -(234356362727*2) );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v *= -2;
@@ -2301,7 +2301,7 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v *= -2;
@@ -2309,7 +2309,7 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v *= -2;
@@ -2317,7 +2317,7 @@ TEST_F(TestVariant, testOperatorMultiplyEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v *= -2;
@@ -2373,40 +2373,40 @@ TEST_F(TestVariant, testOperatorDivideEqual)
       Variant::setDivisionByZeroPolicy(Variant::THROW);
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v /= 2;
       ASSERT_TRUE( v.getUInt8() == 2 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v /= 2;
       ASSERT_TRUE( v.getUInt16() == (1172) );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v /= 2;
       ASSERT_TRUE( v.getUInt32() == (1181363) );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v /= 2;
       ASSERT_TRUE( v.getUInt64() == (117178181363) );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v /= 2;
@@ -2414,7 +2414,7 @@ TEST_F(TestVariant, testOperatorDivideEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v /= 2;
@@ -2422,7 +2422,7 @@ TEST_F(TestVariant, testOperatorDivideEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v /= 2;
@@ -2430,7 +2430,7 @@ TEST_F(TestVariant, testOperatorDivideEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v /= 2;
@@ -2483,40 +2483,40 @@ TEST_F(TestVariant, testOperatorDivideEqual)
       Variant::setDivisionByZeroPolicy(Variant::THROW);
     }
     {
-      //std::uint8_t
-      std::uint8_t value = 4;
+      //uint8_t
+      uint8_t value = 4;
       Variant v;
       v.setUInt8(value);
       v /= -2;
       ASSERT_TRUE( v.getSInt8() == -2 );
     }
     {
-      //std::uint16_t
-      std::uint16_t value = 2345;
+      //uint16_t
+      uint16_t value = 2345;
       Variant v;
       v.setUInt16(value);
       v /= -2;
       ASSERT_TRUE( v.getSInt16() == -(1172) );
     }
     {
-      //std::uint32_t
-      std::uint32_t value = 2362727;
+      //uint32_t
+      uint32_t value = 2362727;
       Variant v;
       v.setUInt32(value);
       v /= -2;
       ASSERT_TRUE( v.getSInt32() == -(1181363) );
     }
     {
-      //std::uint64_t
-      std::uint64_t value = 234356362727;
+      //uint64_t
+      uint64_t value = 234356362727;
       Variant v;
       v.setUInt64(value);
       v /= -2;
       ASSERT_TRUE( v.getSInt64() == -(117178181363) );
     }
     {
-      //std::int8_t
-      std::int8_t value = -4;
+      //int8_t
+      int8_t value = -4;
       Variant v;
       v.setSInt8(value);
       v /= -2;
@@ -2524,7 +2524,7 @@ TEST_F(TestVariant, testOperatorDivideEqual)
     }
     {
       //Sint16
-      std::int16_t value = -2345;
+      int16_t value = -2345;
       Variant v;
       v.setSInt16(value);
       v /= -2;
@@ -2532,7 +2532,7 @@ TEST_F(TestVariant, testOperatorDivideEqual)
     }
     {
       //Sint32
-      std::int32_t value = -2362727;
+      int32_t value = -2362727;
       Variant v;
       v.setSInt32(value);
       v /= -2;
@@ -2540,7 +2540,7 @@ TEST_F(TestVariant, testOperatorDivideEqual)
     }
     {
       //Sint64
-      std::int64_t value = -234356362727;
+      int64_t value = -234356362727;
       Variant v;
       v.setSInt64(value);
       v /= -2;
@@ -2576,8 +2576,8 @@ TEST_F(TestVariant, testOperatorDivideEqual)
 TEST_F(TestVariant, testInternalTypePromotion)
 {
   {
-    //std::uint8_t to uint16_t
-    std::uint8_t value = 250;
+    //uint8_t to uint16_t
+    uint8_t value = 250;
     Variant v;
     v.set(value);
     ASSERT_EQ( Variant::UINT8, v.getFormat() );
@@ -2586,8 +2586,8 @@ TEST_F(TestVariant, testInternalTypePromotion)
     ASSERT_EQ( Variant::UINT16, v.getFormat() );
   }
   {
-    //std::uint16_t to uint32_t
-    std::uint16_t value = 65530;
+    //uint16_t to uint32_t
+    uint16_t value = 65530;
     Variant v;
     v.set(value);
     ASSERT_EQ( Variant::UINT16, v.getFormat() );
@@ -2596,8 +2596,8 @@ TEST_F(TestVariant, testInternalTypePromotion)
     ASSERT_EQ( Variant::UINT32, v.getFormat() );
   }
   {
-    //std::uint32_t to uint64_t
-    std::uint32_t value = 0xFFFFFFFc;
+    //uint32_t to uint64_t
+    uint32_t value = 0xFFFFFFFc;
     Variant v;
     v.set(value);
     ASSERT_EQ( Variant::UINT32, v.getFormat() );
@@ -2732,7 +2732,7 @@ TEST_F(TestVariant, testOperatorPlusPlus)
   //testing value increments/decrements
   {
     // ++
-    std::uint8_t value = 250;
+    uint8_t value = 250;
     Variant v;
     v.set(value);
     v++;
@@ -2741,7 +2741,7 @@ TEST_F(TestVariant, testOperatorPlusPlus)
   }
   {
     // --
-    std::uint8_t value = 250;
+    uint8_t value = 250;
     Variant v;
     v.set(value);
     v--;
@@ -2751,11 +2751,11 @@ TEST_F(TestVariant, testOperatorPlusPlus)
 
   {
     //testing prefix
-    std::uint8_t value1 = 250;
+    uint8_t value1 = 250;
     Variant variant1;
     variant1.set(value1);
     Variant variant2 = ++variant1;
-    std::uint8_t value2 = ++value1;
+    uint8_t value2 = ++value1;
     ASSERT_EQ( value2, variant2.getUInt8() ); //same behavior as native type
     ASSERT_EQ( 251, variant2.getUInt8() ); //expected Variant's value
     ASSERT_EQ( Variant::UINT8, variant2.getFormat() );
@@ -2763,11 +2763,11 @@ TEST_F(TestVariant, testOperatorPlusPlus)
 
   {
     //testing postfix
-    std::uint8_t value1 = 250;
+    uint8_t value1 = 250;
     Variant variant1;
     variant1.set(value1);
     Variant variant2 = variant1++;
-    std::uint8_t value2 = value1++;
+    uint8_t value2 = value1++;
     ASSERT_EQ( value2, variant2.getUInt8() ); //same behavior as native type
     ASSERT_EQ( 250, variant2.getUInt8() ); //expected Variant's value
     ASSERT_EQ( Variant::UINT8, variant2.getFormat() );
@@ -2821,19 +2821,19 @@ TEST_F(TestVariant, testVbScriptIdenticalBehavior) // requires cscript.exe (Visu
 
 TEST_F(TestVariant, testNativeTypesSize)
 {
-  ASSERT_EQ(1, sizeof(std::uint8_t));
-  ASSERT_EQ(1, sizeof(std::int8_t));
-  ASSERT_EQ(2, sizeof(std::uint16_t));
-  ASSERT_EQ(2, sizeof(std::int16_t));
-  ASSERT_EQ(4, sizeof(std::uint32_t));
-  ASSERT_EQ(4, sizeof(std::int32_t));
-  ASSERT_EQ(8, sizeof(std::uint64_t));
-  ASSERT_EQ(8, sizeof(std::int64_t));
+  ASSERT_EQ(1, sizeof(uint8_t));
+  ASSERT_EQ(1, sizeof(int8_t));
+  ASSERT_EQ(2, sizeof(uint16_t));
+  ASSERT_EQ(2, sizeof(int16_t));
+  ASSERT_EQ(4, sizeof(uint32_t));
+  ASSERT_EQ(4, sizeof(int32_t));
+  ASSERT_EQ(8, sizeof(uint64_t));
+  ASSERT_EQ(8, sizeof(int64_t));
   ASSERT_EQ(4, sizeof(Variant::float32));
   ASSERT_EQ(8, sizeof(Variant::float64));
 
-  ASSERT_EQ(sizeof(std::uint32_t), sizeof(unsigned long));
-  ASSERT_EQ(sizeof(std::uint32_t), sizeof(unsigned long int));
+  ASSERT_EQ(sizeof(uint32_t), sizeof(unsigned long));
+  ASSERT_EQ(sizeof(uint32_t), sizeof(unsigned long int));
   ASSERT_EQ(sizeof(Variant::float64), sizeof(long double));
 }
 
@@ -3103,17 +3103,17 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
 #pragma pack(push,1)
   struct FOOTPRINT
   {
-    std::uint8_t before;
+    uint8_t before;
     Variant instance;
-    std::uint8_t after;
+    uint8_t after;
   };
 #pragma pack(pop)
   FOOTPRINT fp;
   fp.before = 0xEE; //show boundaries of the Variant in memory
   fp.after = 0xEE; //show boundaries of the Variant in memory
-  fp.instance = (std::int16_t)0; //change internal format
-  fp.instance = (std::int32_t)0; //change internal format
-  fp.instance = (std::uint64_t)-1; //set all bits of the Variant's internal value to 1 and change the internal format to uint64_t
+  fp.instance = (int16_t)0; //change internal format
+  fp.instance = (int32_t)0; //change internal format
+  fp.instance = (uint64_t)-1; //set all bits of the Variant's internal value to 1 and change the internal format to uint64_t
   Variant::setDivisionByZeroPolicy(Variant::THROW);
   Variant::setDivisionByZeroPolicy(Variant::IGNORE);
 #endif
@@ -3144,37 +3144,37 @@ TEST_F(TestVariant, testImplicitConversions)
 
   //unsigned
   {
-    std::uint8_t value = 34;
+    uint8_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT8) );
   }
   {
-    std::uint16_t value = 34;
+    uint16_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT16) );
   }
   {
-    std::uint32_t value = 34;
+    uint32_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT32) );
   }
   {
-    std::uint64_t value = 34;
+    uint64_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::UINT64) );
   }
 
   //signed
   {
-    std::int8_t value = 34;
+    int8_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT8) );
   }
   {
-    std::int16_t value = 34;
+    int16_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT16) );
   }
   {
-    std::int32_t value = 34;
+    int32_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT32) );
   }
   {
-    std::int64_t value = 34;
+    int64_t value = 34;
     ASSERT_TRUE( isVariantMatchesExpectedFormat(value, Variant::SINT64) );
   }
 

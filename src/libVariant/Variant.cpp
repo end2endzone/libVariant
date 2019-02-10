@@ -336,32 +336,22 @@ namespace libVariant
     return 0;
   }
 
-  Variant::Variant(void) :
-    mFormat(Variant::UINT8)
-  {
-    clear();
-  }
+  Variant::Variant(void) : mFormat(Variant::UINT8) { clear(); }
 
-  Variant::Variant(const Variant & iValue) :
-    mFormat(Variant::UINT8)
-  {
-    clear();
-    (*this) = iValue;
-  }
-
-  Variant::Variant(const bool      & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint8_t   & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const int8_t    & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint16_t  & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const int16_t   & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint32_t  & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const int32_t   & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const uint64_t  & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const int64_t   & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const float32   & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const float64   & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const Str       & iValue) { clear(); (*this) = iValue; }
-  Variant::Variant(const CStr      & iValue) { clear(); (*this) = iValue; }
+  Variant::Variant(const Variant    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const bool       & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint8_t    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const int8_t     & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint16_t   & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const int16_t    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint32_t   & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const int32_t    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const uint64_t   & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const int64_t    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const float32    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const float64    & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const Str        & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
+  Variant::Variant(const CStr       & iValue) : mFormat(Variant::UINT8) { clear(); (*this) = iValue; }
   
   Variant::~Variant(void)
   {

@@ -11,8 +11,6 @@ add_executable(libvariant_unittest
   TestStringEncoder.h
   TestTypeInfo.cpp
   TestTypeInfo.h
-  TestTypeUnion.cpp
-  TestTypeUnion.h
   TestVariant.cpp
   TestVariant.h
   TestVariant.testVbScriptIdenticalBehavior.input.txt

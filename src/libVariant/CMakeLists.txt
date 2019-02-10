@@ -11,7 +11,6 @@ add_library(libvariant
   StringEncoder.h
   StringParser.h
   TypeInfo.h
-  TypeUnion.h
   Variant.cpp
   VariantTemplates.h
 )

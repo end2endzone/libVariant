@@ -40,19 +40,19 @@ namespace libVariant
     /// </summary>
     typedef union
     {
-      uint64_t allbits;
-      int64_t vsint64;
-      uint64_t vuint64;
-      float64 vfloat64;
-      Str * str;
-      float32 vfloat32;
-      int32_t vsint32;
-      uint32_t vuint32;
-      int16_t vsint16;
-      uint16_t vuint16;
-      int8_t vsint8;
-      uint8_t vuint8;
-      bool vbool;
+      uint64_t  allbits;
+      Str *     str;
+      int64_t   vsint64;
+      uint64_t  vuint64;
+      float64   vfloat64;
+      float32   vfloat32;
+      int32_t   vsint32;
+      uint32_t  vuint32;
+      int16_t   vsint16;
+      uint16_t  vuint16;
+      int8_t    vsint8;
+      uint8_t   vuint8;
+      bool      vbool;
     } VariantUnion;
 
     /// <summary>
@@ -137,18 +137,18 @@ namespace libVariant
     //----------------------
     // getters methods
     //----------------------
-    virtual bool     getBool() const;
-    virtual uint8_t  getUInt8() const;
-    virtual uint16_t getUInt16() const;
-    virtual uint32_t getUInt32() const;
-    virtual uint64_t getUInt64() const;
-    virtual int8_t   getSInt8() const;
-    virtual int16_t  getSInt16() const;
-    virtual int32_t  getSInt32() const;
-    virtual int64_t  getSInt64() const;
+    virtual bool     getBool()    const;
+    virtual uint8_t  getUInt8()   const;
+    virtual uint16_t getUInt16()  const;
+    virtual uint32_t getUInt32()  const;
+    virtual uint64_t getUInt64()  const;
+    virtual int8_t   getSInt8()   const;
+    virtual int16_t  getSInt16()  const;
+    virtual int32_t  getSInt32()  const;
+    virtual int64_t  getSInt64()  const;
     virtual float32  getFloat32() const;
     virtual float64  getFloat64() const;
-    virtual Str      getString() const;
+    virtual Str      getString()  const;
 
     //----------------------
     // setters methods
@@ -561,7 +561,7 @@ namespace libVariant
     /// <param name="iValue">A second value used for comparing the internal value of the Variant instance.</param>
     /// <returns>Returns true if this instance is equal to the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
-    virtual bool operator == (const bool        & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const bool         & iValue) const { return compare(iValue) == 0; }
     virtual bool operator == (const uint8_t      & iValue) const { return compare(iValue) == 0; }
     virtual bool operator == (const uint16_t     & iValue) const { return compare(iValue) == 0; }
     virtual bool operator == (const uint32_t     & iValue) const { return compare(iValue) == 0; }

@@ -11,8 +11,6 @@
 #include <limits> // std::numeric_limits
 #include <sstream>
 
-#include "TypeCast.h"
-
 //-----------
 // Namespace
 //-----------
@@ -1970,48 +1968,6 @@ namespace libVariant
       {
         mFormat = Variant::SINT16;
       }
-      break;
-    case Variant::FLOAT32:
-    case Variant::FLOAT64:
-    case Variant::STRING:
-      //nothing to do
-      break;
-    default:
-      assert( false ); /*error should not happen*/
-      break;
-    };
-  }
-
-  void Variant::processInternalValueSaturation()
-  {
-    switch(mFormat)
-    {
-    case Variant::BOOL:
-      mData.vbool = (mData.vuint64 != 0);
-      break;
-    case Variant::UINT8:
-      mData.vuint8 = typecast::saturate_cast<uint8_t>(mData.vuint64);
-      break;
-    case Variant::UINT16:
-      mData.vuint16 = typecast::saturate_cast<uint16_t>(mData.vuint64);
-      break;
-    case Variant::UINT32:
-      mData.vuint32 = typecast::saturate_cast<uint32_t>(mData.vuint64);
-      break;
-    case Variant::UINT64:
-      //nothing to do: mData.vuint64 = typecast::saturate_cast<uint64_t>(mData.vuint64);
-      break;
-    case Variant::SINT8:
-      mData.vsint8 = typecast::saturate_cast<int8_t>(mData.vsint64);
-      break;
-    case Variant::SINT16:
-      mData.vsint16 = typecast::saturate_cast<int16_t>(mData.vsint64);
-      break;
-    case Variant::SINT32:
-      mData.vsint32 = typecast::saturate_cast<int32_t>(mData.vsint64);
-      break;
-    case Variant::SINT64:
-      //nothing to do: mData.vsint64 = typecast::saturate_cast<int64_t>(mData.vsint64);
       break;
     case Variant::FLOAT32:
     case Variant::FLOAT64:

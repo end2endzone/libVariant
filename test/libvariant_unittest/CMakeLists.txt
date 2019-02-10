@@ -9,8 +9,6 @@ add_executable(libvariant_unittest
   TestFloatLimits.h
   TestStringEncoder.cpp
   TestStringEncoder.h
-  TestTypeCastSaturation.cpp
-  TestTypeCastSaturation.h
   TestTypeInfo.cpp
   TestTypeInfo.h
   TestTypeUnion.cpp

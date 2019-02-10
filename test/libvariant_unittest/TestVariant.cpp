@@ -8,7 +8,6 @@
 #include <stdint.h>     /* in32_t, int64_t */
 
 #include "libvariant/variant.h"
-#include "VariantTemplates.h"
 
 #include "gtesthelper.h"
 #include "TestVariant.h"

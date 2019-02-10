@@ -12,7 +12,6 @@ add_library(libvariant
   StringParser.h
   TypeInfo.h
   Variant.cpp
-  VariantTemplates.h
 )
 
 # Force CMAKE_DEBUG_POSTFIX for executables

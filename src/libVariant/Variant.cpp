@@ -17,7 +17,7 @@
 
 namespace libVariant
 {
-  typedef int DEFAULT_BOOLEAN_REDIRECTION_TYPE; 
+  typedef int DEFAULT_BOOLEAN_REDIRECTION_TYPE; //default type to use for conversion and comparision when dealing with 'bool' native type.
 
   Variant::DivisionByZeroPolicy Variant::mDivisionByZeroPolicy = DEFAULT_DIVISION_BY_ZERO_POLICY;
   const char * gStringTrue  = "true";
@@ -137,203 +137,23 @@ namespace libVariant
   }
 
   template <typename T>
-  inline static const T staticCastConversion( const Variant::VariantFormat & iFormat, const Variant::VariantUnion & iData )
+  inline static const T staticCastConversion( const Variant::VariantFormat & iFormat, const Variant::VariantUnion & iData, const T & iDefault )
   {
-    #pragma warning(push)
-    #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::UINT64' to 'const libVariant::UINT8', possible loss of data
-    #pragma warning(disable:4800) //warning C4800: 'const libVariant::int64_t' : forcing value to bool 'true' or 'false' (performance warning)
-    
-    switch(iFormat)
+    if (iFormat == Variant::STRING)
     {
-    case Variant::BOOL:
-      return iData.vbool;
-    case Variant::UINT8:
-    case Variant::UINT16:
-    case Variant::UINT32:
-    case Variant::UINT64:
-      return iData.vuint64;
-    case Variant::SINT8:
-    case Variant::SINT16:
-    case Variant::SINT32:
-    case Variant::SINT64:
-      return iData.vsint64;
-    case Variant::FLOAT32:
-      return iData.vfloat32;
-    case Variant::FLOAT64:
-      return iData.vfloat64;
-    default:
-      assert( false ); /*error should not happen*/
-      break;
-    };
-    assert( false ); /*error should not happen*/
-    return 0;
-
-    #pragma warning(pop)
-  }
-
-  inline static void getSignedRanges(const Variant::VariantFormat & iFormat, int64_t & oMin, int64_t & oMax)
-  {
-    switch(iFormat)
+      return StringEncoder::parse<T>( iData.str->c_str() );
+    }
+    else if (iFormat == Variant::FLOAT32)
     {
-    case Variant::BOOL:
-      oMin = 0;
-      oMax = 1;
-      break;
-    case Variant::UINT8:
-      oMin = uint8_min;
-      oMax = uint8_max;
-      break;
-    case Variant::UINT16:
-      oMin = uint16_min;
-      oMax = uint16_max;
-      break;
-    case Variant::UINT32:
-      oMin = uint32_min;
-      oMax = uint32_max;
-      break;
-    case Variant::UINT64:
-      oMin = uint64_min;
-      oMax = sint64_max; //limited
-      break;
-    case Variant::SINT8:
-      oMin = sint8_min;
-      oMax = sint8_max;
-      break;
-    case Variant::SINT16:
-      oMin = sint16_min;
-      oMax = sint16_max;
-      break;
-    case Variant::SINT32:
-      oMin = sint32_min;
-      oMax = sint32_max;
-      break;
-    case Variant::SINT64:
-      oMin = sint64_min;
-      oMax = sint64_max;
-      break;
-    default:
-      assert( false ); /*error should not happen*/
-      break;
-    };
-  }
-
-  inline static void getUnsignedRanges(const Variant::VariantFormat & iFormat, uint64_t & oMin, uint64_t & oMax)
-  {
-    switch(iFormat)
+      return static_cast<T>(iData.vfloat32);
+    }
+    else if (iFormat == Variant::FLOAT64)
     {
-    case Variant::BOOL:
-      oMin = 0;
-      oMax = 1;
-      break;
-    case Variant::UINT8:
-      oMin = uint8_min;
-      oMax = uint8_max;
-      break;
-    case Variant::UINT16:
-      oMin = uint16_min;
-      oMax = uint16_max;
-      break;
-    case Variant::UINT32:
-      oMin = uint32_min;
-      oMax = uint32_max;
-      break;
-    case Variant::UINT64:
-      oMin = uint64_min;
-      oMax = uint64_max;
-      break;
-    case Variant::SINT8:
-      oMin = uint64_min; //limited
-      oMax = sint8_max;
-      break;
-    case Variant::SINT16:
-      oMin = uint64_min; //limited
-      oMax = sint16_max;
-      break;
-    case Variant::SINT32:
-      oMin = uint64_min; //limited
-      oMax = sint32_max;
-      break;
-    case Variant::SINT64:
-      oMin = uint64_min; //limited
-      oMax = sint64_max;
-      break;
-    default:
-      assert( false ); /*error should not happen*/
-      break;
-    };
-  }
+      return static_cast<T>(iData.vfloat64);
+    }
 
-  //template <typename Tfrom, typename Tto>
-  template <typename T>
-  inline static const T logicalConvert(const Variant::VariantFormat & iInputFormat, const Variant::VariantFormat & iOutputFormat, const Variant::VariantUnion & iData, const T & iTMax, const T & iTMin)
-  {
-    switch(iInputFormat)
-    {
-    case Variant::BOOL:
-    case Variant::UINT8:
-    case Variant::UINT16:
-    case Variant::UINT32:
-    case Variant::UINT64:
-      //from unsigned to ?
-      {
-        uint64_t low = 0;
-        uint64_t high = 0;
-        getUnsignedRanges(iOutputFormat, low, high);
-        if (iData.vuint64 < low)
-        {
-          return iTMin;
-        }
-        if (iData.vuint64 > high)
-        {
-          return iTMax;
-        }
-      }
-      #pragma warning(push)
-      #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::UINT64' to 'const libVariant::UINT8', possible loss of data
-      #pragma warning(disable:4800) //warning C4800: 'const libVariant::uint64_t' : forcing value to bool 'true' or 'false' (performance warning)
-      return iData.vuint64;
-      #pragma warning(pop)
-    case Variant::SINT8:
-    case Variant::SINT16:
-    case Variant::SINT32:
-    case Variant::SINT64:
-      //from signed to ?
-      {
-        int64_t low = 0;
-        int64_t high = 0;
-        getSignedRanges(iOutputFormat, low, high);
-        if (iData.vsint64 < low)
-        {
-          return iTMin;
-        }
-        if (iData.vsint64 > high)
-        {
-          return iTMax;
-        }
-      }
-      #pragma warning(push)
-      #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::SINT64' to 'const libVariant::UINT8', possible loss of data
-      #pragma warning(disable:4800) //warning C4800: 'const libVariant::int64_t' : forcing value to bool 'true' or 'false' (performance warning)
-      return iData.vsint64;
-      #pragma warning(pop)
-    case Variant::FLOAT32:
-      if (iData.vfloat32 < Variant::float32(iTMin))
-        return iTMin;
-      if (iData.vfloat32 > Variant::float32(iTMax))
-        return iTMax;
-      return staticCastConversion<T>(iInputFormat, iData);
-    case Variant::FLOAT64:
-      if (iData.vfloat64 < Variant::float32(iTMin))
-        return iTMin;
-      if (iData.vfloat64 > Variant::float64(iTMax))
-        return iTMax;
-      return staticCastConversion<T>(iInputFormat, iData);
-    default:
-      assert( false ); /*error should not happen*/
-      break;
-    };
-    assert( false ); /*error should not happen*/
-    return 0;
+    //signed or unsigned integer
+    return iDefault; //possible overflow
   }
 
   Variant::Variant(void) : mFormat(Variant::UINT8) { clear(); }
@@ -394,97 +214,141 @@ namespace libVariant
       //might be 0, 1, or any other value
       return StringEncoder::parse<uint8_t>( mData.str->c_str() ) != 0;
     }
-    return logicalConvert<bool>(mFormat, Variant::BOOL, mData, true, false);
+    else if (mFormat == Variant::FLOAT32)
+    {
+      return mData.vfloat32 != 0.0f;
+    }
+    else if (mFormat == Variant::FLOAT64)
+    {
+      return mData.vfloat64 != 0.0;
+    }
+
+    //signed or unsigned integer
+    return mData.vbool; //possible overflow
   }
 
   uint8_t     Variant::getUInt8  () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<uint8_t>( mData.str->c_str() );
-    }
-    return logicalConvert<uint8_t>(mFormat, Variant::UINT8, mData, uint8_max, uint8_min);
+    return staticCastConversion<uint8_t>(mFormat, mData, mData.vuint8);
   }
 
   int8_t     Variant::getSInt8  () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<int8_t>( mData.str->c_str() );
-    }
-    return logicalConvert<int8_t>(mFormat, Variant::SINT8, mData, sint8_max, sint8_min);
+    return staticCastConversion<int8_t>(mFormat, mData, mData.vsint8);
   }
 
   uint16_t    Variant::getUInt16 () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<uint16_t>( mData.str->c_str() );
-    }
-    return logicalConvert<uint16_t>(mFormat, Variant::UINT16, mData, uint16_max, uint16_min);
+    return staticCastConversion<uint16_t>(mFormat, mData, mData.vuint16);
   }
 
   int16_t    Variant::getSInt16 () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<int16_t>( mData.str->c_str() );
-    }
-    return logicalConvert<int16_t>(mFormat, Variant::SINT16, mData, sint16_max, sint16_min);
+    return staticCastConversion<int16_t>(mFormat, mData, mData.vsint16);
   }
 
   uint32_t    Variant::getUInt32 () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<uint32_t>( mData.str->c_str() );
-    }
-    return logicalConvert<uint32_t>(mFormat, Variant::UINT32, mData, uint32_max, uint32_min);
+    return staticCastConversion<uint32_t>(mFormat, mData, mData.vuint32);
   }
 
   int32_t    Variant::getSInt32 () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<int32_t>( mData.str->c_str() );
-    }
-    return logicalConvert<int32_t>(mFormat, Variant::SINT32, mData, sint32_max, sint32_min);
+    return staticCastConversion<int32_t>(mFormat, mData, mData.vsint32);
   }
 
   uint64_t    Variant::getUInt64 () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<uint64_t>( mData.str->c_str() );
-    }
-    return logicalConvert<uint64_t>(mFormat, Variant::UINT64, mData, uint64_max, uint64_min);
+    return staticCastConversion<uint64_t>(mFormat, mData, mData.vuint64);
   }
 
   int64_t    Variant::getSInt64 () const
   {
-    if (mFormat == Variant::STRING)
-    {
-      return StringEncoder::parse<int64_t>( mData.str->c_str() );
-    }
-    return logicalConvert<int64_t>(mFormat, Variant::SINT64, mData, sint64_max, sint64_min);
+    return staticCastConversion<int64_t>(mFormat, mData, mData.vsint64);
   }
 
   Variant::float32   Variant::getFloat32() const
   {
-    if (mFormat == Variant::STRING)
+    #pragma warning(push)
+    #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::UINT64' to 'const libVariant::UINT8', possible loss of data
+    #pragma warning(disable:4800) //warning C4800: 'const libVariant::int64_t' : forcing value to bool 'true' or 'false' (performance warning)
+
+    switch(mFormat)
     {
+    case Variant::BOOL:
+      return mData.vbool;
+    case Variant::UINT8:
+      return mData.vuint8;
+    case Variant::UINT16:
+      return mData.vuint16;
+    case Variant::UINT32:
+      return mData.vuint32;
+    case Variant::UINT64:
+      return mData.vuint64;
+    case Variant::SINT8:
+      return mData.vsint8;
+    case Variant::SINT16:
+      return mData.vsint16;
+    case Variant::SINT32:
+      return mData.vsint32;
+    case Variant::SINT64:
+      return mData.vsint64;
+    case Variant::FLOAT32:
+      return mData.vfloat32;
+    case Variant::FLOAT64:
+      return mData.vfloat64;
+    case Variant::STRING:
       return StringEncoder::parse<Variant::float32>( mData.str->c_str() );
-    }
-    return staticCastConversion<float32>(mFormat, mData);
+    default:
+      assert( false ); /*error should not happen*/
+      break;
+    };
+    assert( false ); /*error should not happen*/
+    return 0.0f;
+
+    #pragma warning(pop)
   }
 
   Variant::float64   Variant::getFloat64() const
   {
-    if (mFormat == Variant::STRING)
+    #pragma warning(push)
+    #pragma warning(disable:4244) //warning C4244: 'return' : conversion from 'const libVariant::UINT64' to 'const libVariant::UINT8', possible loss of data
+    #pragma warning(disable:4800) //warning C4800: 'const libVariant::int64_t' : forcing value to bool 'true' or 'false' (performance warning)
+
+    switch(mFormat)
     {
+    case Variant::BOOL:
+      return mData.vbool;
+    case Variant::UINT8:
+      return mData.vuint8;
+    case Variant::UINT16:
+      return mData.vuint16;
+    case Variant::UINT32:
+      return mData.vuint32;
+    case Variant::UINT64:
+      return mData.vuint64;
+    case Variant::SINT8:
+      return mData.vsint8;
+    case Variant::SINT16:
+      return mData.vsint16;
+    case Variant::SINT32:
+      return mData.vsint32;
+    case Variant::SINT64:
+      return mData.vsint64;
+    case Variant::FLOAT32:
+      return mData.vfloat32;
+    case Variant::FLOAT64:
+      return mData.vfloat64;
+    case Variant::STRING:
       return StringEncoder::parse<Variant::float64>( mData.str->c_str() );
-    }
-    return staticCastConversion<float64>(mFormat, mData);
+    default:
+      assert( false ); /*error should not happen*/
+      break;
+    };
+    assert( false ); /*error should not happen*/
+    return 0.0;
+
+    #pragma warning(pop)
   }
 
   Variant::Str Variant::getString () const

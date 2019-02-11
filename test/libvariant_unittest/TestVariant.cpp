@@ -1592,22 +1592,6 @@ TEST_F(TestVariant, testAutoConversionToFloat)
   }
 }
 
-TEST_F(TestVariant, testSignedToUnsignedValueClamping)
-{
-  int16_t value = -3;
-  Variant v = value;
-  uint16_t clampedValue = v.getUInt16();
-  ASSERT_EQ( 0, clampedValue ); //clamped to minimum value of uint16_t
-}
-
-TEST_F(TestVariant, testUnsignedToSignedValueClamping)
-{
-  uint16_t value = 65500;
-  Variant v = value;
-  int16_t clampedValue = v.getSInt16();
-  ASSERT_EQ( 32767, clampedValue ); //clamped to maximum value of int16_t
-}
-
 TEST_F(TestVariant, testUInt8WrapAroundOverflow)
 {
   uint8_t value = 250;

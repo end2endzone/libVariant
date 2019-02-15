@@ -40,19 +40,19 @@ namespace libVariant
     /// </summary>
     typedef union
     {
-      uint64_t  allbits;
-      Str *     str;
-      int64_t   vsint64;
-      uint64_t  vuint64;
-      float64   vfloat64;
-      float32   vfloat32;
-      int32_t   vsint32;
-      uint32_t  vuint32;
-      int16_t   vsint16;
-      uint16_t  vuint16;
-      int8_t    vsint8;
-      uint8_t   vuint8;
-      bool      vbool;
+      uint64_t  as_bits;
+      Str *     as_str;
+      float64   as_float64;
+      float32   as_float32;
+      int64_t   as_sint64;
+      uint64_t  as_uint64;
+      int32_t   as_sint32;
+      uint32_t  as_uint32;
+      int16_t   as_sint16;
+      uint16_t  as_uint16;
+      int8_t    as_sint8;
+      uint8_t   as_uint8;
+      bool      as_bool;
     } VariantUnion;
 
     /// <summary>

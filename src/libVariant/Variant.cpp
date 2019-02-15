@@ -141,15 +141,15 @@ namespace libVariant
   {
     if (iFormat == Variant::STRING)
     {
-      return StringEncoder::parse<T>( iData.str->c_str() );
+      return StringEncoder::parse<T>( iData.as_str->c_str() );
     }
     else if (iFormat == Variant::FLOAT32)
     {
-      return static_cast<T>(iData.vfloat32);
+      return static_cast<T>(iData.as_float32);
     }
     else if (iFormat == Variant::FLOAT64)
     {
-      return static_cast<T>(iData.vfloat64);
+      return static_cast<T>(iData.as_float64);
     }
 
     //signed or unsigned integer
@@ -207,64 +207,64 @@ namespace libVariant
     {
       //look for hardcoded string values
       StringParser p;
-      p.parse(mData.str->c_str());
+      p.parse(mData.as_str->c_str());
       if (p.is_Boolean)
         return p.parsed_boolean;
 
       //might be 0, 1, or any other value
-      return StringEncoder::parse<uint8_t>( mData.str->c_str() ) != 0;
+      return StringEncoder::parse<uint8_t>( mData.as_str->c_str() ) != 0;
     }
     else if (mFormat == Variant::FLOAT32)
     {
-      return mData.vfloat32 != 0.0f;
+      return mData.as_float32 != 0.0f;
     }
     else if (mFormat == Variant::FLOAT64)
     {
-      return mData.vfloat64 != 0.0;
+      return mData.as_float64 != 0.0;
     }
 
     //signed or unsigned integer
-    return mData.vbool; //possible overflow
+    return mData.as_bool; //possible overflow
   }
 
   uint8_t     Variant::getUInt8  () const
   {
-    return staticCastConversion<uint8_t>(mFormat, mData, mData.vuint8);
+    return staticCastConversion<uint8_t>(mFormat, mData, mData.as_uint8);
   }
 
   int8_t     Variant::getSInt8  () const
   {
-    return staticCastConversion<int8_t>(mFormat, mData, mData.vsint8);
+    return staticCastConversion<int8_t>(mFormat, mData, mData.as_sint8);
   }
 
   uint16_t    Variant::getUInt16 () const
   {
-    return staticCastConversion<uint16_t>(mFormat, mData, mData.vuint16);
+    return staticCastConversion<uint16_t>(mFormat, mData, mData.as_uint16);
   }
 
   int16_t    Variant::getSInt16 () const
   {
-    return staticCastConversion<int16_t>(mFormat, mData, mData.vsint16);
+    return staticCastConversion<int16_t>(mFormat, mData, mData.as_sint16);
   }
 
   uint32_t    Variant::getUInt32 () const
   {
-    return staticCastConversion<uint32_t>(mFormat, mData, mData.vuint32);
+    return staticCastConversion<uint32_t>(mFormat, mData, mData.as_uint32);
   }
 
   int32_t    Variant::getSInt32 () const
   {
-    return staticCastConversion<int32_t>(mFormat, mData, mData.vsint32);
+    return staticCastConversion<int32_t>(mFormat, mData, mData.as_sint32);
   }
 
   uint64_t    Variant::getUInt64 () const
   {
-    return staticCastConversion<uint64_t>(mFormat, mData, mData.vuint64);
+    return staticCastConversion<uint64_t>(mFormat, mData, mData.as_uint64);
   }
 
   int64_t    Variant::getSInt64 () const
   {
-    return staticCastConversion<int64_t>(mFormat, mData, mData.vsint64);
+    return staticCastConversion<int64_t>(mFormat, mData, mData.as_sint64);
   }
 
   Variant::float32   Variant::getFloat32() const
@@ -276,29 +276,29 @@ namespace libVariant
     switch(mFormat)
     {
     case Variant::BOOL:
-      return mData.vbool;
+      return mData.as_bool;
     case Variant::UINT8:
-      return mData.vuint8;
+      return mData.as_uint8;
     case Variant::UINT16:
-      return mData.vuint16;
+      return mData.as_uint16;
     case Variant::UINT32:
-      return mData.vuint32;
+      return mData.as_uint32;
     case Variant::UINT64:
-      return mData.vuint64;
+      return mData.as_uint64;
     case Variant::SINT8:
-      return mData.vsint8;
+      return mData.as_sint8;
     case Variant::SINT16:
-      return mData.vsint16;
+      return mData.as_sint16;
     case Variant::SINT32:
-      return mData.vsint32;
+      return mData.as_sint32;
     case Variant::SINT64:
-      return mData.vsint64;
+      return mData.as_sint64;
     case Variant::FLOAT32:
-      return mData.vfloat32;
+      return mData.as_float32;
     case Variant::FLOAT64:
-      return mData.vfloat64;
+      return mData.as_float64;
     case Variant::STRING:
-      return StringEncoder::parse<Variant::float32>( mData.str->c_str() );
+      return StringEncoder::parse<Variant::float32>( mData.as_str->c_str() );
     default:
       assert( false ); /*error should not happen*/
       break;
@@ -318,29 +318,29 @@ namespace libVariant
     switch(mFormat)
     {
     case Variant::BOOL:
-      return mData.vbool;
+      return mData.as_bool;
     case Variant::UINT8:
-      return mData.vuint8;
+      return mData.as_uint8;
     case Variant::UINT16:
-      return mData.vuint16;
+      return mData.as_uint16;
     case Variant::UINT32:
-      return mData.vuint32;
+      return mData.as_uint32;
     case Variant::UINT64:
-      return mData.vuint64;
+      return mData.as_uint64;
     case Variant::SINT8:
-      return mData.vsint8;
+      return mData.as_sint8;
     case Variant::SINT16:
-      return mData.vsint16;
+      return mData.as_sint16;
     case Variant::SINT32:
-      return mData.vsint32;
+      return mData.as_sint32;
     case Variant::SINT64:
-      return mData.vsint64;
+      return mData.as_sint64;
     case Variant::FLOAT32:
-      return mData.vfloat32;
+      return mData.as_float32;
     case Variant::FLOAT64:
-      return mData.vfloat64;
+      return mData.as_float64;
     case Variant::STRING:
-      return StringEncoder::parse<Variant::float64>( mData.str->c_str() );
+      return StringEncoder::parse<Variant::float64>( mData.as_str->c_str() );
     default:
       assert( false ); /*error should not happen*/
       break;
@@ -356,23 +356,23 @@ namespace libVariant
     switch(mFormat)
     {
     case Variant::BOOL:
-      return (mData.vuint64 == 0 ? Str(gStringFalse) : Str(gStringTrue));
+      return (mData.as_uint64 == 0 ? Str(gStringFalse) : Str(gStringTrue));
     case Variant::UINT8:
     case Variant::UINT16:
     case Variant::UINT32:
     case Variant::UINT64:
-      return StringEncoder::toString( mData.vuint64 );
+      return StringEncoder::toString( mData.as_uint64 );
     case Variant::SINT8:
     case Variant::SINT16:
     case Variant::SINT32:
     case Variant::SINT64:
-      return StringEncoder::toString( mData.vsint64 );
+      return StringEncoder::toString( mData.as_sint64 );
     case Variant::FLOAT32:
-      return StringEncoder::toString( mData.vfloat32 );
+      return StringEncoder::toString( mData.as_float32 );
     case Variant::FLOAT64:
-      return StringEncoder::toString( mData.vfloat64 );
+      return StringEncoder::toString( mData.as_float64 );
     case Variant::STRING:
-      return (*mData.str);
+      return (*mData.as_str);
     default:
       assert( false ); /*error should not happen*/
       break;
@@ -385,77 +385,77 @@ namespace libVariant
   {
     clear();
     mFormat = Variant::BOOL;
-    mData.vuint64 = iValue;
+    mData.as_uint64 = iValue;
   }
 
   void Variant::setUInt8  (const uint8_t     & iValue)
   {
     clear();
     mFormat = Variant::UINT8;
-    mData.vuint64 = iValue;
+    mData.as_uint64 = iValue;
   }
 
   void Variant::setSInt8  (const int8_t     & iValue)
   {
     clear();
     mFormat = Variant::SINT8;
-    mData.vsint64 = iValue;
+    mData.as_sint64 = iValue;
   }
 
   void Variant::setUInt16 (const uint16_t    & iValue)
   {
     clear();
     mFormat = Variant::UINT16;
-    mData.vuint64 = iValue;
+    mData.as_uint64 = iValue;
   }
 
   void Variant::setSInt16 (const int16_t    & iValue)
   {
     clear();
     mFormat = Variant::SINT16;
-    mData.vsint64 = iValue;
+    mData.as_sint64 = iValue;
   }
 
   void Variant::setUInt32 (const uint32_t    & iValue)
   {
     clear();
     mFormat = Variant::UINT32;
-    mData.vuint64 = iValue;
+    mData.as_uint64 = iValue;
   }
 
   void Variant::setSInt32 (const int32_t    & iValue)
   {
     clear();
     mFormat = Variant::SINT32;
-    mData.vsint64 = iValue;
+    mData.as_sint64 = iValue;
   }
 
   void Variant::setUInt64 (const uint64_t    & iValue)
   {
     clear();
     mFormat = Variant::UINT64;
-    mData.vuint64 = iValue;
+    mData.as_uint64 = iValue;
   }
 
   void Variant::setSInt64 (const int64_t    & iValue)
   {
     clear();
     mFormat = Variant::SINT64;
-    mData.vsint64 = iValue;
+    mData.as_sint64 = iValue;
   }
 
   void Variant::setFloat32(const float32   & iValue)
   {
     clear();
     mFormat = Variant::FLOAT32;
-    mData.vfloat32 = iValue;
+    mData.as_float32 = iValue;
   }
 
   void Variant::setFloat64(const float64   & iValue)
   {
     clear();
     mFormat = Variant::FLOAT64;
-    mData.vfloat64 = iValue;
+    mData.as_float64 = iValue;
   }
 
   void Variant::setString (const Str & iValue)
@@ -476,7 +476,7 @@ namespace libVariant
     //plain text format
     stringnify();
     mFormat = Variant::STRING;
-    (*mData.str) = iValue;
+    (*mData.as_str) = iValue;
   }
 
   const Variant::VariantFormat & Variant::getFormat() const
@@ -511,22 +511,22 @@ namespace libVariant
       return true;
       break;
     case Variant::SINT8:
-      return mData.vsint8 >= (int8_t)0;
+      return mData.as_sint8 >= (int8_t)0;
       break;
     case Variant::SINT16:
-      return mData.vsint16 >= (int16_t)0;
+      return mData.as_sint16 >= (int16_t)0;
       break;
     case Variant::SINT32:
-      return mData.vsint32 >= (int32_t)0;
+      return mData.as_sint32 >= (int32_t)0;
       break;
     case Variant::SINT64:
-      return mData.vsint64 >= (int64_t)0;
+      return mData.as_sint64 >= (int64_t)0;
       break;
     case Variant::FLOAT32:
-      return mData.vfloat32 >= (Variant::float32)0.0f;
+      return mData.as_float32 >= (Variant::float32)0.0f;
       break;
     case Variant::FLOAT64:
-      return mData.vfloat64 >= (Variant::float64)0.0;
+      return mData.as_float64 >= (Variant::float64)0.0;
       break;
     case Variant::STRING:
       return false;
@@ -550,22 +550,22 @@ namespace libVariant
       return false;
       break;
     case Variant::SINT8:
-      return mData.vsint8 < (int8_t)0;
+      return mData.as_sint8 < (int8_t)0;
       break;
     case Variant::SINT16:
-      return mData.vsint16 < (int16_t)0;
+      return mData.as_sint16 < (int16_t)0;
       break;
     case Variant::SINT32:
-      return mData.vsint32 < (int32_t)0;
+      return mData.as_sint32 < (int32_t)0;
       break;
     case Variant::SINT64:
-      return mData.vsint64 < (int64_t)0;
+      return mData.as_sint64 < (int64_t)0;
       break;
     case Variant::FLOAT32:
-      return mData.vfloat32 < (Variant::float32)0.0f;
+      return mData.as_float32 < (Variant::float32)0.0f;
       break;
     case Variant::FLOAT64:
-      return mData.vfloat64 < (Variant::float64)0.0;
+      return mData.as_float64 < (Variant::float64)0.0;
       break;
     case Variant::STRING:
       return false;
@@ -598,12 +598,12 @@ namespace libVariant
     case Variant::FLOAT32:
     case Variant::FLOAT64:
       mFormat = iValue.mFormat;
-      mData.allbits = iValue.mData.allbits;
+      mData.as_bits = iValue.mData.as_bits;
       break;
     case Variant::STRING:
       stringnify();
       mFormat = iValue.mFormat;
-      (*mData.str) = (*iValue.mData.str); //copy constructor
+      (*mData.as_str) = (*iValue.mData.as_str); //copy constructor
       break;
     default:
       assert( false ); /*error should not happen*/
@@ -675,37 +675,37 @@ namespace libVariant
     switch(iFormat)
     {
     case Variant::BOOL:
-      oResult = compareNativeTypes(iData.vbool, iValue);
+      oResult = compareNativeTypes(iData.as_bool, iValue);
       return true;
     case Variant::UINT8:
-      oResult = compareNativeTypes(iData.vuint8, iValue);
+      oResult = compareNativeTypes(iData.as_uint8, iValue);
       return true;
     case Variant::UINT16:
-      oResult = compareNativeTypes(iData.vuint16, iValue);
+      oResult = compareNativeTypes(iData.as_uint16, iValue);
       return true;
     case Variant::UINT32:
-      oResult = compareNativeTypes(iData.vuint32, iValue);
+      oResult = compareNativeTypes(iData.as_uint32, iValue);
       return true;
     case Variant::UINT64:
-      oResult = compareNativeTypes(iData.vuint64, iValue);
+      oResult = compareNativeTypes(iData.as_uint64, iValue);
       return true;
     case Variant::SINT8:
-      oResult = compareNativeTypes(iData.vsint8, iValue);
+      oResult = compareNativeTypes(iData.as_sint8, iValue);
       return true;
     case Variant::SINT16:
-      oResult = compareNativeTypes(iData.vsint16, iValue);
+      oResult = compareNativeTypes(iData.as_sint16, iValue);
       return true;
     case Variant::SINT32:
-      oResult = compareNativeTypes(iData.vsint32, iValue);
+      oResult = compareNativeTypes(iData.as_sint32, iValue);
       return true;
     case Variant::SINT64:
-      oResult = compareNativeTypes(iData.vsint64, iValue);
+      oResult = compareNativeTypes(iData.as_sint64, iValue);
       return true;
     case Variant::FLOAT32:
-      oResult = compareNativeTypes(iData.vfloat32, iValue);
+      oResult = compareNativeTypes(iData.as_float32, iValue);
       return true;
     case Variant::FLOAT64:
-      oResult = compareNativeTypes(iData.vfloat64, iValue);
+      oResult = compareNativeTypes(iData.as_float64, iValue);
       return true;
     case Variant::STRING:
       return false;
@@ -734,7 +734,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const uint8_t        & iValue) const
@@ -756,7 +756,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const uint16_t       & iValue) const
@@ -778,7 +778,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const uint32_t       & iValue) const
@@ -800,7 +800,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const uint64_t       & iValue) const
@@ -822,7 +822,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const int8_t        & iValue) const
@@ -844,7 +844,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const int16_t       & iValue) const
@@ -866,7 +866,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const int32_t       & iValue) const
@@ -888,7 +888,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const int64_t       & iValue) const
@@ -910,7 +910,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const float32      & iValue) const
@@ -932,7 +932,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 
   int Variant::compare(const float64      & iValue) const
@@ -954,7 +954,7 @@ namespace libVariant
 
     //current Variant's value is an unsimplifiable string
     assert( mFormat == Variant::STRING );
-    return compareStrings( (*mData.str), Variant(iValue).getString() );
+    return compareStrings( (*mData.as_str), Variant(iValue).getString() );
   }
 #endif
 
@@ -971,7 +971,7 @@ namespace libVariant
     {
       //both strings.
       //They can be compared using native c++ operators
-      return compareStrings( *mData.str, iValue );
+      return compareStrings( *mData.as_str, iValue );
     }
 
     //try to simplify the string argument to a native type
@@ -982,27 +982,27 @@ namespace libVariant
       switch(simplifiedValue.mFormat)
       {
       case Variant::BOOL:
-        return compare(simplifiedValue.mData.vbool);
+        return compare(simplifiedValue.mData.as_bool);
       case Variant::UINT8:
-        return compare(simplifiedValue.mData.vuint8);
+        return compare(simplifiedValue.mData.as_uint8);
       case Variant::UINT16:
-        return compare(simplifiedValue.mData.vuint16);
+        return compare(simplifiedValue.mData.as_uint16);
       case Variant::UINT32:
-        return compare(simplifiedValue.mData.vuint32);
+        return compare(simplifiedValue.mData.as_uint32);
       case Variant::UINT64:
-        return compare(simplifiedValue.mData.vuint64);
+        return compare(simplifiedValue.mData.as_uint64);
       case Variant::SINT8:
-        return compare(simplifiedValue.mData.vsint8);
+        return compare(simplifiedValue.mData.as_sint8);
       case Variant::SINT16:
-        return compare(simplifiedValue.mData.vsint16);
+        return compare(simplifiedValue.mData.as_sint16);
       case Variant::SINT32:
-        return compare(simplifiedValue.mData.vsint32);
+        return compare(simplifiedValue.mData.as_sint32);
       case Variant::SINT64:
-        return compare(simplifiedValue.mData.vsint64);
+        return compare(simplifiedValue.mData.as_sint64);
       case Variant::FLOAT32:
-        return compare(simplifiedValue.mData.vfloat32);
+        return compare(simplifiedValue.mData.as_float32);
       case Variant::FLOAT64:
-        return compare(simplifiedValue.mData.vfloat64);
+        return compare(simplifiedValue.mData.as_float64);
       case Variant::STRING:
         assert( false ); /*error should not happen*/
         return 0;
@@ -1024,29 +1024,29 @@ namespace libVariant
     switch(iValue.mFormat)
     {
     case Variant::BOOL:
-      return compare(iValue.mData.vbool);
+      return compare(iValue.mData.as_bool);
     case Variant::UINT8:
-      return compare(iValue.mData.vuint8);
+      return compare(iValue.mData.as_uint8);
     case Variant::UINT16:
-      return compare(iValue.mData.vuint16);
+      return compare(iValue.mData.as_uint16);
     case Variant::UINT32:
-      return compare(iValue.mData.vuint32);
+      return compare(iValue.mData.as_uint32);
     case Variant::UINT64:
-      return compare(iValue.mData.vuint64);
+      return compare(iValue.mData.as_uint64);
     case Variant::SINT8:
-      return compare(iValue.mData.vsint8);
+      return compare(iValue.mData.as_sint8);
     case Variant::SINT16:
-      return compare(iValue.mData.vsint16);
+      return compare(iValue.mData.as_sint16);
     case Variant::SINT32:
-      return compare(iValue.mData.vsint32);
+      return compare(iValue.mData.as_sint32);
     case Variant::SINT64:
-      return compare(iValue.mData.vsint64);
+      return compare(iValue.mData.as_sint64);
     case Variant::FLOAT32:
-      return compare(iValue.mData.vfloat32);
+      return compare(iValue.mData.as_float32);
     case Variant::FLOAT64:
-      return compare(iValue.mData.vfloat64);
+      return compare(iValue.mData.as_float64);
     case Variant::STRING:
-      return compare(*iValue.mData.str);
+      return compare(*iValue.mData.as_str);
     default:
       assert( false ); /*error should not happen*/
       return 0;
@@ -1440,7 +1440,7 @@ namespace libVariant
       if (modulo != 0)\
       {\
         forceFormat(Variant::FLOAT64);\
-        _applyOperator(iOperator, mData.vfloat64, static_cast<Variant::float64>(sourceVariable) );\
+        _applyOperator(iOperator, mData.as_float64, static_cast<Variant::float64>(sourceVariable) );\
         return (*this);\
       }\
     }
@@ -1463,8 +1463,8 @@ namespace libVariant
       case Variant::UINT32:
       case Variant::UINT64:
         //apply operator
-        PROCESS_DIVISION_VALIDATION(mData.vuint64, iValue.mData.vuint64);
-        _applyOperator(iOperator, mData.vuint64, iValue.mData.vuint64);
+        PROCESS_DIVISION_VALIDATION(mData.as_uint64, iValue.mData.as_uint64);
+        _applyOperator(iOperator, mData.as_uint64, iValue.mData.as_uint64);
         processInternalTypePromotion();
         return (*this);
       case Variant::SINT8:
@@ -1472,18 +1472,18 @@ namespace libVariant
       case Variant::SINT32:
       case Variant::SINT64:
         //apply operator
-        PROCESS_DIVISION_VALIDATION(mData.vsint64, iValue.mData.vsint64);
-        _applyOperator(iOperator, mData.vsint64, iValue.mData.vsint64);
+        PROCESS_DIVISION_VALIDATION(mData.as_sint64, iValue.mData.as_sint64);
+        _applyOperator(iOperator, mData.as_sint64, iValue.mData.as_sint64);
         processInternalTypePromotion();
         return (*this);
       case Variant::FLOAT32:
         //apply operator
-        _applyOperator(iOperator, mData.vfloat32, iValue.mData.vfloat32);
+        _applyOperator(iOperator, mData.as_float32, iValue.mData.as_float32);
         processInternalTypePromotion();
         return (*this);
       case Variant::FLOAT64:
         //apply operator
-        _applyOperator(iOperator, mData.vfloat64, iValue.mData.vfloat64);
+        _applyOperator(iOperator, mData.as_float64, iValue.mData.as_float64);
         processInternalTypePromotion();
         return (*this);
       case Variant::STRING:
@@ -1491,7 +1491,7 @@ namespace libVariant
         switch(iOperator)
         {
         case PLUS_EQUAL:
-          mData.str->append(*iValue.mData.str);
+          mData.as_str->append(*iValue.mData.as_str);
           break;
         case MINUS_EQUAL:
         case MULTIPLY_EQUAL:
@@ -1533,8 +1533,8 @@ namespace libVariant
     {
       //they can be compared as unsigned
       //apply operator
-      PROCESS_DIVISION_VALIDATION(mData.vuint64, iValue.mData.vuint64);
-      _applyOperator(iOperator, mData.vuint64, iValue.mData.vuint64);
+      PROCESS_DIVISION_VALIDATION(mData.as_uint64, iValue.mData.as_uint64);
+      _applyOperator(iOperator, mData.as_uint64, iValue.mData.as_uint64);
       processInternalTypePromotion();
 
       return (*this);
@@ -1545,8 +1545,8 @@ namespace libVariant
     {
       //they can be compared as signed
       //apply operator
-      PROCESS_DIVISION_VALIDATION(mData.vsint64, iValue.mData.vsint64);
-      _applyOperator(iOperator, mData.vsint64, iValue.mData.vsint64);
+      PROCESS_DIVISION_VALIDATION(mData.as_sint64, iValue.mData.as_sint64);
+      _applyOperator(iOperator, mData.as_sint64, iValue.mData.as_sint64);
       processInternalTypePromotion();
 
       return (*this);
@@ -1597,8 +1597,8 @@ namespace libVariant
       //they must be compared as the same type as the local variant
 
       //apply operator
-      PROCESS_DIVISION_VALIDATION(mData.vsint64, static_cast<int64_t>(iValue.mData.vuint64));
-      _applyOperator(iOperator, mData.vsint64, static_cast<int64_t>(iValue.mData.vuint64));
+      PROCESS_DIVISION_VALIDATION(mData.as_sint64, static_cast<int64_t>(iValue.mData.as_uint64));
+      _applyOperator(iOperator, mData.as_sint64, static_cast<int64_t>(iValue.mData.as_uint64));
       processInternalTypePromotion();
 
       return (*this);
@@ -1617,8 +1617,8 @@ namespace libVariant
       signFormatToggle();
 
       //apply operator
-      PROCESS_DIVISION_VALIDATION(mData.vsint64, iValue.mData.vsint64);
-      _applyOperator(iOperator, mData.vsint64, iValue.mData.vsint64);
+      PROCESS_DIVISION_VALIDATION(mData.as_sint64, iValue.mData.as_sint64);
+      _applyOperator(iOperator, mData.as_sint64, iValue.mData.as_sint64);
       processInternalTypePromotion();
 
       return (*this);
@@ -1686,9 +1686,9 @@ namespace libVariant
   void Variant::clear()
   {
     if (mFormat == Variant::STRING)
-      delete mData.str;
+      delete mData.as_str;
     mFormat = Variant::UINT8;
-    mData.allbits = 0;
+    mData.as_bits = 0;
   }
 
   void Variant::stringnify()
@@ -1696,7 +1696,7 @@ namespace libVariant
     if (mFormat != Variant::STRING)
     {
       clear();
-      mData.str = new Str();
+      mData.as_str = new Str();
       mFormat = Variant::STRING;
     }
   }
@@ -1713,15 +1713,15 @@ namespace libVariant
     //simplify a string
     if (mFormat == Variant::STRING)
     {
-      p.parse(mData.str->c_str());
+      p.parse(mData.as_str->c_str());
     }
     else if (mFormat == Variant::FLOAT32)
     {
-      p.parse(mData.vfloat32);
+      p.parse(mData.as_float32);
     }
     else if (mFormat == Variant::FLOAT64)
     {
-      p.parse(mData.vfloat64);
+      p.parse(mData.as_float64);
     }
 
     //apply any findings
@@ -1793,15 +1793,15 @@ namespace libVariant
     case Variant::UINT16:
     case Variant::UINT32:
     case Variant::UINT64:
-      if (mData.vuint64 > (uint64_t)uint32_max)
+      if (mData.as_uint64 > (uint64_t)uint32_max)
       {
         mFormat = Variant::UINT64;
       }
-      else if (mData.vuint64 > (uint64_t)uint16_max)
+      else if (mData.as_uint64 > (uint64_t)uint16_max)
       {
         mFormat = Variant::UINT32;
       }
-      else if (mData.vuint64 > (uint64_t)uint8_max)
+      else if (mData.as_uint64 > (uint64_t)uint8_max)
       {
         mFormat = Variant::UINT16;
       }
@@ -1810,15 +1810,15 @@ namespace libVariant
     case Variant::SINT16:
     case Variant::SINT32:
     case Variant::SINT64:
-      if (mData.vsint64 > (int64_t)sint32_max)
+      if (mData.as_sint64 > (int64_t)sint32_max)
       {
         mFormat = Variant::SINT64;
       }
-      else if (mData.vsint64 > (int64_t)sint16_max)
+      else if (mData.as_sint64 > (int64_t)sint16_max)
       {
         mFormat = Variant::SINT32;
       }
-      else if (mData.vsint64 > (int64_t)sint8_max)
+      else if (mData.as_sint64 > (int64_t)sint8_max)
       {
         mFormat = Variant::SINT16;
       }

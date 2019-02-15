@@ -1691,9 +1691,6 @@ TEST_F(TestVariant, testUInt8WrapAroundOverflow)
   expectedWrapAroundValue += addition;
   ASSERT_TRUE( expectedWrapAroundValue < 250);
 
-  //expect that maximum value is returned if requested as the original internal type
-  ASSERT_EQ( 255, v.getUInt8());
-
   //expect that a user can still get a value as unsigned and get the wrap around value
   uint8_t wrapAroundValue = v.getUInt64();
   ASSERT_EQ( expectedWrapAroundValue, wrapAroundValue);
@@ -1721,9 +1718,6 @@ TEST_F(TestVariant, testSInt8WrapAroundOverflow)
   int8_t expectedWrapAroundValue = value;
   expectedWrapAroundValue += addition;
   ASSERT_TRUE( expectedWrapAroundValue < 125);
-
-  //expect that maximum value is returned if requested as the original internal type
-  ASSERT_EQ( 127, v.getSInt8());
 
   //expect that a user can still get a value as unsigned and get the wrap around value
   int8_t wrapAroundValue = v.getSInt64();

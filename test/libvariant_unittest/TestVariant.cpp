@@ -1592,6 +1592,82 @@ TEST_F(TestVariant, testAutoConversionToFloat)
   }
 }
 
+TEST_F(TestVariant, testReadmeExamples)
+{
+  //from README.md
+ 
+  //## Automatic internal type promotion ##
+ 
+  //### Floating point promotion ###
+  {
+    Variant var;
+    var = 5; // sets the internal type to 'int' (SInt16 / SInt32).
+    var += 1.5; // promotes the internal type to double (Float64)
+    Variant::float64 f_value = var.getFloat64(); //internal value is set to 6.5.
+    ASSERT_EQ( Variant::FLOAT64, var.getFormat());
+    ASSERT_NEAR(f_value, 6.5, 0.0000000000001f);
+  }
+ 
+  {
+    Variant var;
+    var.setSInt16(5);
+    var = var / 2;
+    Variant::float64 f_value = var.getFloat64(); // returns 2.5
+    int16_t i_value = var.getSInt16(); // returns 2
+    ASSERT_NEAR(f_value, 2.5f, 0.000001f);
+    ASSERT_EQ(2, i_value);
+  }
+ 
+  //### Value overflow promotion ###
+  {
+    int8_t value = 120;
+    int8_t addition = 10;
+    Variant var;
+    var.set(value);
+   var += addition; // promotes the internal type to SInt16 with value 130 instead of overflow value.
+    int8_t  overflow_value = var.getSInt8(); // results in value -126
+    int16_t promoted_value = var.getSInt16(); // results in value 130
+    ASSERT_EQ( Variant::SINT16, var.getFormat());
+    ASSERT_EQ(-126, overflow_value);
+    ASSERT_EQ( 130, promoted_value);
+  }
+ 
+  //# Limitations #
+ 
+  //## Automatic unsigned to signed conversions ##
+  {
+    uint16_t value = 4;
+    int16_t multiplicator = 10;
+    Variant var;
+    var.set(value);
+    var = var * multiplicator;
+    //var --> internal type is now sint16
+    ASSERT_EQ( Variant::SINT16, var.getFormat());
+  }
+ 
+  //test inverse
+  {
+    int16_t value = 10;
+    uint16_t multiplicator = 4;
+    Variant var;
+    var.set(value);
+    var = var * multiplicator;
+    //var --> internal type stays sint16 (is NOT CHANGED to uint16)
+    ASSERT_EQ( Variant::SINT16, var.getFormat());
+  }
+ 
+  {
+    //uint32 vs sint16 --> sint32
+    uint32_t value = 123456;
+    int16_t multiplicator = 100;
+    Variant var;
+    var.set(value);
+    var = var * multiplicator;
+    //var --> internal type is now sint32
+    ASSERT_EQ( Variant::SINT32, var.getFormat());
+  }
+}
+
 TEST_F(TestVariant, testUInt8WrapAroundOverflow)
 {
   uint8_t value = 250;

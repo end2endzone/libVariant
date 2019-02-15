@@ -28,7 +28,7 @@ Statistics:
 
 # Purpose #
 
-The libVariant library allows one to create an instance of `Variant` class. The class is a type safe and value safe union between all known basic c++ types.
+The libVariant library allows one to create an instance of `Variant` class which is a type safe and value safe union between all known basic c++ types.
 An instance of a Variant class encapsulates a single value of any c++ type:
 * 8, 16, 32 and 64 bit signed and unsigned integers
 * 32 and 64 bit floating points
@@ -38,7 +38,7 @@ The class can easily convert between any type of data when required and automati
 
 The library is useful for declaring objects, interfaces, plugins or APIs to be type-independent. The need for a variant type is mostly required in designs where one does not want to implement conversion of c++ types using templates in every situation. Programmers can use the same procedures and functions to process variables with different internal representations (integers, strings, ...) without converting any data.
 
-Without the `Variant` class, a copy of the same procedures and functions would have to be implemented, each with their different types of data.
+Without the `Variant` class, multiple copies of the same function must be implemented, each with their different type of data.
 
 
 
@@ -47,7 +47,7 @@ Without the `Variant` class, a copy of the same procedures and functions would h
 
 The main features of the library are:
 
-* Compatible with the C++ 1998/2003 standard.
+* Compatible with the C++ 2011 standard.
 * Type-safe, value-safe unions between all c++ basic types, including strings.
 * Holds any numeric values up to 64 bits.
 * Converts between any type of data as required.
@@ -64,7 +64,7 @@ The following instructions show how to use the library with multiple source code
 
 ## Assign a value ##
 
-Assign the value `5` of type `int` (SInt32) to a Variant.
+Assign the value `5` of type `int` (SInt16 / SInt32) to a Variant.
 
 ```cpp
 Variant var;
@@ -75,7 +75,7 @@ var = 5;
 
 ## Convert to string ##
 
-Assign the value `5` of type `int` (SInt32) and read the value as a `string`.
+Assign the value `5` of type `int` (SInt16 / SInt32) and read the value as a `string`.
 
 ```cpp
 Variant var;
@@ -85,15 +85,51 @@ std::string my_str = var.getString();
 
 
 
-## Handle different type ##
+## Automatic internal type promotion ##
 
-Assign the value `5` of type `int` (SInt32) and then add `1.5` of type `double` (Float64). The internal type is modified as needed.
+The class can also do automatic conversions of the internal type to another type in order to minimize the loss of data.
+
+
+
+### Floating point promotion ###
+
+Assign the value `5` of type `int` (SInt16 / SInt32) and then add `1.5` of type `double` (Float64).
+
+The internal type of the variant will be promoted to hold the expected result.
 
 ```cpp
 Variant var;
-var = 5; // sets the internal type to 'int' (SInt32).
-var += 1.5d; // promotes the internal type to double (Float64) and sets the internal value to 6.5.
-std::string my_str = var.getString();
+var = 5; // sets the internal type to 'int' (SInt16 / SInt32).
+var += 1.5; // promotes the internal type to double (Float64)
+Variant::float64 f_value = var.getFloat64(); //internal value is set to 6.5.
+```
+
+If a Variant class with an internal type set to `SINT16` and a value of 5 is divided by 2 (`SINT16`) then the internal value of the class will automatically convert to `FLOAT64` to be able to hold a value of 2.5.
+
+However, if the user still requests the internal value as `SINT16`, then the returned value will be rounded down to 2 which is the same result as if the division would have been processed using the native c++ type `SINT16`.
+
+```cpp
+Variant var;
+var.setSInt16(5);
+var = var / 2;
+Variant::float64 f_value = var.getFloat64(); // returns 2.5
+int16_t i_value = var.getSInt16(); // returns 2
+```
+
+
+
+### Value overflow promotion ###
+
+The class is protected against unintentional overflows. Here is the process of computing intentional overflows:
+
+```cpp
+int8_t value = 120;
+int8_t addition = 10;
+Variant var;
+var.set(value);
+var += addition; // promotes the internal type to SInt16 with value 130 instead of overflow value.
+int8_t  overflow_value = var.getSInt8(); // results in value -126
+int16_t promoted_value = var.getSInt16(); // results in value 130
 ```
 
 
@@ -119,7 +155,7 @@ An application that display a [property sheet](http://www.google.ca/search?q=pro
 
 
 
-## Implementing change-independent plugins ##
+## Implementing type-independent plugins ##
 
 By defining plugin APIs with Variant class, the plugin author or the application can change their data-type requirements without affecting each other.
 
@@ -127,7 +163,7 @@ Plugin developers can change how they process variables with different internal 
 
 
 
-## Parsing values from text file ##
+## Parsing values from configuration files ##
 
 Parsing an *.ini file always used to return string values. Parsing something like `numChild=3` would return a `const char *` with the value `3` instead of `int value = 3;`.
 
@@ -152,98 +188,45 @@ Using the Variant attributes, one can modify the attributes of a class using the
 
 
 
-## Signed to Unsigned value clamping ##
+## Automatic unsigned to signed conversions ##
 
-The class is designed to prevent erroneous conversion issues which could lead to incorrect memory access or out of bounds issues.
+A signed type always have priority over an unsigned type.
 
-***This method is considered safer on multiple scenarios. It is also different from static casting which would keep all bits identical to the originals resulting in value 65533.***
-
-For instance, if a Variant class with an internal type set to `SINT16` with a value of `-3`, is then retrieved as an `UINT16` the class will "clamp" the returned value to `0` since `-3` cannot be represented as an `UINT16`.
-
-```cpp
-Variant var;
-var.setSInt16(-3);
-var.getUInt16() ? clamped to minimum value of uint16 (0)
-```
-
-The same is also true for the other way around: if a Variant is set to value 65500 (`UINT16`) and is retrieved as a `SINT16`, then the returned value would be `32767` which is the maximum value of a `SINT16`.
-
-```cpp
-Variant var;
-var.setUInt16(65500);
-var.getSInt16() ? clamped to maximum value of sint16 (32767 )
-```
-
-To prevent any data loss and conversion clamping, it is suggested to retrieve the internal value of a `Variant` using the same type as its internal type.
-
-Keep in mind that for most other scenarios, keeping the internal value of a Variant to be restricted to positive signed integers is largely enough for most scenarios allowing values ranging from 0 to +2147483647.
-
-
-
-## Out of range value clamping ##
-
-The Variant class is also build to automatically prevent loss of data when applying mathematical operations.
-
-For instance, if a Variant class with an internal type set to `SINT16` and a value of 32000, is multiplied by 10 (`SINT16`) then the internal type of the class will automatically
-be promoted to `SINT32` to be able to hold a value of 320000.
-
-However, if the user still requests the internal value as `SINT16`, then the returned value will be clamped to 32767 which is the maximum value of a `SINT16`.
-
-```cpp
-Variant var;
-var.setSInt16(32000);
-var = var * 10;
-//var --> sint32 with a value of 320000
-```
-
-
-
-## Unsigned to signed automatic conversions ##
-
-If the internal value of a Variant is set to any unsigned value and a mathematical operator is applied to the Variant using a signed value then the internal type of the Variant will change from unsigned to signed.
+If the internal value of a Variant is set to an unsigned value and a mathematical operator is applied to the Variant using a signed value (of the same size) then the internal type of the Variant will change from unsigned to signed.
 
 ***Note that the expected value from the mathematical operation is always preserved. The only change that may be unnoticed is the internal type changing from unsigned to signed.***
 
-For example, having a Variant set to value 16 (`UINT16`) is multiplied by value 2 (`SINT16`), then the internal type will automatically change to `SINT16` with a value of 32.
+For example, having a Variant set to value 4 (`UINT16`) is multiplied by value 10 (`SINT16`), then the internal type will automatically change to `SINT16` with a value of 40.
 
 ```cpp
+uint16_t value = 4;
+int16_t multiplicator = 10;
 Variant var;
-var.setUInt16(16);
-var = var * 2;
+var.set(value);
+var = var * multiplicator;
 //var --> internal type is now sint16
 ```
 
-
-
-## Automatic conversions to floating point ##
-
-The class can also do automatic conversions of the internal type to floating point in order to minimize the loss of data.
-
-If a Variant class with an internal type set to `SINT16` and a value of 5 is divided by 2 (`SINT16`) then the internal value of the class will automatically convert to `FLOAT64` to be able to hold a value of 2.5.
-
-However, if the user still requests the internal value as `SINT16`, then the returned value will be rounded down to 2 which is the same result as if the division would have been processed using the native c++ type `SINT16`.
+***Note that inverse operation DOES NOT convert the internal value to (`UINT16`)***.
 
 ```cpp
-Variant var;
-var.setSInt16(5);
-var = var / 2;
-var.getFloat64() // returns 2.5
-var.getSInt16() // returns 2
-```
-
-
-
-## Handling value overflows ##
-
-The class is protected against unintentional overflows. Here is the process of computing intentional overflows:
-
-```cpp
-Variant::uint8 value = 250;
-Variant::sint8 addition = 10;
+int16_t value = 10;
+uint16_t multiplicator = 4;
 Variant var;
 var.set(value);
-var += addition; // promotes to value 260 instead of overflow value 4.
-Variant::uint8 overflowValue = var.getUInt64(); // results in value 4
+var = var * multiplicator;
+//var --> internal type stays sint16 (internal type is NOT CHANGED to uint16)
+```
+
+If the internal type is unsigned (`UINT32`) and the operator's type is signed but of a different bit-size (`SINT16`), the conversion to a signed type also occurs but the size of the new type (in bits) is as big as the biggest type (`SINT32`).
+
+```cpp
+uint32_t value = 123456;
+int16_t multiplicator = 100;
+Variant var;
+var.set(value);
+var = var * multiplicator;
+//var --> internal type is now sint32
 ```
 
 

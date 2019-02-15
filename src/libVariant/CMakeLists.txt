@@ -10,11 +10,8 @@ add_library(libvariant
   FloatLimits.h
   StringEncoder.h
   StringParser.h
-  TypeCast.h
   TypeInfo.h
-  TypeUnion.h
   Variant.cpp
-  VariantTemplates.h
 )
 
 # Force CMAKE_DEBUG_POSTFIX for executables

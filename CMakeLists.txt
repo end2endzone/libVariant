@@ -61,8 +61,8 @@ MESSAGE( STATUS "CMAKE_SYSTEM_PROCESSOR:   " ${CMAKE_SYSTEM_PROCESSOR} )
 ##############################################################################################################################################
 
 # Product version according to Semantic Versioning v2.0.0 https://semver.org/
-SET(LIBVARIANT_VERSION_MAJOR 2)
-SET(LIBVARIANT_VERSION_MINOR 2)
+SET(LIBVARIANT_VERSION_MAJOR 3)
+SET(LIBVARIANT_VERSION_MINOR 0)
 SET(LIBVARIANT_VERSION_PATCH 0)
 set(LIBVARIANT_VERSION ${LIBVARIANT_VERSION_MAJOR}.${LIBVARIANT_VERSION_MINOR}.${LIBVARIANT_VERSION_PATCH})
 

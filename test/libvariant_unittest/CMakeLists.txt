@@ -9,17 +9,11 @@ add_executable(libvariant_unittest
   TestFloatLimits.h
   TestStringEncoder.cpp
   TestStringEncoder.h
-  TestTypeCastSaturation.cpp
-  TestTypeCastSaturation.h
   TestTypeInfo.cpp
   TestTypeInfo.h
-  TestTypeUnion.cpp
-  TestTypeUnion.h
   TestVariant.cpp
   TestVariant.h
   TestVariant.testVbScriptIdenticalBehavior.input.txt
-  TestVariantTemplate.cpp
-  TestVariantTemplate.h
 )
 
 # Unit test projects requires to link with pthread if also linking with gtest

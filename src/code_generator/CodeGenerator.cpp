@@ -608,105 +608,6 @@ void generateBooleanOperatorDeclarations(const char * iOperator)
   printf("\n");
 }
 
-void generateGetVariantFormatSpecializations()
-{
-  printf("  //---------------------------------------------\n");
-  printf("  // getVariantFormat() template specializations \n");
-  printf("  //---------------------------------------------\n");
-
-  //-------------------
-  // getVariantFormat()
-  //-------------------
-  size_t numInnerTypes = getNumInnerTypes();
-  for(size_t i=0; i<numInnerTypes; i++)
-  {
-    const INNER_TYPE & _type = getInnerType(i);
-    printf("  template<> inline");
-    printf("  inline Variant::VariantFormat getVariantFormat<Variant::%s>(const Variant::%s &)",
-      _type.typedefName,
-      _type.typedefName
-      );
-    printf("  {");
-    printf("    return Variant::%s;", _type.variantFormatName);
-    printf("  }\n");
-  }
-
-  //printf("    //other fundamental types which are derivative of one of VariantFormat\n");
-  DerivativeTypeList derivatives = getDerivativesTypes();
-  for(size_t i=0; i<derivatives.size(); i++)
-  {
-    const DERIVATIVE_TYPE & d = derivatives[i];
-    
-    printf("  template<> inline");
-    printf("  inline Variant::VariantFormat getVariantFormat<%s>(const %s &)",
-      d.derivativeTypeName.c_str(),
-      d.derivativeTypeName.c_str()
-      );
-    printf("  {");
-    printf("    return Variant::%s;", d.functionName.c_str() );
-    printf("  }\n");
-  }
-
-  printf("\n");
-}
-
-void generateIsNativelyComparableSpecializations()
-{
-  printf("  //-------------------------------------------------\n");
-  printf("  // isNativelyComparable() template specializations \n");
-  printf("  //-------------------------------------------------\n");
-  StringVector types;
-  size_t numInnerTypes = getNumInnerTypes();
-  for(size_t i=0; i<numInnerTypes; i++)
-  {
-    const INNER_TYPE & _type = getInnerType(i);
-    types.push_back( std::string("Variant::") + std::string(_type.typedefName) );
-  }
-
-  DerivativeTypeList derivatives = getDerivativesTypes();
-  for(size_t i=0; i<derivatives.size(); i++)
-  {
-    const DERIVATIVE_TYPE & d = derivatives[i];
-    types.push_back( d.derivativeTypeName );
-  }
-
-  for(size_t i=0; i<types.size(); i++)
-  {
-    for(size_t j=0; j<types.size(); j++)
-    {
-      const std::string & _type1 = types[i];
-      const std::string & _type2 = types[j];
-      if ( (_type1 == "Variant::Str" && _type2 == "Variant::Str") )
-      {
-        //std::string can be compared with < > == and != operators
-      }
-      else
-      {
-        if (_type1 == "Variant::Str"  ||
-            _type1 == "Variant::CStr" ||
-            _type2 == "Variant::Str"  ||
-            _type2 == "Variant::CStr"  )
-        {
-          //not natively comparable
-          continue;
-        }
-      }
-      printf("  template<> inline");
-      printf("  inline bool isNativelyComparable<%s, %s>(const %s &, const %s &)",
-        _type1.c_str(),
-        _type2.c_str(),
-        _type1.c_str(),
-        _type2.c_str()
-        );
-      printf("  {");
-      printf("    return true;");
-      printf("  }\n");
-    }
-  }
-
-  printf("\n");
-}
-
 void generateDeclarations()
 {
   generateConstructorsDeclarations();
@@ -734,8 +635,6 @@ void generateDeclarations()
 
   generateCompareDeclarations();
   generateCompareDefinitions();
-  generateGetVariantFormatSpecializations();
-  generateIsNativelyComparableSpecializations();
 }
 
 void generateDefinitions()

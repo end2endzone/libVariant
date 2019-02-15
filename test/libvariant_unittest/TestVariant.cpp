@@ -8,7 +8,6 @@
 #include <stdint.h>     /* in32_t, int64_t */
 
 #include "libvariant/variant.h"
-#include "VariantTemplates.h"
 
 #include "gtesthelper.h"
 #include "TestVariant.h"
@@ -248,7 +247,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, 0 );
     ASSERT_EQ( j, 0 );
     ASSERT_EQ( k, "false" );
-    ASSERT_EQ( l, value );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -280,7 +279,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, 1 );
     ASSERT_EQ( j, 1 );
     ASSERT_EQ( k, "true" );
-    ASSERT_EQ( l, value );
+    ASSERT_TRUE( l );
   }
 
   //assert uint8_t to *
@@ -314,7 +313,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "0" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -339,14 +338,14 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, value );
     ASSERT_EQ( c, value );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( e, (int8_t)uint8_max ); // overflow
     ASSERT_EQ( f, value );
     ASSERT_EQ( g, value );
     ASSERT_EQ( h, value );
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "255" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert int8_t to *
@@ -369,10 +368,10 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_EQ( a, uint8_min );
-    ASSERT_EQ( b, uint16_min );
-    ASSERT_EQ( c, uint32_min );
-    ASSERT_EQ( d, uint64_min );
+    ASSERT_EQ( a, (uint8_t )sint8_min ); // overflow
+    ASSERT_EQ( b, (uint16_t)sint8_min ); // overflow
+    ASSERT_EQ( c, (uint32_t)sint8_min ); // overflow
+    ASSERT_EQ( d, (uint64_t)sint8_min ); // overflow
     ASSERT_EQ( e, value );
     ASSERT_EQ( f, value );
     ASSERT_EQ( g, value );
@@ -380,7 +379,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "-128" );
-    ASSERT_EQ( l, false );
+    ASSERT_TRUE( l );
   }
   {
     Variant v;
@@ -412,7 +411,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "127" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert uint16_t to *
@@ -446,7 +445,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "0" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -471,14 +470,14 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, value );
     ASSERT_EQ( c, value );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
-    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( e, (int8_t )uint16_max ); // overflow
+    ASSERT_EQ( f, (int16_t)uint16_max ); // overflow
     ASSERT_EQ( g, value );
     ASSERT_EQ( h, value );
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "65535" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert int16_t to *
@@ -501,18 +500,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_EQ( a, uint8_min );
-    ASSERT_EQ( b, uint16_min );
-    ASSERT_EQ( c, uint32_min );
-    ASSERT_EQ( d, uint64_min );
-    ASSERT_EQ( e, sint8_min );
+    ASSERT_EQ( a, (uint8_t )sint16_min ); // overflow
+    ASSERT_EQ( b, (uint16_t)sint16_min ); // overflow
+    ASSERT_EQ( c, (uint32_t)sint16_min ); // overflow
+    ASSERT_EQ( d, (uint64_t)sint16_min ); // overflow
+    ASSERT_EQ( e, (int8_t )sint16_min );
     ASSERT_EQ( f, value );
     ASSERT_EQ( g, value );
     ASSERT_EQ( h, value );
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "-32768" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -537,14 +536,14 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, value );
     ASSERT_EQ( c, value );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
+    ASSERT_EQ( e, (int8_t )sint16_max ); //overflow
     ASSERT_EQ( f, value );
     ASSERT_EQ( g, value );
     ASSERT_EQ( h, value );
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "32767" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert uint32_t to *
@@ -578,7 +577,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "0" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -603,9 +602,9 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, uint16_max );
     ASSERT_EQ( c, value );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
-    ASSERT_EQ( f, sint16_max );
-    ASSERT_EQ( g, sint32_max );
+    ASSERT_EQ( e, (int8_t )uint32_max );
+    ASSERT_EQ( f, (int16_t)uint32_max );
+    ASSERT_EQ( g, (int32_t)uint32_max );
     ASSERT_EQ( h, value );
     #ifdef _WIN64
     #else
@@ -613,7 +612,7 @@ TEST_F(TestVariant, testConversions)
     #endif
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "4294967295" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert int32_t to *
@@ -636,18 +635,18 @@ TEST_F(TestVariant, testConversions)
     bool      l = v.getBool();
     //const char * tmp = k.c_str();
 
-    ASSERT_EQ( a, uint8_min );
-    ASSERT_EQ( b, uint16_min );
-    ASSERT_EQ( c, uint32_min );
-    ASSERT_EQ( d, uint64_min );
-    ASSERT_EQ( e, sint8_min );
-    ASSERT_EQ( f, sint16_min );
+    ASSERT_EQ( a, (uint8_t )sint32_min );
+    ASSERT_EQ( b, (uint16_t)sint32_min );
+    ASSERT_EQ( c, (uint32_t)sint32_min );
+    ASSERT_EQ( d, (uint64_t)sint32_min );
+    ASSERT_EQ( e, (int8_t )sint32_min );
+    ASSERT_EQ( f, (int16_t)sint32_min );
     ASSERT_EQ( g, value );
     ASSERT_EQ( h, value );
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "-2147483648" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -672,14 +671,14 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, uint16_max );
     ASSERT_EQ( c, value );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
-    ASSERT_EQ( f, sint16_max );
+    ASSERT_EQ( e, (int8_t )sint32_max );
+    ASSERT_EQ( f, (int16_t)sint32_max );
     ASSERT_EQ( g, value );
     ASSERT_EQ( h, value );
     ASSERT_GT( i, (value - 100) ); //precision lost
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "2147483647" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert uint64_t to *
@@ -713,7 +712,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "0" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -738,14 +737,14 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, uint16_max );
     ASSERT_EQ( c, uint32_max );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
-    ASSERT_EQ( f, sint16_max );
-    ASSERT_EQ( g, sint32_max );
-    ASSERT_EQ( h, sint64_max );
+    ASSERT_EQ( e, (int8_t )uint64_max );
+    ASSERT_EQ( f, (int16_t)uint64_max );
+    ASSERT_EQ( g, (int32_t)uint64_max );
+    ASSERT_EQ( h, (int64_t)uint64_max );
     ASSERT_GT( i, (sint64_max - 100) ); //precision lost, uint64_t value can't be reached in SINT64 format
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "18446744073709551615" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert int64_t to *
@@ -771,15 +770,15 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( a, uint8_min );
     ASSERT_EQ( b, uint16_min );
     ASSERT_EQ( c, uint32_min );
-    ASSERT_EQ( d, uint64_min );
-    ASSERT_EQ( e, sint8_min );
-    ASSERT_EQ( f, sint16_min );
-    ASSERT_EQ( g, sint32_min );
+    ASSERT_EQ( d, (uint64_t)sint64_min );
+    ASSERT_EQ( e, (int8_t )sint64_min );
+    ASSERT_EQ( f, (int16_t)sint64_min );
+    ASSERT_EQ( g, (int32_t)sint64_min );
     ASSERT_EQ( h, value );
     ASSERT_EQ( i, value );
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "-9223372036854775808" );
-    ASSERT_EQ( l, false );
+    ASSERT_FALSE( l );
   }
   {
     Variant v;
@@ -804,9 +803,9 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( b, uint16_max );
     ASSERT_EQ( c, uint32_max );
     ASSERT_EQ( d, value );
-    ASSERT_EQ( e, sint8_max );
-    ASSERT_EQ( f, sint16_max );
-    ASSERT_EQ( g, sint32_max );
+    ASSERT_EQ( e, (int8_t )sint64_max ) ;
+    ASSERT_EQ( f, (int16_t)sint64_max );
+    ASSERT_EQ( g, (int32_t)sint64_max );
     ASSERT_EQ( h, value );
     #ifdef _WIN64
     #else
@@ -814,7 +813,7 @@ TEST_F(TestVariant, testConversions)
     ASSERT_GT( j, (value - 100) ); //precision lost
     #endif
     ASSERT_EQ( k, "9223372036854775807" );
-    ASSERT_EQ( l, true );
+    ASSERT_TRUE( l );
   }
 
   //assert simple data lost
@@ -824,7 +823,7 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(-3.5);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value == 0 );
+      ASSERT_TRUE( uint8Value == (uint8_t)-3 );
       ASSERT_TRUE( sint8Value == -3 );
     }
 
@@ -843,7 +842,7 @@ TEST_F(TestVariant, testConversions)
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
       ASSERT_TRUE( uint8Value == 200 );
-      ASSERT_TRUE( sint8Value == 127 );
+      ASSERT_TRUE( sint8Value == (int8_t)200 );
     }
 
     {
@@ -851,8 +850,8 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(2000000.0);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value == 255 );
-      ASSERT_TRUE( sint8Value == 127 );
+      ASSERT_TRUE( uint8Value ==  128 );
+      ASSERT_TRUE( sint8Value == -128 );
     }
 
     {
@@ -860,7 +859,7 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(-2000000.0);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value == 0 );
+      ASSERT_TRUE( uint8Value ==  128 );
       ASSERT_TRUE( sint8Value == -128 );
     }
   }
@@ -1593,20 +1592,80 @@ TEST_F(TestVariant, testAutoConversionToFloat)
   }
 }
 
-TEST_F(TestVariant, testSignedToUnsignedValueClamping)
+TEST_F(TestVariant, testReadmeExamples)
 {
-  int16_t value = -3;
-  Variant v = value;
-  uint16_t clampedValue = v.getUInt16();
-  ASSERT_EQ( 0, clampedValue ); //clamped to minimum value of uint16_t
-}
-
-TEST_F(TestVariant, testUnsignedToSignedValueClamping)
-{
-  uint16_t value = 65500;
-  Variant v = value;
-  int16_t clampedValue = v.getSInt16();
-  ASSERT_EQ( 32767, clampedValue ); //clamped to maximum value of int16_t
+  //from README.md
+ 
+  //## Automatic internal type promotion ##
+ 
+  //### Floating point promotion ###
+  {
+    Variant var;
+    var = 5; // sets the internal type to 'int' (SInt16 / SInt32).
+    var += 1.5; // promotes the internal type to double (Float64)
+    Variant::float64 f_value = var.getFloat64(); //internal value is set to 6.5.
+    ASSERT_EQ( Variant::FLOAT64, var.getFormat());
+    ASSERT_NEAR(f_value, 6.5, 0.0000000000001f);
+  }
+ 
+  {
+    Variant var;
+    var.setSInt16(5);
+    var = var / 2;
+    Variant::float64 f_value = var.getFloat64(); // returns 2.5
+    int16_t i_value = var.getSInt16(); // returns 2
+    ASSERT_NEAR(f_value, 2.5f, 0.000001f);
+    ASSERT_EQ(2, i_value);
+  }
+ 
+  //### Value overflow promotion ###
+  {
+    int8_t value = 120;
+    int8_t addition = 10;
+    Variant var;
+    var.set(value);
+   var += addition; // promotes the internal type to SInt16 with value 130 instead of overflow value.
+    int8_t  overflow_value = var.getSInt8(); // results in value -126
+    int16_t promoted_value = var.getSInt16(); // results in value 130
+    ASSERT_EQ( Variant::SINT16, var.getFormat());
+    ASSERT_EQ(-126, overflow_value);
+    ASSERT_EQ( 130, promoted_value);
+  }
+ 
+  //# Limitations #
+ 
+  //## Automatic unsigned to signed conversions ##
+  {
+    uint16_t value = 4;
+    int16_t multiplicator = 10;
+    Variant var;
+    var.set(value);
+    var = var * multiplicator;
+    //var --> internal type is now sint16
+    ASSERT_EQ( Variant::SINT16, var.getFormat());
+  }
+ 
+  //test inverse
+  {
+    int16_t value = 10;
+    uint16_t multiplicator = 4;
+    Variant var;
+    var.set(value);
+    var = var * multiplicator;
+    //var --> internal type stays sint16 (is NOT CHANGED to uint16)
+    ASSERT_EQ( Variant::SINT16, var.getFormat());
+  }
+ 
+  {
+    //uint32 vs sint16 --> sint32
+    uint32_t value = 123456;
+    int16_t multiplicator = 100;
+    Variant var;
+    var.set(value);
+    var = var * multiplicator;
+    //var --> internal type is now sint32
+    ASSERT_EQ( Variant::SINT32, var.getFormat());
+  }
 }
 
 TEST_F(TestVariant, testUInt8WrapAroundOverflow)

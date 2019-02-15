@@ -641,12 +641,6 @@ namespace libVariant
     void processInternalTypePromotion();
 
     /// <summary>
-    /// Update the internal value of the Variant to match the internal type ranges.
-    /// </summary>
-    /// <seealso cref="processInternalTypePromotion"/>
-    void processInternalValueSaturation();
-
-    /// <summary>
     /// Forces the internal type of the Variant to be converted
     /// from signed to unsigned or from unsigned to signed.
     /// Note: The internal values of the Variant remains unchanged.

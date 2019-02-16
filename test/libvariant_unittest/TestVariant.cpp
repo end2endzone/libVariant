@@ -2886,10 +2886,6 @@ TEST_F(TestVariant, testNativeTypesSize)
   ASSERT_EQ(8, sizeof(int64_t));
   ASSERT_EQ(4, sizeof(Variant::float32));
   ASSERT_EQ(8, sizeof(Variant::float64));
-
-  ASSERT_EQ(sizeof(uint32_t), sizeof(unsigned long));
-  ASSERT_EQ(sizeof(uint32_t), sizeof(unsigned long int));
-  ASSERT_EQ(sizeof(Variant::float64), sizeof(long double));
 }
 
 template <typename T>

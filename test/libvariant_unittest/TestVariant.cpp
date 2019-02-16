@@ -606,10 +606,11 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( f, (int16_t)uint32_max );
     ASSERT_EQ( g, (int32_t)uint32_max );
     ASSERT_EQ( h, value );
-    #ifdef _WIN64
-    #else
-    ASSERT_GT( i, (value - 100) ); //precision lost
-    #endif
+
+    //32 bit and 64 bit platform behaves differently for 32 bit floating point
+    //assert that 32 bit floating point is a "big" value
+    ASSERT_GT( i, (value - (uint32_t)10000 /*0.00001e+09*/) );
+
     ASSERT_EQ( j, value );
     ASSERT_EQ( k, "4294967295" );
     ASSERT_TRUE( l );
@@ -807,11 +808,12 @@ TEST_F(TestVariant, testConversions)
     ASSERT_EQ( f, (int16_t)sint64_max );
     ASSERT_EQ( g, (int32_t)sint64_max );
     ASSERT_EQ( h, value );
-    #ifdef _WIN64
-    #else
-    ASSERT_GT( i, (value - 100) ); //precision lost
-    ASSERT_GT( j, (value - 100) ); //precision lost
-    #endif
+
+    //32 bit and 64 bit platform behaves differently for 32 bit and 64 bit floating point
+    //assert that 32 bit and 64 bit floating point are a "big" value
+    ASSERT_GT( i, (value - (int64_t)10000000000000ll /*0.00001e+18*/) );
+    ASSERT_GT( j, (value - (int64_t)10000000000000ll /*0.00001e+18*/) );
+
     ASSERT_EQ( k, "9223372036854775807" );
     ASSERT_TRUE( l );
   }
@@ -823,8 +825,8 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(-3.5);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value == (uint8_t)-3 );
-      ASSERT_TRUE( sint8Value == -3 );
+      ASSERT_EQ( uint8Value, (uint8_t)-3 );
+      ASSERT_EQ( sint8Value, -3 );
     }
 
     {
@@ -832,8 +834,8 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(3.5);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value == 3 );
-      ASSERT_TRUE( sint8Value == 3 );
+      ASSERT_EQ( uint8Value, 3 );
+      ASSERT_EQ( sint8Value, 3 );
     }
 
     {
@@ -841,8 +843,8 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(200.0);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value == 200 );
-      ASSERT_TRUE( sint8Value == (int8_t)200 );
+      ASSERT_EQ( uint8Value, 200 );
+      ASSERT_EQ( sint8Value, (int8_t)200 );
     }
 
     {
@@ -850,8 +852,8 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(2000000.0);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value ==  128 );
-      ASSERT_TRUE( sint8Value == -128 );
+      ASSERT_EQ( uint8Value,  128 );
+      ASSERT_EQ( sint8Value, -128 );
     }
 
     {
@@ -859,8 +861,8 @@ TEST_F(TestVariant, testConversions)
       v.setFloat64(-2000000.0);
       uint8_t uint8Value = v.getUInt8();
       int8_t sint8Value = v.getSInt8();
-      ASSERT_TRUE( uint8Value ==  128 );
-      ASSERT_TRUE( sint8Value == -128 );
+      ASSERT_EQ( uint8Value,  128 );
+      ASSERT_EQ( sint8Value, -128 );
     }
   }
   #pragma warning(pop)

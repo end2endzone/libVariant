@@ -1439,7 +1439,7 @@ namespace libVariant
       int64_t modulo = (iOperator == Variant::DIVIDE_EQUAL && sourceVariable != 0) ? targetVariable % sourceVariable : 0;\
       if (modulo != 0)\
       {\
-        forceFormat(Variant::FLOAT64);\
+        promote(Variant::FLOAT64);\
         _applyOperator(iOperator, mData.as_float64, static_cast<Variant::float64>(sourceVariable) );\
         return (*this);\
       }\
@@ -1874,7 +1874,7 @@ namespace libVariant
     };
   }
 
-  void Variant::forceFormat(const VariantFormat & iFormat)
+  void Variant::promote(const VariantFormat & iFormat)
   {
     if (mFormat == iFormat)
       return; //nothing to do

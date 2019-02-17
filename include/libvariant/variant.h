@@ -210,7 +210,7 @@ namespace libVariant
     /// </summary>
     /// <remarks>
     /// Note that the logical internal value remains unchanged.
-    /// The internal format can occurs:
+    /// The format simplification is executed in the following order:
     ///  string to floating point,
     ///  string to signed integers,
     ///  string to unsigned integers,
@@ -219,6 +219,14 @@ namespace libVariant
     /// </remarks>
     /// <returns>Returns true if the internal format of the Variant was simplified. Returns false otherwise.</returns>
     bool simplify();
+
+    /// <summary>
+    /// Changes the internal format to the specified format.
+    /// Note: Forcing a format changes the current value.
+    /// Promoting a high resolution internal value to a low resolution format may result in a loss of precision.
+    /// For instance, if the new format does not support the current value, it may be clamped or truncated.
+    /// </summary>
+    void promote(const VariantFormat & iFormat);
 
     /// <summary>
     /// Defines if the Variant has a signed internal format.
@@ -646,13 +654,6 @@ namespace libVariant
     /// Note: The internal values of the Variant remains unchanged.
     /// </summary>
     void signFormatToggle();
-
-    /// <summary>
-    /// Forces the internal type of the Variant to be as the given format.
-    /// Note: Forcing a format changes the current value. 
-    ///       If the new format does not support the current value, it may be clamped/truncated
-    /// </summary>
-    void forceFormat(const VariantFormat & iFormat);
 
     //-----------------
     // private attributes

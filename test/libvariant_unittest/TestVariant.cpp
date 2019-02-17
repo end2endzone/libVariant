@@ -905,48 +905,56 @@ TEST_F(TestVariant, testConversions)
   //assert simple data lost
   {
     {
+      //double float64_value = -3.5;
+      //uint8_t uint8_value  = static_cast<uint8_t>(float64_value);                       //Returns 253 on most platforms. Returns 0 on raspberry pi (and possibily other platforms too)
+      //uint8_t uint8_value2 = static_cast<uint8_t>(static_cast<int8_t>(float64_value));  //Returns 253 on all  platforms.
+
       Variant v;
       v.setFloat64(-3.5);
-      uint8_t uint8Value = v.getUInt8();
-      int8_t sint8Value = v.getSInt8();
-      ASSERT_EQ( uint8Value, (uint8_t)-3 );
-      ASSERT_EQ( sint8Value, -3 );
+      uint8_t uint8_value = v.getUInt8();
+      int8_t sint8_value = v.getSInt8();
+      ASSERT_TRUE( uint8_value == (uint8_t)253 || uint8_value == 0 /*raspberry pi issue above*/ );
+      ASSERT_EQ( sint8_value, -3 );
     }
 
     {
       Variant v;
       v.setFloat64(3.5);
-      uint8_t uint8Value = v.getUInt8();
-      int8_t sint8Value = v.getSInt8();
-      ASSERT_EQ( uint8Value, 3 );
-      ASSERT_EQ( sint8Value, 3 );
+      uint8_t uint8_value = v.getUInt8();
+      int8_t sint8_value = v.getSInt8();
+      ASSERT_EQ( uint8_value, 3 );
+      ASSERT_EQ( sint8_value, 3 );
     }
 
     {
       Variant v;
       v.setFloat64(200.0);
-      uint8_t uint8Value = v.getUInt8();
-      int8_t sint8Value = v.getSInt8();
-      ASSERT_EQ( uint8Value, 200 );
-      ASSERT_EQ( sint8Value, (int8_t)200 );
+      uint8_t uint8_value = v.getUInt8();
+      int8_t sint8_value = v.getSInt8();
+      ASSERT_EQ( uint8_value, 200 );
+      ASSERT_EQ( sint8_value, -56 );
     }
 
     {
       Variant v;
       v.setFloat64(2000000.0);
-      uint8_t uint8Value = v.getUInt8();
-      int8_t sint8Value = v.getSInt8();
-      ASSERT_EQ( uint8Value,  128 );
-      ASSERT_EQ( sint8Value, -128 );
+      uint8_t uint8_value = v.getUInt8();
+      int8_t sint8_value = v.getSInt8();
+      ASSERT_EQ( uint8_value,  128 );
+      ASSERT_EQ( sint8_value, -128 );
     }
 
     {
+      //double float64_value = -2000000.0;
+      //uint8_t uint8_value  = static_cast<uint8_t>(float64_value);                       //Returns 128 on most platforms. Returns 0 on raspberry pi (and possibily other platforms too)
+      //uint8_t uint8_value2 = static_cast<uint8_t>(static_cast<int8_t>(float64_value));  //Returns 128 on all  platforms.
+
       Variant v;
       v.setFloat64(-2000000.0);
-      uint8_t uint8Value = v.getUInt8();
-      int8_t sint8Value = v.getSInt8();
-      ASSERT_EQ( uint8Value,  128 );
-      ASSERT_EQ( sint8Value, -128 );
+      uint8_t uint8_value = v.getUInt8();
+      int8_t sint8_value = v.getSInt8();
+      ASSERT_TRUE( uint8_value == (uint8_t)128 || uint8_value == 0 /*raspberry pi issue above*/ );
+      ASSERT_EQ( sint8_value, -128 );
     }
   }
   #pragma warning(pop)

@@ -12,6 +12,16 @@
 #include "gtesthelper.h"
 #include "TestVariant.h"
 
+#ifdef WIN32
+# ifndef WIN32_LEAN_AND_MEAN
+#   define WIN32_LEAN_AND_MEAN 1
+# endif
+# include <windows.h>
+# undef min
+# undef max
+# undef IGNORE
+#endif
+
 typedef std::vector<std::string> StringList;
 
 using namespace libVariant;
@@ -46,6 +56,65 @@ bool isProcess64Bit()
   return true;
 #else
   return false;
+#endif
+}
+
+int getProcessArchitecture()
+{
+  int process_architecture = 32;
+  if (isProcess64Bit())
+    process_architecture = 64;
+  return process_architecture;
+}
+
+const char * getOperatingSystemName()
+{
+#ifdef _WIN32
+  const char * os = "Windows";
+#elif __linux__
+  const char * os = "Linux";
+#else
+  const char * os = "Unknown";
+#endif
+  return os;
+}
+
+int getOperatingSystemArchitecture()
+{
+#if _WIN64
+  return 64;
+#elif _WIN32
+  //https://stackoverflow.com/questions/7011071/detect-32-bit-or-64-bit-of-windows
+  BOOL isWow64 = FALSE;
+
+  //IsWow64Process is not available on all supported versions of Windows.
+  //Use GetModuleHandle to get a handle to the DLL that contains the function
+  //and GetProcAddress to get a pointer to the function if available.
+
+  typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
+  LPFN_ISWOW64PROCESS fnIsWow64Process = (LPFN_ISWOW64PROCESS)GetProcAddress(GetModuleHandle(TEXT("kernel32")),"IsWow64Process");
+  if(fnIsWow64Process)
+  {
+    if (!fnIsWow64Process(GetCurrentProcess(), &isWow64))
+      return 32; //function failed.
+
+    if(isWow64)
+      return 64;
+    else
+      return 32;
+  }
+  else
+  {
+    //function is not available on current Windows,
+    //operating system is too old or not supporting the function
+    return 32;
+  }
+#else
+  //linux. Getting operating system architecture is not an easy task.
+  int process_architecture = getProcessArchitecture();
+  if (process_architecture == 64)
+    return process_architecture;
+  return -1; //unknown
 #endif
 }
 
@@ -3189,28 +3258,18 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
 
   size_t variant_size = sizeof(Variant);
 
-#ifdef _WIN32
-  const char * os = "Windows";
-#elif __linux__
-  const char * os = "Linux";
-#else
-  const char * os = "Unknown";
-#endif
-
-  //get platform type
-  int platform = 0;
+  //validate process architechture
   if (isProcess64Bit())
   {
     ASSERT_EQ( sizeof(void*), 8);
-    platform = 64;
   }
   else
   {
     ASSERT_EQ( sizeof(void*), 4);
-    platform = 32;
   }
 
-  std::cout << "Variant class is " << variant_size << " bytes per instance on " << os << " " << platform << " bit platform." << std::endl;
+  //output memory footprint on console
+  std::cout << "Variant class is " << variant_size << " bytes per instance in " << getProcessArchitecture() << " bit processes running on " << getOperatingSystemName() << " " << getOperatingSystemArchitecture() << " bit platform." << std::endl;
 }
 
 bool isVariantMatchesExpectedFormat(Variant v, const Variant::VariantFormat & iExpectedFormat)

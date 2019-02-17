@@ -34,6 +34,21 @@ static const int32_t sint32_max = std::numeric_limits<int32_t>::max();
 static const int64_t sint64_min = std::numeric_limits<int64_t>::min();
 static const int64_t sint64_max = std::numeric_limits<int64_t>::max();
 
+bool isProcess64Bit()
+{
+#if defined(_WIN64) //Windows
+  return true;
+#elif defined(__LP64__) || defined(_LP64) //GCC
+  return true;
+#elif (__SIZEOF_POINTER__ == 8) //GCC only ?
+  return true;
+#elif ( __WORDSIZE == 64 ) //portable
+  return true;
+#else
+  return false;
+#endif
+}
+
 void TestVariant::SetUp()
 {
   #pragma warning(push)
@@ -3172,13 +3187,30 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
   ASSERT_EQ( sizeof(int32_t), sizeof(Variant::VariantFormat) ); //always 4 bytes
   ASSERT_EQ( sizeof(int64_t), sizeof(Variant::VariantUnion) );  //always 8 bytes
 
-#ifdef _WIN64
-  //x64
-  ASSERT_EQ( sizeof(Variant), sizeof(void*) /*vtable*/ +                        sizeof(Variant::VariantFormat) + 4 /*format padding*/ + sizeof(Variant::VariantUnion) );
+  size_t variant_size = sizeof(Variant);
+
+#ifdef _WIN32
+  const char * os = "Windows";
+#elif __linux__
+  const char * os = "Linux";
 #else
-  //x86
-  ASSERT_EQ( sizeof(Variant), sizeof(void*) /*vtable*/ + 4 /*vtable padding*/ + sizeof(Variant::VariantFormat) + 4 /*format padding*/ + sizeof(Variant::VariantUnion) );
+  const char * os = "Unknown";
 #endif
+
+  //get platform type
+  int platform = 0;
+  if (isProcess64Bit())
+  {
+    ASSERT_EQ( sizeof(void*), 8);
+    platform = 64;
+  }
+  else
+  {
+    ASSERT_EQ( sizeof(void*), 4);
+    platform = 32;
+  }
+
+  std::cout << "Variant class is " << variant_size << " bytes per instance on " << os << " " << platform << " bit platform." << std::endl;
 }
 
 bool isVariantMatchesExpectedFormat(Variant v, const Variant::VariantFormat & iExpectedFormat)

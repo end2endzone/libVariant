@@ -1,5 +1,6 @@
 set(LIBVARIANT_HEADER_FILES ""
   ${LIBVARIANT_INCLUDE_DIR}/libvariant/variant.h
+  ${LIBVARIANT_INCLUDE_DIR}/libvariant/variant_types.h
 )
 
 add_library(libvariant

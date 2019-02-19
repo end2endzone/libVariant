@@ -36,27 +36,58 @@ namespace libVariant
   #if defined(_WIN32) || defined(_WIN64)  // Check windows
     #if defined(_WIN64)
       //x64
-      typedef char              sint8 ;
-      typedef short             sint16;
-      typedef int               sint32;
-      typedef __int64           sint64;
-      typedef unsigned char     uint8 ;
-      typedef unsigned short    uint16;
-      typedef unsigned int      uint32;
-      typedef unsigned __int64  uint64;
+      typedef signed char         sint8 ;
+      typedef short               sint16;
+      typedef int                 sint32;
+      typedef __int64             sint64;
+      typedef unsigned char       uint8 ;
+      typedef unsigned short      uint16;
+      typedef unsigned int        uint32;
+      typedef unsigned __int64    uint64;
     #else
       //x86
-      typedef char              sint8 ;
-      typedef short             sint16;
-      typedef int               sint32;
-      typedef __int64           sint64;
-      typedef unsigned char     uint8 ;
-      typedef unsigned short    uint16;
-      typedef unsigned int      uint32;
-      typedef unsigned __int64  uint64;
+      typedef signed char         sint8 ;
+      typedef short               sint16;
+      typedef int                 sint32;
+      typedef __int64             sint64;
+      typedef unsigned char       uint8 ;
+      typedef unsigned short      uint16;
+      typedef unsigned int        uint32;
+      typedef unsigned __int64    uint64;
     #endif
   #elif defined(__linux__)
-    #error Not implemented yet
+    //search for x64 environment
+    #if defined(__LP64__) || defined(_LP64) //GCC
+      #define ARCHITECTURE_X64
+    #elif (__SIZEOF_POINTER__ == 8) //GCC only ?
+      #define ARCHITECTURE_X64
+    #elif ( __WORDSIZE == 64 ) //portable
+      #define ARCHITECTURE_X64
+    #else
+      #define ARCHITECTURE_X32
+    #endif
+
+    #if defined(ARCHITECTURE_X64)
+      //x64
+      typedef signed char         sint8 ;
+      typedef short               sint16;
+      typedef int                 sint32;
+      typedef long                sint64;
+      typedef unsigned char       uint8 ;
+      typedef unsigned short      uint16;
+      typedef unsigned int        uint32;
+      typedef unsigned long       uint64;
+    #else
+      //x86
+      typedef char                sint8 ;
+      typedef short               sint16;
+      typedef int                 sint32;
+      typedef long long           sint64;
+      typedef unsigned char       uint8 ;
+      typedef unsigned short      uint16;
+      typedef unsigned int        uint32;
+      typedef unsigned long long  uint64;
+    #endif
   #endif
 
   typedef float               float32;

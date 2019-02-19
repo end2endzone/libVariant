@@ -5,10 +5,9 @@
 //---------------
 // Include Files
 //---------------
+#include "libvariant/variant_types.h"
 #include "libvariant/config.h"
 #include "libvariant/version.h"
-#include <string>
-#include <stdint.h>
 
 //-----------
 // Namespace
@@ -23,14 +22,6 @@ namespace libVariant
   {
   public:
     //--------------------------
-    // Typedef
-    //--------------------------
-    typedef float               float32;
-    typedef double              float64;
-    typedef std::string         Str;
-    typedef const char*         CStr;
-
-    //--------------------------
     // Enums & Unions
     //--------------------------
 
@@ -40,18 +31,18 @@ namespace libVariant
     /// </summary>
     typedef union
     {
-      uint64_t  as_bits;
+      uint64    as_bits;
       Str *     as_str;
       float64   as_float64;
       float32   as_float32;
-      int64_t   as_sint64;
-      uint64_t  as_uint64;
-      int32_t   as_sint32;
-      uint32_t  as_uint32;
-      int16_t   as_sint16;
-      uint16_t  as_uint16;
-      int8_t    as_sint8;
-      uint8_t   as_uint8;
+      sint64    as_sint64;
+      uint64    as_uint64;
+      sint32    as_sint32;
+      uint32    as_uint32;
+      sint16    as_sint16;
+      uint16    as_uint16;
+      sint8     as_sint8;
+      uint8     as_uint8;
       bool      as_bool;
     } VariantUnion;
 
@@ -90,14 +81,14 @@ namespace libVariant
     Variant(const CStr               & iValue);
     Variant(const Str                & iValue);
     Variant(const bool               & iValue);
-    Variant(const int8_t             & iValue);
-    Variant(const int16_t            & iValue);
-    Variant(const int32_t            & iValue);
-    Variant(const int64_t            & iValue);
-    Variant(const uint8_t            & iValue);
-    Variant(const uint16_t           & iValue);
-    Variant(const uint32_t           & iValue);
-    Variant(const uint64_t           & iValue);
+    Variant(const sint8              & iValue);
+    Variant(const sint16             & iValue);
+    Variant(const sint32             & iValue);
+    Variant(const sint64             & iValue);
+    Variant(const uint8              & iValue);
+    Variant(const uint16             & iValue);
+    Variant(const uint32             & iValue);
+    Variant(const uint64             & iValue);
     Variant(const float32            & iValue);
     Variant(const float64            & iValue);
 
@@ -138,14 +129,14 @@ namespace libVariant
     // getters methods
     //----------------------
     virtual bool     getBool()    const;
-    virtual uint8_t  getUInt8()   const;
-    virtual uint16_t getUInt16()  const;
-    virtual uint32_t getUInt32()  const;
-    virtual uint64_t getUInt64()  const;
-    virtual int8_t   getSInt8()   const;
-    virtual int16_t  getSInt16()  const;
-    virtual int32_t  getSInt32()  const;
-    virtual int64_t  getSInt64()  const;
+    virtual uint8    getUInt8()   const;
+    virtual uint16   getUInt16()  const;
+    virtual uint32   getUInt32()  const;
+    virtual uint64   getUInt64()  const;
+    virtual sint8    getSInt8()   const;
+    virtual sint16   getSInt16()  const;
+    virtual sint32   getSInt32()  const;
+    virtual sint64   getSInt64()  const;
     virtual float32  getFloat32() const;
     virtual float64  getFloat64() const;
     virtual Str      getString()  const;
@@ -154,14 +145,14 @@ namespace libVariant
     // setters methods
     //----------------------
     virtual void setBool   (const bool         & iValue);
-    virtual void setSInt8  (const int8_t       & iValue);
-    virtual void setUInt8  (const uint8_t      & iValue);
-    virtual void setSInt16 (const int16_t      & iValue);
-    virtual void setUInt16 (const uint16_t     & iValue);
-    virtual void setSInt32 (const int32_t      & iValue);
-    virtual void setUInt32 (const uint32_t     & iValue);
-    virtual void setSInt64 (const int64_t      & iValue);
-    virtual void setUInt64 (const uint64_t     & iValue);
+    virtual void setSInt8  (const sint8        & iValue);
+    virtual void setUInt8  (const uint8        & iValue);
+    virtual void setSInt16 (const sint16       & iValue);
+    virtual void setUInt16 (const uint16       & iValue);
+    virtual void setSInt32 (const sint32       & iValue);
+    virtual void setUInt32 (const uint32       & iValue);
+    virtual void setSInt64 (const sint64       & iValue);
+    virtual void setUInt64 (const uint64       & iValue);
     virtual void setFloat32(const float32      & iValue);
     virtual void setFloat64(const float64      & iValue);
     virtual void setString (const Str          & iValue);
@@ -171,14 +162,14 @@ namespace libVariant
     //   inline setters
     //----------------------
     virtual void set(const bool         & iValue) { setBool      (iValue); }
-    virtual void set(const uint8_t      & iValue) { setUInt8     (iValue); }
-    virtual void set(const uint16_t     & iValue) { setUInt16    (iValue); }
-    virtual void set(const uint32_t     & iValue) { setUInt32    (iValue); }
-    virtual void set(const uint64_t     & iValue) { setUInt64    (iValue); }
-    virtual void set(const int8_t       & iValue) { setSInt8     (iValue); }
-    virtual void set(const int16_t      & iValue) { setSInt16    (iValue); }
-    virtual void set(const int32_t      & iValue) { setSInt32    (iValue); }
-    virtual void set(const int64_t      & iValue) { setSInt64    (iValue); }
+    virtual void set(const uint8        & iValue) { setUInt8     (iValue); }
+    virtual void set(const uint16       & iValue) { setUInt16    (iValue); }
+    virtual void set(const uint32       & iValue) { setUInt32    (iValue); }
+    virtual void set(const uint64       & iValue) { setUInt64    (iValue); }
+    virtual void set(const sint8        & iValue) { setSInt8     (iValue); }
+    virtual void set(const sint16       & iValue) { setSInt16    (iValue); }
+    virtual void set(const sint32       & iValue) { setSInt32    (iValue); }
+    virtual void set(const sint64       & iValue) { setSInt64    (iValue); }
     virtual void set(const float32      & iValue) { setFloat32   (iValue); }
     virtual void set(const float64      & iValue) { setFloat64   (iValue); }
     virtual void set(const CStr         & iValue) { setString    (iValue); }
@@ -188,14 +179,14 @@ namespace libVariant
     //   inline getters
     //----------------------
     virtual void get(bool         & iValue) const { iValue = getBool   (); }
-    virtual void get(uint8_t      & iValue) const { iValue = getUInt8  (); }
-    virtual void get(uint16_t     & iValue) const { iValue = getUInt16 (); }
-    virtual void get(uint32_t     & iValue) const { iValue = getUInt32 (); }
-    virtual void get(uint64_t     & iValue) const { iValue = getUInt64 (); }
-    virtual void get(int8_t       & iValue) const { iValue = getSInt8  (); }
-    virtual void get(int16_t      & iValue) const { iValue = getSInt16 (); }
-    virtual void get(int32_t      & iValue) const { iValue = getSInt32 (); }
-    virtual void get(int64_t      & iValue) const { iValue = getSInt64 (); }
+    virtual void get(uint8        & iValue) const { iValue = getUInt8  (); }
+    virtual void get(uint16       & iValue) const { iValue = getUInt16 (); }
+    virtual void get(uint32       & iValue) const { iValue = getUInt32 (); }
+    virtual void get(uint64       & iValue) const { iValue = getUInt64 (); }
+    virtual void get(sint8        & iValue) const { iValue = getSInt8  (); }
+    virtual void get(sint16       & iValue) const { iValue = getSInt16 (); }
+    virtual void get(sint32       & iValue) const { iValue = getSInt32 (); }
+    virtual void get(sint64       & iValue) const { iValue = getSInt64 (); }
     virtual void get(float32      & iValue) const { iValue = getFloat32(); }
     virtual void get(float64      & iValue) const { iValue = getFloat64(); }
     virtual void get(Str          & iValue) const { iValue = getString (); }
@@ -262,14 +253,14 @@ namespace libVariant
     //   operator= ()
     //----------------------
     virtual const Variant & operator = (const bool         & iValue) { setBool   (iValue); return (*this); }
-    virtual const Variant & operator = (const uint8_t      & iValue) { setUInt8  (iValue); return (*this); }
-    virtual const Variant & operator = (const uint16_t     & iValue) { setUInt16 (iValue); return (*this); }
-    virtual const Variant & operator = (const uint32_t     & iValue) { setUInt32 (iValue); return (*this); }
-    virtual const Variant & operator = (const uint64_t     & iValue) { setUInt64 (iValue); return (*this); }
-    virtual const Variant & operator = (const int8_t       & iValue) { setSInt8  (iValue); return (*this); }
-    virtual const Variant & operator = (const int16_t      & iValue) { setSInt16 (iValue); return (*this); }
-    virtual const Variant & operator = (const int32_t      & iValue) { setSInt32 (iValue); return (*this); }
-    virtual const Variant & operator = (const int64_t      & iValue) { setSInt64 (iValue); return (*this); }
+    virtual const Variant & operator = (const uint8        & iValue) { setUInt8  (iValue); return (*this); }
+    virtual const Variant & operator = (const uint16       & iValue) { setUInt16 (iValue); return (*this); }
+    virtual const Variant & operator = (const uint32       & iValue) { setUInt32 (iValue); return (*this); }
+    virtual const Variant & operator = (const uint64       & iValue) { setUInt64 (iValue); return (*this); }
+    virtual const Variant & operator = (const sint8        & iValue) { setSInt8  (iValue); return (*this); }
+    virtual const Variant & operator = (const sint16       & iValue) { setSInt16 (iValue); return (*this); }
+    virtual const Variant & operator = (const sint32       & iValue) { setSInt32 (iValue); return (*this); }
+    virtual const Variant & operator = (const sint64       & iValue) { setSInt64 (iValue); return (*this); }
     virtual const Variant & operator = (const float32      & iValue) { setFloat32(iValue); return (*this); }
     virtual const Variant & operator = (const float64      & iValue) { setFloat64(iValue); return (*this); }
     virtual const Variant & operator = (const CStr         & iValue) { setString (iValue); return (*this); }
@@ -291,14 +282,14 @@ namespace libVariant
     //   operator+ ()
     //----------------------
     virtual Variant operator + (const bool         & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const uint8_t      & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const uint16_t     & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const uint32_t     & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const uint64_t     & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const int8_t       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const int16_t      & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const int32_t      & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
-    virtual Variant operator + (const int64_t      & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const uint8        & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const uint16       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const uint32       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const uint64       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const sint8        & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const sint16       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const sint32       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
+    virtual Variant operator + (const sint64       & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
     virtual Variant operator + (const float32      & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
     virtual Variant operator + (const float64      & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
     virtual Variant operator + (const CStr         & iValue) const { Variant tmpCopy(*this); tmpCopy += iValue; return tmpCopy; }
@@ -309,14 +300,14 @@ namespace libVariant
     //   operator+= ()
     //----------------------
     virtual const Variant & operator += (const bool         & iValue);
-    virtual const Variant & operator += (const uint8_t      & iValue);
-    virtual const Variant & operator += (const uint16_t     & iValue);
-    virtual const Variant & operator += (const uint32_t     & iValue);
-    virtual const Variant & operator += (const uint64_t     & iValue);
-    virtual const Variant & operator += (const int8_t       & iValue);
-    virtual const Variant & operator += (const int16_t      & iValue);
-    virtual const Variant & operator += (const int32_t      & iValue);
-    virtual const Variant & operator += (const int64_t      & iValue);
+    virtual const Variant & operator += (const uint8        & iValue);
+    virtual const Variant & operator += (const uint16       & iValue);
+    virtual const Variant & operator += (const uint32       & iValue);
+    virtual const Variant & operator += (const uint64       & iValue);
+    virtual const Variant & operator += (const sint8        & iValue);
+    virtual const Variant & operator += (const sint16       & iValue);
+    virtual const Variant & operator += (const sint32       & iValue);
+    virtual const Variant & operator += (const sint64       & iValue);
     virtual const Variant & operator += (const float32      & iValue);
     virtual const Variant & operator += (const float64      & iValue);
     virtual const Variant & operator += (const CStr         & iValue);
@@ -327,14 +318,14 @@ namespace libVariant
     //   operator- ()
     //----------------------
     virtual Variant operator - (const bool         & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const uint8_t      & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const uint16_t     & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const uint32_t     & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const uint64_t     & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const int8_t       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const int16_t      & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const int32_t      & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
-    virtual Variant operator - (const int64_t      & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const uint8        & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const uint16       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const uint32       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const uint64       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const sint8        & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const sint16       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const sint32       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
+    virtual Variant operator - (const sint64       & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
     virtual Variant operator - (const float32      & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
     virtual Variant operator - (const float64      & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
     virtual Variant operator - (const CStr         & iValue) const { Variant tmpCopy(*this); tmpCopy -= iValue; return tmpCopy; }
@@ -345,14 +336,14 @@ namespace libVariant
     //   operator-= ()
     //----------------------
     virtual const Variant & operator -= (const bool         & iValue);
-    virtual const Variant & operator -= (const uint8_t      & iValue);
-    virtual const Variant & operator -= (const uint16_t     & iValue);
-    virtual const Variant & operator -= (const uint32_t     & iValue);
-    virtual const Variant & operator -= (const uint64_t     & iValue);
-    virtual const Variant & operator -= (const int8_t       & iValue);
-    virtual const Variant & operator -= (const int16_t      & iValue);
-    virtual const Variant & operator -= (const int32_t      & iValue);
-    virtual const Variant & operator -= (const int64_t      & iValue);
+    virtual const Variant & operator -= (const uint8        & iValue);
+    virtual const Variant & operator -= (const uint16       & iValue);
+    virtual const Variant & operator -= (const uint32       & iValue);
+    virtual const Variant & operator -= (const uint64       & iValue);
+    virtual const Variant & operator -= (const sint8        & iValue);
+    virtual const Variant & operator -= (const sint16       & iValue);
+    virtual const Variant & operator -= (const sint32       & iValue);
+    virtual const Variant & operator -= (const sint64       & iValue);
     virtual const Variant & operator -= (const float32      & iValue);
     virtual const Variant & operator -= (const float64      & iValue);
     virtual const Variant & operator -= (const CStr         & iValue);
@@ -363,14 +354,14 @@ namespace libVariant
     //   operator* ()
     //----------------------
     virtual Variant operator * (const bool         & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const uint8_t      & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const uint16_t     & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const uint32_t     & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const uint64_t     & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const int8_t       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const int16_t      & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const int32_t      & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
-    virtual Variant operator * (const int64_t      & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const uint8        & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const uint16       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const uint32       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const uint64       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const sint8        & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const sint16       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const sint32       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
+    virtual Variant operator * (const sint64       & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
     virtual Variant operator * (const float32      & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
     virtual Variant operator * (const float64      & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
     virtual Variant operator * (const CStr         & iValue) const { Variant tmpCopy(*this); tmpCopy *= iValue; return tmpCopy; }
@@ -381,14 +372,14 @@ namespace libVariant
     //   operator*= ()
     //----------------------
     virtual const Variant & operator *= (const bool         & iValue);
-    virtual const Variant & operator *= (const uint8_t      & iValue);
-    virtual const Variant & operator *= (const uint16_t     & iValue);
-    virtual const Variant & operator *= (const uint32_t     & iValue);
-    virtual const Variant & operator *= (const uint64_t     & iValue);
-    virtual const Variant & operator *= (const int8_t       & iValue);
-    virtual const Variant & operator *= (const int16_t      & iValue);
-    virtual const Variant & operator *= (const int32_t      & iValue);
-    virtual const Variant & operator *= (const int64_t      & iValue);
+    virtual const Variant & operator *= (const uint8        & iValue);
+    virtual const Variant & operator *= (const uint16       & iValue);
+    virtual const Variant & operator *= (const uint32       & iValue);
+    virtual const Variant & operator *= (const uint64       & iValue);
+    virtual const Variant & operator *= (const sint8        & iValue);
+    virtual const Variant & operator *= (const sint16       & iValue);
+    virtual const Variant & operator *= (const sint32       & iValue);
+    virtual const Variant & operator *= (const sint64       & iValue);
     virtual const Variant & operator *= (const float32      & iValue);
     virtual const Variant & operator *= (const float64      & iValue);
     virtual const Variant & operator *= (const CStr         & iValue);
@@ -399,14 +390,14 @@ namespace libVariant
     //   operator/ ()
     //----------------------
     virtual Variant operator / (const bool         & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const uint8_t      & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const uint16_t     & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const uint32_t     & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const uint64_t     & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const int8_t       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const int16_t      & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const int32_t      & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
-    virtual Variant operator / (const int64_t      & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const uint8        & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const uint16       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const uint32       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const uint64       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const sint8        & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const sint16       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const sint32       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
+    virtual Variant operator / (const sint64       & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
     virtual Variant operator / (const float32      & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
     virtual Variant operator / (const float64      & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
     virtual Variant operator / (const CStr         & iValue) const { Variant tmpCopy(*this); tmpCopy /= iValue; return tmpCopy; }
@@ -417,14 +408,14 @@ namespace libVariant
     //   operator/= ()
     //----------------------
     virtual const Variant & operator /= (const bool         & iValue);
-    virtual const Variant & operator /= (const uint8_t      & iValue);
-    virtual const Variant & operator /= (const uint16_t     & iValue);
-    virtual const Variant & operator /= (const uint32_t     & iValue);
-    virtual const Variant & operator /= (const uint64_t     & iValue);
-    virtual const Variant & operator /= (const int8_t       & iValue);
-    virtual const Variant & operator /= (const int16_t      & iValue);
-    virtual const Variant & operator /= (const int32_t      & iValue);
-    virtual const Variant & operator /= (const int64_t      & iValue);
+    virtual const Variant & operator /= (const uint8        & iValue);
+    virtual const Variant & operator /= (const uint16       & iValue);
+    virtual const Variant & operator /= (const uint32       & iValue);
+    virtual const Variant & operator /= (const uint64       & iValue);
+    virtual const Variant & operator /= (const sint8        & iValue);
+    virtual const Variant & operator /= (const sint16       & iValue);
+    virtual const Variant & operator /= (const sint32       & iValue);
+    virtual const Variant & operator /= (const sint64       & iValue);
     virtual const Variant & operator /= (const float32      & iValue);
     virtual const Variant & operator /= (const float64      & iValue);
     virtual const Variant & operator /= (const CStr         & iValue);
@@ -450,14 +441,14 @@ namespace libVariant
     /// Returns  1 if this instance is bigger  than given value.
     /// </returns>
     virtual int compare(const bool         & iValue) const;
-    virtual int compare(const uint8_t      & iValue) const;
-    virtual int compare(const uint16_t     & iValue) const;
-    virtual int compare(const uint32_t     & iValue) const;
-    virtual int compare(const uint64_t     & iValue) const;
-    virtual int compare(const int8_t       & iValue) const;
-    virtual int compare(const int16_t      & iValue) const;
-    virtual int compare(const int32_t      & iValue) const;
-    virtual int compare(const int64_t      & iValue) const;
+    virtual int compare(const uint8        & iValue) const;
+    virtual int compare(const uint16       & iValue) const;
+    virtual int compare(const uint32       & iValue) const;
+    virtual int compare(const uint64       & iValue) const;
+    virtual int compare(const sint8        & iValue) const;
+    virtual int compare(const sint16       & iValue) const;
+    virtual int compare(const sint32       & iValue) const;
+    virtual int compare(const sint64       & iValue) const;
     virtual int compare(const float32      & iValue) const;
     virtual int compare(const float64      & iValue) const;
     virtual int compare(const CStr         & iValue) const;
@@ -474,14 +465,14 @@ namespace libVariant
     /// <returns>Returns true if this instance is smaller than the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
     virtual bool operator < (const bool         & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const uint8_t      & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const uint16_t     & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const uint32_t     & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const uint64_t     & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const int8_t       & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const int16_t      & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const int32_t      & iValue) const { return compare(iValue) < 0; }
-    virtual bool operator < (const int64_t      & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const uint8        & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const uint16       & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const uint32       & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const uint64       & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const sint8        & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const sint16       & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const sint32       & iValue) const { return compare(iValue) < 0; }
+    virtual bool operator < (const sint64       & iValue) const { return compare(iValue) < 0; }
     virtual bool operator < (const float32      & iValue) const { return compare(iValue) < 0; }
     virtual bool operator < (const float64      & iValue) const { return compare(iValue) < 0; }
     virtual bool operator < (const CStr         & iValue) const { return compare(iValue) < 0; }
@@ -498,14 +489,14 @@ namespace libVariant
     /// <returns>Returns true if this instance is smaller or equal than the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
     virtual bool operator <= (const bool         & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const uint8_t      & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const uint16_t     & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const uint32_t     & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const uint64_t     & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const int8_t       & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const int16_t      & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const int32_t      & iValue) const { return compare(iValue) <= 0; }
-    virtual bool operator <= (const int64_t      & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const uint8        & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const uint16       & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const uint32       & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const uint64       & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const sint8        & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const sint16       & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const sint32       & iValue) const { return compare(iValue) <= 0; }
+    virtual bool operator <= (const sint64       & iValue) const { return compare(iValue) <= 0; }
     virtual bool operator <= (const float32      & iValue) const { return compare(iValue) <= 0; }
     virtual bool operator <= (const float64      & iValue) const { return compare(iValue) <= 0; }
     virtual bool operator <= (const CStr         & iValue) const { return compare(iValue) <= 0; }
@@ -522,14 +513,14 @@ namespace libVariant
     /// <returns>Returns true if this instance is bigger than the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
     virtual bool operator > (const bool         & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const uint8_t      & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const uint16_t     & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const uint32_t     & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const uint64_t     & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const int8_t       & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const int16_t      & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const int32_t      & iValue) const { return compare(iValue) > 0; }
-    virtual bool operator > (const int64_t      & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const uint8        & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const uint16       & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const uint32       & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const uint64       & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const sint8        & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const sint16       & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const sint32       & iValue) const { return compare(iValue) > 0; }
+    virtual bool operator > (const sint64       & iValue) const { return compare(iValue) > 0; }
     virtual bool operator > (const float32      & iValue) const { return compare(iValue) > 0; }
     virtual bool operator > (const float64      & iValue) const { return compare(iValue) > 0; }
     virtual bool operator > (const CStr         & iValue) const { return compare(iValue) > 0; }
@@ -546,14 +537,14 @@ namespace libVariant
     /// <returns>Returns true if this instance is bigger or equal than the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
     virtual bool operator >= (const bool         & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const uint8_t      & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const uint16_t     & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const uint32_t     & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const uint64_t     & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const int8_t       & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const int16_t      & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const int32_t      & iValue) const { return compare(iValue) >= 0; }
-    virtual bool operator >= (const int64_t      & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const uint8        & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const uint16       & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const uint32       & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const uint64       & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const sint8        & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const sint16       & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const sint32       & iValue) const { return compare(iValue) >= 0; }
+    virtual bool operator >= (const sint64       & iValue) const { return compare(iValue) >= 0; }
     virtual bool operator >= (const float32      & iValue) const { return compare(iValue) >= 0; }
     virtual bool operator >= (const float64      & iValue) const { return compare(iValue) >= 0; }
     virtual bool operator >= (const CStr         & iValue) const { return compare(iValue) >= 0; }
@@ -570,14 +561,14 @@ namespace libVariant
     /// <returns>Returns true if this instance is equal to the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
     virtual bool operator == (const bool         & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const uint8_t      & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const uint16_t     & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const uint32_t     & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const uint64_t     & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const int8_t       & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const int16_t      & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const int32_t      & iValue) const { return compare(iValue) == 0; }
-    virtual bool operator == (const int64_t      & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const uint8        & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const uint16       & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const uint32       & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const uint64       & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const sint8        & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const sint16       & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const sint32       & iValue) const { return compare(iValue) == 0; }
+    virtual bool operator == (const sint64       & iValue) const { return compare(iValue) == 0; }
     virtual bool operator == (const float32      & iValue) const { return compare(iValue) == 0; }
     virtual bool operator == (const float64      & iValue) const { return compare(iValue) == 0; }
     virtual bool operator == (const CStr         & iValue) const { return compare(iValue) == 0; }
@@ -594,14 +585,14 @@ namespace libVariant
     /// <returns>Returns true if this instance is not equal to the second value. Returns false otherwise.</returns>
     /// <seealso cref="Variant::compare()"/>
     virtual bool operator != (const bool         & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const uint8_t      & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const uint16_t     & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const uint32_t     & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const uint64_t     & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const int8_t       & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const int16_t      & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const int32_t      & iValue) const { return compare(iValue) != 0; }
-    virtual bool operator != (const int64_t      & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const uint8        & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const uint16       & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const uint32       & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const uint64       & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const sint8        & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const sint16       & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const sint32       & iValue) const { return compare(iValue) != 0; }
+    virtual bool operator != (const sint64       & iValue) const { return compare(iValue) != 0; }
     virtual bool operator != (const float32      & iValue) const { return compare(iValue) != 0; }
     virtual bool operator != (const float64      & iValue) const { return compare(iValue) != 0; }
     virtual bool operator != (const CStr         & iValue) const { return compare(iValue) != 0; }

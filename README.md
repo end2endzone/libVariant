@@ -47,7 +47,7 @@ Without the `Variant` class, multiple copies of the same function must be implem
 
 The main features of the library are:
 
-* Compatible with the C++ 2011 standard.
+* Compatible with the C++ 1998/2003 standard.
 * Type-safe, value-safe unions between all c++ basic types, including strings.
 * Holds any numeric values up to 64 bits.
 * Converts between any type of data as required.

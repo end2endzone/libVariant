@@ -36,7 +36,7 @@ These are the base requirements to build and use libVariant:
 
   * GNU-compatible Make or gmake
   * POSIX-standard shell
-  * A C++11-standard-compliant compiler
+  * A C++98-standard-compliant compiler
 
 
 

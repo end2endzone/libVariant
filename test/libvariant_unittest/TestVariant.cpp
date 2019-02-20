@@ -142,7 +142,7 @@ TEST_F(TestVariant, testBasic)
   ASSERT_EQ( v.getUInt8(), 0xFF-1 );
 
   v.setSInt8  ( (sint8 )-5 );
-  ASSERT_TRUE( v.getSInt8() == -5 );
+  ASSERT_EQ( v.getSInt8(), -5 );
 
   v.setUInt16 ( (uint16)(0xFFFF-1) );
   ASSERT_EQ( v.getUInt16(), 0xFFFF-1 );

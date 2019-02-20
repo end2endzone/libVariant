@@ -79,7 +79,7 @@ namespace libVariant
       typedef unsigned long       uint64;
     #else
       //x86
-      typedef char                sint8 ;
+      typedef signed char         sint8 ;
       typedef short               sint16;
       typedef int                 sint32;
       typedef long long           sint64;

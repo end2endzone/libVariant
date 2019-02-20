@@ -106,11 +106,6 @@ if(NOT CMAKE_DEBUG_POSTFIX)
   set(CMAKE_DEBUG_POSTFIX "-d")
 endif()
 
-# Force C++11 standard on Linux.
-if (NOT WIN32)
-  SET(CMAKE_CXX_FLAGS "-std=c++11")
-endif()
-
 # Prevents annoying warnings on MSVC
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)

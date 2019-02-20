@@ -1,6 +1,7 @@
 Changes for 3.0.0:
 
 * Fixed issue #1: Automatic value clamping is confusing and irrelevant for most use cases.
+* Fixed issue #4: New include file which defines all Variant internal types.
 * Fixed issue #5: Reorder and clarify VariantUnion fields.
 
 Changes for 2.2.0:

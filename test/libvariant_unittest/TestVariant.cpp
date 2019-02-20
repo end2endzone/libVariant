@@ -139,34 +139,34 @@ TEST_F(TestVariant, testBasic)
   ASSERT_TRUE( v.getBool() == false );
 
   v.setUInt8  ( 0xFF-1 );
-  ASSERT_TRUE( v.getUInt8() == 0xFF-1 );
+  ASSERT_EQ( v.getUInt8(), 0xFF-1 );
 
   v.setSInt8  ( (sint8 )-5 );
   ASSERT_TRUE( v.getSInt8() == -5 );
 
-  v.setUInt16 ( (uint16  )(0xFFFF-1) );
-  ASSERT_TRUE( v.getUInt16() == 0xFFFF-1 );
+  v.setUInt16 ( (uint16)(0xFFFF-1) );
+  ASSERT_EQ( v.getUInt16(), 0xFFFF-1 );
 
-  v.setSInt16 (  -300 );
-  ASSERT_TRUE( v.getSInt16() == -300 );
+  v.setSInt16 ( -300 );
+  ASSERT_EQ( v.getSInt16(), -300 );
 
   v.setUInt32 ( 0xFFFFFFFF-1 );
-  ASSERT_TRUE( v.getUInt32() == 0xFFFFFFFF-1 );
+  ASSERT_EQ( v.getUInt32(), 0xFFFFFFFF-1 );
 
   v.setSInt32 ( -40000 );
-  ASSERT_TRUE( v.getSInt32() == -40000 );
+  ASSERT_EQ( v.getSInt32(), -40000 );
 
   v.setUInt64 ( 0xFFFFFFFFFFFFFFFF-1 );
-  ASSERT_TRUE( v.getUInt64() == 0xFFFFFFFFFFFFFFFF-1 );
+  ASSERT_EQ( v.getUInt64(), 0xFFFFFFFFFFFFFFFF-1 );
 
   v.setSInt64 ( -5000000000 );
-  ASSERT_TRUE( v.getSInt64() == -5000000000 );
+  ASSERT_EQ( v.getSInt64(), -5000000000 );
 
   v.setFloat32( (float32)3.5f );
-  ASSERT_TRUE( v.getFloat32() == (float32)3.5f );
+  ASSERT_EQ( v.getFloat32(), (float32)3.5f );
 
   v.setFloat64( (float64)3.512345432 );
-  ASSERT_TRUE( v.getFloat64() == (float64)3.512345432 );
+  ASSERT_EQ( v.getFloat64(), (float64)3.512345432 );
 
   const char * strValue = "cats and dogs";
 

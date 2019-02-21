@@ -1,6 +1,7 @@
 
 
-#pragma once
+#ifndef LIBVARIANT_VARIANT_H
+#define LIBVARIANT_VARIANT_H
 
 //---------------
 // Include Files
@@ -662,3 +663,5 @@ namespace libVariant
   };
 
 } // End namespace
+
+#endif //LIBVARIANT_VARIANT_H

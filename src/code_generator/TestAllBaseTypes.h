@@ -1,4 +1,7 @@
-#pragma once
+
+
+#ifndef LIBVARIANT_TESTALLBASETYPES_H
+#define LIBVARIANT_TESTALLBASETYPES_H
 
 void zeroize(          bool     & value);
 void zeroize(          char     & value);
@@ -27,3 +30,5 @@ void zeroize(float              & value);
 void zeroize(double             & value);
 void zeroize(long double        & value);
 void zeroize(wchar_t            & value);
+
+#endif //LIBVARIANT_TESTALLBASETYPES_H

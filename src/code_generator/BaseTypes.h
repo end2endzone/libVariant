@@ -1,4 +1,7 @@
-#pragma once
+
+
+#ifndef LIBVARIANT_BASETYPES_H
+#define LIBVARIANT_BASETYPES_H
 
 #include <string>
 #include <vector>
@@ -23,3 +26,5 @@ BaseTypeList getMainTypes();
 std::string getBestName(const char * iName);
 size_t getNumBaseTypes();
 const BASE_TYPE & getBaseType(size_t iIndex);
+
+#endif //LIBVARIANT_BASETYPES_H

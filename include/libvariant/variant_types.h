@@ -22,6 +22,7 @@
  * SOFTWARE.
  *********************************************************************************/
 
+
 #ifndef LIBVARIANT_TYPES_H
 #define LIBVARIANT_TYPES_H
 

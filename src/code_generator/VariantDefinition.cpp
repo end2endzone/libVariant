@@ -69,15 +69,15 @@ std::string getVariantTypedefFromType(const std::string & iBaseType)
 
 std::string getGetSetFunctionNameFromInnerType(const std::string & iInnerType)
 {
-  if (iInnerType == "bool" ) return "BOOL";
-  if (iInnerType == "uint8  " ) return "UINT8";
-  if (iInnerType == "sint8 "  ) return "SINT8";
-  if (iInnerType == "uint16  ") return "UINT16";
-  if (iInnerType == "sint16 " ) return "SINT16";
-  if (iInnerType == "uint32  ") return "UINT32";
-  if (iInnerType == "sint32 " ) return "SINT32";
-  if (iInnerType == "uint64  ") return "UINT64";
-  if (iInnerType == "sint64 " ) return "SINT64";
+  if (iInnerType == "bool"    ) return "BOOL";
+  if (iInnerType == "uint8"   ) return "UINT8";
+  if (iInnerType == "sint8"   ) return "SINT8";
+  if (iInnerType == "uint16"  ) return "UINT16";
+  if (iInnerType == "sint16"  ) return "SINT16";
+  if (iInnerType == "uint32"  ) return "UINT32";
+  if (iInnerType == "sint32"  ) return "SINT32";
+  if (iInnerType == "uint64"  ) return "UINT64";
+  if (iInnerType == "sint64"  ) return "SINT64";
   if (iInnerType == "float32" ) return "FLOAT32";
   if (iInnerType == "float64" ) return "FLOAT64";
   if (iInnerType == "Str"     ) return "STRING";

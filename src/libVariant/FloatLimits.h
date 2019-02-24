@@ -39,7 +39,7 @@ namespace libVariant
 {
 namespace floatlimits
 {
-  #ifdef _WIN32
+  #ifdef _MSC_VER
     #pragma pack(push,1)
     #define PACKED_STRUCTURE
   #elif
@@ -63,7 +63,7 @@ namespace floatlimits
     unsigned long long sign :  1;
   };
 
-  #ifdef _WIN32
+  #ifdef _MSC_VER
     #pragma pack(pop)
   #endif
   #undef PACKED_STRUCTURE

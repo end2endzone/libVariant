@@ -3265,7 +3265,7 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
 {
   //DEBUG
 #if 0
-  #ifdef _WIN32
+  #ifdef _MSC_VER
     #pragma pack(push,1)
     #define PACKED_STRUCTURE
   #elif
@@ -3279,7 +3279,7 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
     uint8   after;
   };
 
-  #ifdef _WIN32
+  #ifdef _MSC_VER
     #pragma pack(pop)
   #endif
   #undef PACKED_STRUCTURE

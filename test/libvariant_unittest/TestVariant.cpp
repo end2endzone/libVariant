@@ -3268,7 +3268,7 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
   #ifdef _MSC_VER
     #pragma pack(push,1)
     #define PACKED_STRUCTURE
-  #elif
+  #else
     #define PACKED_STRUCTURE __attribute__((packed))
   #endif
 

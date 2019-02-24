@@ -29,7 +29,7 @@
 //---------------
 // Include Files
 //---------------
-#include "TypeInfo.h"
+#include "libvariant/typeinfo.h"
 
 //-----------
 // Namespace

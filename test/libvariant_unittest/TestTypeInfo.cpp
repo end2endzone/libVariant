@@ -24,7 +24,7 @@
 
 
 #include "TestTypeInfo.h"
-#include "TypeInfo.h"
+#include "libvariant/typeinfo.h"
 #include <string>
 
 using namespace libVariant;

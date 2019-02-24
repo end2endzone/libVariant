@@ -1,6 +1,7 @@
 set(LIBVARIANT_HEADER_FILES ""
   ${LIBVARIANT_INCLUDE_DIR}/libvariant/variant.h
   ${LIBVARIANT_INCLUDE_DIR}/libvariant/variant_types.h
+  ${LIBVARIANT_INCLUDE_DIR}/libvariant/typeinfo.h
 )
 
 add_library(libvariant
@@ -11,7 +12,6 @@ add_library(libvariant
   FloatLimits.h
   StringEncoder.h
   StringParser.h
-  TypeInfo.h
   Variant.cpp
 )
 

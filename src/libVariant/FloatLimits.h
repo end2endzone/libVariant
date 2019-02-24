@@ -39,10 +39,15 @@ namespace libVariant
 {
 namespace floatlimits
 {
-  #pragma pack(push,1)
+  #ifdef _WIN32
+    #pragma pack(push,1)
+    #define PACKED_STRUCTURE
+  #elif
+    #define PACKED_STRUCTURE __attribute__((packed))
+  #endif
 
   /// <summary>32 bits floating points bit representation according to IEEE 754 standard.</summary>
-  struct float32_IEEE754 
+  struct PACKED_STRUCTURE float32_IEEE754 
   {
     //https://en.wikipedia.org/wiki/Single-precision_floating-point_format
     int fraction : 23;
@@ -50,14 +55,18 @@ namespace floatlimits
     unsigned int sign :  1;
   };
   /// <summary>64 bits floating points bit representation according to IEEE 754 standard.</summary>
-  struct float64_IEEE754 
+  struct PACKED_STRUCTURE float64_IEEE754 
   {
     //https://en.wikipedia.org/wiki/Double-precision_floating-point_format
     long long fraction : 52;
     unsigned long long exponent : 11;
     unsigned long long sign :  1;
   };
-  #pragma pack(pop)
+
+  #ifdef _WIN32
+    #pragma pack(pop)
+  #endif
+  #undef PACKED_STRUCTURE
 
   /// <summary>
   /// Computes the minimum 32 bits floating point value that can safely represent a low value of type T.

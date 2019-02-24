@@ -3265,14 +3265,25 @@ TEST_F(TestVariant, testVariantMemoryFootprint)
 {
   //DEBUG
 #if 0
-#pragma pack(push,1)
-  struct FOOTPRINT
+  #ifdef _WIN32
+    #pragma pack(push,1)
+    #define PACKED_STRUCTURE
+  #elif
+    #define PACKED_STRUCTURE __attribute__((packed))
+  #endif
+
+  struct PACKED_STRUCTURE FOOTPRINT
   {
     uint8   before;
     Variant instance;
     uint8   after;
   };
-#pragma pack(pop)
+
+  #ifdef _WIN32
+    #pragma pack(pop)
+  #endif
+  #undef PACKED_STRUCTURE
+
   FOOTPRINT fp;
   fp.before = 0xEE; //show boundaries of the Variant in memory
   fp.after = 0xEE; //show boundaries of the Variant in memory

@@ -87,7 +87,7 @@ namespace floatlimits
     {
       firstPass = false;
 
-      const T actualLimit = typeinfo::TypeInfo<T>::minimum();
+      const T actualLimit = typeinfo::lowest<T>();
       floatValue = static_cast<float>(actualLimit);
 
       //test for possible overflows
@@ -154,7 +154,7 @@ namespace floatlimits
     {
       firstPass = false;
 
-      const T actualLimit = typeinfo::TypeInfo<T>::minimum();
+      const T actualLimit = typeinfo::lowest<T>();
       floatValue = static_cast<double>(actualLimit);
 
       //test for possible overflows

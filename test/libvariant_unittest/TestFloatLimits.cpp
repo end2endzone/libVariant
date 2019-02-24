@@ -45,28 +45,28 @@ TEST_F(TestFloatLimits, testStructureSizes)
 
 TEST_F(TestFloatLimits, testIntMin32)
 {
-  float actualIntMin = typeinfo::TypeInfo<int>::minimum();
+  float actualIntMin = typeinfo::lowest<int>();
   float intMinSaturation = floatlimits::getMinimumSafeCast32<int>();
   ASSERT_TRUE(actualIntMin <= intMinSaturation);
 }
 
 TEST_F(TestFloatLimits, testIntMax32)
 {
-  float actualIntMax = typeinfo::TypeInfo<int>::maximum();
+  float actualIntMax = typeinfo::highest<int>();
   float intMaxSaturation = floatlimits::getMaximumSafeCast32<int>();
   ASSERT_TRUE(intMaxSaturation <= actualIntMax);
 }
 
 TEST_F(TestFloatLimits, testIntMin64)
 {
-  double actualIntMin = typeinfo::TypeInfo<int>::minimum();
+  double actualIntMin = typeinfo::lowest<int>();
   double intMinSaturation = floatlimits::getMinimumSafeCast64<int>();
   ASSERT_TRUE(actualIntMin <= intMinSaturation);
 }
 
 TEST_F(TestFloatLimits, testIntMax64)
 {
-  double actualIntMax = typeinfo::TypeInfo<int>::maximum();
+  double actualIntMax = typeinfo::highest<int>();
   double intMaxSaturation = floatlimits::getMaximumSafeCast64<int>();
   ASSERT_TRUE(intMaxSaturation <= actualIntMax);
 }

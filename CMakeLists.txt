@@ -74,17 +74,6 @@ set(LIBVARIANT_VERSION_HEADER ${CMAKE_BINARY_DIR}/include/libvariant/version.h)
 message("Generating ${LIBVARIANT_VERSION_HEADER}...")
 configure_file( ${CMAKE_SOURCE_DIR}/src/libVariant/version.h.in ${LIBVARIANT_VERSION_HEADER} )
 
-# config.h file
-set(LIBVARIANT_CONFIG_HEADER ${CMAKE_BINARY_DIR}/include/libvariant/config.h)
-message("Generating ${LIBVARIANT_CONFIG_HEADER}...")
-if (BUILD_SHARED_LIBS)
-  set(LIBVARIANT_BUILD_TYPE_CPP_DEFINE "#define LIBVARIANT_BUILT_AS_SHARED")
-else()
-  set(LIBVARIANT_BUILD_TYPE_CPP_DEFINE "#define LIBVARIANT_BUILT_AS_STATIC")
-endif()
-configure_file( ${CMAKE_SOURCE_DIR}/src/libVariant/config.h.in ${LIBVARIANT_CONFIG_HEADER} )
-set(LIBVARIANT_BUILD_TYPE_CPP_DEFINE)
-
 # Define installation directories
 set(LIBVARIANT_INSTALL_BIN_DIR      "bin")
 set(LIBVARIANT_INSTALL_LIB_DIR      "lib/libvariant-${LIBVARIANT_VERSION}")
@@ -98,6 +87,27 @@ set(LIBVARIANT_INSTALL_CMAKE_DIR    ${LIBVARIANT_INSTALL_LIB_DIR}) # CMake files
 # Build options
 option(LIBVARIANT_BUILD_TEST "Build all libVariant's unit tests" OFF)
 option(LIBVARIANT_BUILD_STDINT_TYPES_TEST "Build a code sample for testing stdint types on all platforms" OFF)
+option(LIBVARIANT_USE_STD_STRING "Build libVariant using std::string" ON)
+
+# config.h file
+set(LIBVARIANT_CONFIG_HEADER ${CMAKE_BINARY_DIR}/include/libvariant/config.h)
+message("Generating ${LIBVARIANT_CONFIG_HEADER}...")
+set(LIBVARIANT_BUILD_OPTION_DEFINITIONS "//build options")
+if (BUILD_SHARED_LIBS)
+  string(CONCAT LIBVARIANT_BUILD_OPTION_DEFINITIONS "${LIBVARIANT_BUILD_OPTION_DEFINITIONS}" "\n#define LIBVARIANT_BUILT_AS_SHARED")
+else()
+  string(CONCAT LIBVARIANT_BUILD_OPTION_DEFINITIONS "${LIBVARIANT_BUILD_OPTION_DEFINITIONS}" "\n#define LIBVARIANT_BUILT_AS_STATIC")
+endif()
+if (LIBVARIANT_BUILD_TEST)
+  string(CONCAT LIBVARIANT_BUILD_OPTION_DEFINITIONS "${LIBVARIANT_BUILD_OPTION_DEFINITIONS}" "\n#define LIBVARIANT_HAS_TESTS")
+endif()
+if (LIBVARIANT_BUILD_STDINT_TYPES_TEST)
+  string(CONCAT LIBVARIANT_BUILD_OPTION_DEFINITIONS "${LIBVARIANT_BUILD_OPTION_DEFINITIONS}" "\n#define LIBVARIANT_HAS_STDINT_TYPES_TEST")
+endif()
+if (LIBVARIANT_USE_STD_STRING)
+  string(CONCAT LIBVARIANT_BUILD_OPTION_DEFINITIONS "${LIBVARIANT_BUILD_OPTION_DEFINITIONS}" "\n#define LIBVARIANT_USE_STD_STRING")
+endif()
+configure_file( ${CMAKE_SOURCE_DIR}/src/libVariant/config.h.in ${LIBVARIANT_CONFIG_HEADER} )
 
 # Force a debug postfix if none specified.
 # This allows publishing both release and debug binaries to the same location

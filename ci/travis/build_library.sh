@@ -16,7 +16,7 @@ echo ===========================================================================
 cd $TRAVIS_BUILD_DIR
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_LOCATION -DLIBVARIANT_BUILD_TEST=ON -DBUILD_SHARED_LIBS=OFF -DLIBVARIANT_BUILD_STDINT_TYPES_TEST=ON ..
+cmake -DCMAKE_INSTALL_PREFIX=$INSTALL_LOCATION -DLIBVARIANT_BUILD_TEST=ON -DBUILD_SHARED_LIBS=OFF -DLIBVARIANT_BUILD_STDINT_TYPES_TEST=ON -DLIBVARIANT_USE_STD_STRING=ON ..
 
 echo ============================================================================
 echo Compiling...

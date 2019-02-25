@@ -127,13 +127,14 @@ With this method, users *do not* have to define environment variable such as `[N
 
 The following table shows the available build option supported:
 
-| Name                     | Type   |         Default         | Usage                                                      |
-|--------------------------|--------|:-----------------------:|------------------------------------------------------------|
-| CMAKE_INSTALL_PREFIX     | STRING | See CMake documentation | Defines the installation folder of the library.            |
-| BUILD_SHARED_LIBS        | BOOL   |           OFF           | Enable/disable the generation of shared library makefiles  |
-| LIBVARIANT_BUILD_TEST    | BOOL   |           OFF           | Enable/disable the generation of unit tests target.        |
-| LIBVARIANT_BUILD_DOC     | BOOL   |           OFF           | Enable/disable the generation of API documentation target. |
-| LIBVARIANT_BUILD_SAMPLES | BOOL   |           OFF           | Enable/disable the generation of samples target.           |
+| Name                      | Type   |         Default         | Usage                                                      |
+|---------------------------|--------|:-----------------------:|------------------------------------------------------------|
+| CMAKE_INSTALL_PREFIX      | STRING | See CMake documentation | Defines the installation folder of the library.            |
+| BUILD_SHARED_LIBS         | BOOL   |           OFF           | Enable/disable the generation of shared library makefiles  |
+| LIBVARIANT_BUILD_TEST     | BOOL   |           OFF           | Enable/disable the generation of unit tests target.        |
+| LIBVARIANT_BUILD_DOC      | BOOL   |           OFF           | Enable/disable the generation of API documentation target. |
+| LIBVARIANT_BUILD_SAMPLES  | BOOL   |           OFF           | Enable/disable the generation of samples target.           |
+| LIBVARIANT_USE_STD_STRING | BOOL   |           ON            | Enable/disable building libVariant using std::string.      |
 
 To enable a build option, run the following command at the cmake configuration time:
 ```cmake

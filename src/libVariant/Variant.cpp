@@ -384,16 +384,16 @@ namespace libVariant
     case Variant::UINT16:
     case Variant::UINT32:
     case Variant::UINT64:
-      return StringEncoder::toString( mData.as_uint64 );
+      return StringEncoder::toString( mData.as_uint64 ).c_str();
     case Variant::SINT8:
     case Variant::SINT16:
     case Variant::SINT32:
     case Variant::SINT64:
-      return StringEncoder::toString( mData.as_sint64 );
+      return StringEncoder::toString( mData.as_sint64 ).c_str();
     case Variant::FLOAT32:
-      return StringEncoder::toString( mData.as_float32 );
+      return StringEncoder::toString( mData.as_float32 ).c_str();
     case Variant::FLOAT64:
-      return StringEncoder::toString( mData.as_float64 );
+      return StringEncoder::toString( mData.as_float64 ).c_str();
     case Variant::STRING:
       return (*mData.as_str);
     default:

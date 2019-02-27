@@ -29,6 +29,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
+#include "libvariant/config.h"
 #include "libvariant/variant.h"
 
 #include "gtesthelper.h"
@@ -2854,8 +2855,8 @@ bool isVbScriptIdenticalBehavior(const Variant & v1, const Variant & v2, char iO
   else if (iOperator == '*')
     result = (variant1 * variant2);
 
-  std::string actualStr = result.getString();
-  std::string expectedStr = getVbScriptResult(variant1.getString(), variant2.getString(), iOperator);
+  std::string actualStr = result.getString().c_str();
+  std::string expectedStr = getVbScriptResult(variant1.getString().c_str(), variant2.getString().c_str(), iOperator);
 
   char infoStr[10240];
   sprintf(infoStr, "%s%c%s=%s, ",
@@ -2882,7 +2883,13 @@ bool isVbScriptIdenticalBehavior(const Variant & v1, const Variant & v2, char iO
   //not equals as strings,
   //could they be near as floating points ?
   double actualFloat64 = result.getFloat64();
+#ifdef LIBVARIANT_USE_STD_STRING
   Variant tmp(expectedStr);
+#else
+  libVariant::String str;
+  str = expectedStr.c_str();
+  Variant tmp(str);
+#endif
   tmp.simplify();
   double expectedFloat64 = tmp.getFloat64();
   static const double NEAR_EPSILON = 0.000000000000001;
@@ -2966,8 +2973,13 @@ TEST_F(TestVariant, testVbScriptIdenticalBehavior) // requires cscript.exe (Visu
     //build Variant instance initialized with file values
     Variant variant1;
     Variant variant2;
+#ifdef LIBVARIANT_USE_STD_STRING
     variant1 = values[0];
     variant2 = values[1];
+#else
+    variant1 = values[0].c_str();
+    variant2 = values[1].c_str();
+#endif
 
     Variant::setDivisionByZeroPolicy(Variant::IGNORE); //skip code which involves divisions by 0
 

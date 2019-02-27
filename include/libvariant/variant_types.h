@@ -26,7 +26,12 @@
 #ifndef LIBVARIANT_TYPES_H
 #define LIBVARIANT_TYPES_H
 
-#include <string>
+#include "libvariant/config.h"
+#ifdef LIBVARIANT_USE_STD_STRING
+#   include <string>
+#else
+#   include "libvariant/variant_string.h"
+#endif
 
 //-----------
 // Namespace
@@ -93,7 +98,11 @@ namespace libVariant
 
   typedef float               float32;
   typedef double              float64;
+  #ifdef LIBVARIANT_USE_STD_STRING
   typedef std::string         Str;
+  #else
+  typedef String              Str;
+  #endif
   typedef const char*         CStr;
  
 } // End namespace

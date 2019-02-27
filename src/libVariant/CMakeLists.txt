@@ -4,11 +4,18 @@ set(LIBVARIANT_HEADER_FILES ""
   ${LIBVARIANT_INCLUDE_DIR}/libvariant/typeinfo.h
 )
 
+if (NOT LIBVARIANT_USE_STD_STRING)
+  set(LIBVARIANT_STRING_FILES ${LIBVARIANT_INCLUDE_DIR}/libvariant/variant_string.h
+                              ${CMAKE_CURRENT_SOURCE_DIR}/variant_string.cpp
+  )
+endif()
+
 add_library(libvariant
   ${LIBVARIANT_HEADER_FILES}
   ${LIBVARIANT_EXPORT_HEADER}
   ${LIBVARIANT_VERSION_HEADER}
   ${LIBVARIANT_CONFIG_HEADER}
+  ${LIBVARIANT_STRING_FILES}
   FloatLimits.h
   StringEncoder.h
   StringParser.h

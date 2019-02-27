@@ -1,6 +1,7 @@
 Changes for 3.0.0:
 
 * Fixed issue #1: Automatic value clamping is confusing and irrelevant for most use cases.
+* Fixed issue #3: Limit usage of std::string to have no requirement on using the same compiler across libraries.
 * Fixed issue #4: New include file which defines all Variant internal types.
 * Fixed issue #5: Reorder and clarify VariantUnion fields.
 * Fixed issue #6: pragma once statements.

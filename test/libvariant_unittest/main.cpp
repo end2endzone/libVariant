@@ -32,14 +32,14 @@
 int main(int argc, char **argv)
 {
   gTestHelper & hlp = gTestHelper::getInstance();
-  if (hlp.isProcessorX86())
+  if (hlp.isProcess32Bit())
   {
     if (hlp.isDebugCode())
       ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x86.debug.xml";
     else
       ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x86.release.xml";
   }
-  else if (hlp.isProcessorX64())
+  else if (hlp.isProcess64Bit())
   {
     if (hlp.isDebugCode())
       ::testing::GTEST_FLAG(output) = "xml:libVariantTests.x64.debug.xml";

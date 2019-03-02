@@ -25,9 +25,24 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <cstdio> //for printf
 #include <typeinfo>
 #include <stdint.h>
+
+//allows printing size_t in 32 and 64 bit on all platforms
+template <typename T> std::string formatString(T value, size_t length)
+{
+  std::stringstream s;
+  s << value;
+  std::string str = s.str();
+
+  //increase length until desired size
+  while(str.size() < length)
+    str.insert(0, 1, ' ');
+
+  return str;
+}
 
 //http://www.cplusplus.com/reference/cstdint/
 
@@ -84,7 +99,7 @@ int main(int /*argc*/, char** /*argv[]*/)
   #  define TYPEID_HASH_CODE(x) ((size_t)0)
   #endif
 
-  #define TEST_TYPE(_TYPE) printf("Type '%18s' : size=%2lu (%3lu bit), isStdInt=%3s, typeinfo.hash_code=%20lu, typeinfo.name=%s\n", #_TYPE, sizeof(_TYPE), sizeof(_TYPE)*8, (isStdInt<_TYPE>() ? "yes" : "no"), TYPEID_HASH_CODE(_TYPE), typeid(_TYPE).name());
+  #define TEST_TYPE(_TYPE) printf("Type '%18s' : size=%s (%s bit), isStdInt=%3s, typeinfo.hash_code=%s, typeinfo.name=%s\n", #_TYPE, formatString(sizeof(_TYPE), 2).c_str(), formatString(sizeof(_TYPE)*8, 3).c_str(), (isStdInt<_TYPE>() ? "yes" : "no"), formatString(TYPEID_HASH_CODE(_TYPE), 20).c_str(), typeid(_TYPE).name());
 
   printf("stdint types:\n");
   TEST_TYPE(        int8_t);

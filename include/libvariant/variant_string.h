@@ -31,6 +31,7 @@
 //---------------
 #include "libvariant/config.h"
 #include "libvariant/version.h"
+#include <stdio.h> // for size_t
 
 //-----------
 // Namespace

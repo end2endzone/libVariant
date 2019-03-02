@@ -5,6 +5,10 @@ cd ..\..
 set APPVEYOR=True
 set APPVEYOR_BUILD_FOLDER=%cd%
 set Configuration=Debug
+set Platform=Win32
+
+set LIBVARIANT_USE_STD_STRING=ON
+
 echo Emulating appveyor's environment.
 echo APPVEYOR_BUILD_FOLDER set to '%APPVEYOR_BUILD_FOLDER%'
 echo.

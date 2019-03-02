@@ -7,6 +7,11 @@ branches:
   only:
   - master
 
+env:
+  matrix:
+  - LIBVARIANT_USE_STD_STRING: ON
+  - LIBVARIANT_USE_STD_STRING: OFF
+
 install:
 - cd $TRAVIS_BUILD_DIR/ci/travis; ./install_googletest.sh;
 

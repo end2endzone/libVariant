@@ -56,6 +56,14 @@ MESSAGE( STATUS "CMAKE_SYSTEM_NAME:        " ${CMAKE_SYSTEM_NAME} )
 MESSAGE( STATUS "CMAKE_SYSTEM_VERSION:     " ${CMAKE_SYSTEM_VERSION} )
 MESSAGE( STATUS "CMAKE_SYSTEM_PROCESSOR:   " ${CMAKE_SYSTEM_PROCESSOR} )
 
+MESSAGE( "Build options:" )
+MESSAGE( STATUS "LIBVARIANT_BUILD_TEST: " ${LIBVARIANT_BUILD_TEST} )
+MESSAGE( STATUS "LIBVARIANT_USE_STD_STRING: " ${LIBVARIANT_USE_STD_STRING} )
+MESSAGE( STATUS "LIBVARIANT_BUILD_STDINT_TYPES_TEST: " ${LIBVARIANT_BUILD_STDINT_TYPES_TEST} )
+if (WIN32)
+  MESSAGE( STATUS "CMAKE_GENERATOR_PLATFORM: " ${CMAKE_GENERATOR_PLATFORM} )
+endif()
+
 ##############################################################################################################################################
 # Global settings
 ##############################################################################################################################################

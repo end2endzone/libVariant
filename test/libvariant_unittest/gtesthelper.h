@@ -256,8 +256,8 @@ public:
   // Description
   //  Returns true if the specified processor flag is enabled
   //
-  bool isProcessorX86();
-  bool isProcessorX64();
+  bool isProcess32Bit();
+  bool isProcess64Bit();
   bool isDebugCode();
   bool isReleaseCode();
 

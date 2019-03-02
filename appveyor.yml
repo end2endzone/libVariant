@@ -80,7 +80,5 @@ test_script:
 #---------------------------------#
 
 artifacts:
-- path: .\build\bin\Release\libVariantTests.x86.release.xml
-  name: libVariantTests.x86.release.xml
-- path: .\build\libVariant-*-win32.exe
-  name: libVariant-win32.exe
+- path: .\build\bin\Release\libVariantTests.*.release.xml
+- path: .\build\libVariant-*.exe

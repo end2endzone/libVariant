@@ -698,17 +698,23 @@ void gTestHelper::getRandomString(std::string & oValue, int iMaxLen, const char*
   }
 }
 
-bool gTestHelper::isProcessorX86()
+bool gTestHelper::isProcess32Bit()
 {
-  return !isProcessorX64();
+  return !isProcess64Bit();
 }
 
-bool gTestHelper::isProcessorX64()
+bool gTestHelper::isProcess64Bit()
 {
-#ifdef _WIN64
-  return true;
+#if defined(_WIN64) //Windows
+      return true;
+#elif defined(__LP64__) || defined(_LP64) //GCC
+      return true;
+#elif (__SIZEOF_POINTER__ == 8) //GCC only ?
+      return true;
+#elif ( __WORDSIZE == 64 ) //portable
+      return true;
 #else
-  return false;
+      return false;
 #endif
 }
 

@@ -64,7 +64,7 @@ The following instructions show how to use the library with multiple source code
 
 ## Assign a value ##
 
-Assign the value `5` of type `int` (SInt16 / SInt32) to a Variant.
+Assign the value `5` of type `int` (sint16 / sint32) to a Variant.
 
 ```cpp
 Variant var;
@@ -75,7 +75,7 @@ var = 5;
 
 ## Convert to string ##
 
-Assign the value `5` of type `int` (SInt16 / SInt32) and read the value as a `string`.
+Assign the value `5` of type `int` (sint16 / sint32) and read the value as a `string`.
 
 ```cpp
 Variant var;
@@ -93,27 +93,27 @@ The class can also do automatic conversions of the internal type to another type
 
 ### Floating point promotion ###
 
-Assign the value `5` of type `int` (SInt16 / SInt32) and then add `1.5` of type `double` (Float64).
+Assign the value `5` of type `int` (sint16 / sint32) and then add `1.5` of type `double` (float64).
 
 The internal type of the variant will be promoted to hold the expected result.
 
 ```cpp
 Variant var;
-var = 5; // sets the internal type to 'int' (SInt16 / SInt32).
-var += 1.5; // promotes the internal type to double (Float64)
-Variant::float64 f_value = var.getFloat64(); //internal value is set to 6.5.
+var = 5; // sets the internal type to 'int' (sint16 / sint32).
+var += 1.5; // promotes the internal type to double (float64)
+float64 f_value = var.getFloat64(); //internal value is set to 6.5.
 ```
 
-If a Variant class with an internal type set to `SINT16` and a value of 5 is divided by 2 (`SINT16`) then the internal value of the class will automatically convert to `FLOAT64` to be able to hold a value of 2.5.
+If a Variant class with an internal type set to `sint16` and a value of 5 is divided by 2 (`sint16`) then the internal value of the class will automatically convert to `float64` to be able to hold a value of 2.5.
 
-However, if the user still requests the internal value as `SINT16`, then the returned value will be rounded down to 2 which is the same result as if the division would have been processed using the native c++ type `SINT16`.
+However, if the user still requests the internal value as `sint16`, then the returned value will be rounded down to 2 which is the same result as if the division would have been processed using the native c++ type `int`.
 
 ```cpp
 Variant var;
 var.setSInt16(5);
 var = var / 2;
-Variant::float64 f_value = var.getFloat64(); // returns 2.5
-int16_t i_value = var.getSInt16(); // returns 2
+float64 f_value = var.getFloat64(); // returns 2.5
+sint16  i_value = var.getSInt16();  // returns 2
 ```
 
 
@@ -123,13 +123,13 @@ int16_t i_value = var.getSInt16(); // returns 2
 The class is protected against unintentional overflows. Here is the process of computing intentional overflows:
 
 ```cpp
-int8_t value = 120;
-int8_t addition = 10;
+sint8 value = 120;
+sint8 addition = 10;
 Variant var;
 var.set(value);
-var += addition; // promotes the internal type to SInt16 with value 130 instead of overflow value.
-int8_t  overflow_value = var.getSInt8(); // results in value -126
-int16_t promoted_value = var.getSInt16(); // results in value 130
+var += addition; // promotes the internal type to sint16 with value 130 instead of overflow value.
+sint8  overflow_value = var.getSInt8();  // results in value -126
+sint16 promoted_value = var.getSInt16(); // results in value 130
 ```
 
 
@@ -196,33 +196,33 @@ If the internal value of a Variant is set to an unsigned value and a mathematica
 
 ***Note that the expected value from the mathematical operation is always preserved. The only change that may be unnoticed is the internal type changing from unsigned to signed.***
 
-For example, having a Variant set to value 4 (`UINT16`) is multiplied by value 10 (`SINT16`), then the internal type will automatically change to `SINT16` with a value of 40.
+For example, having a Variant set to value 4 (`uint16`) is multiplied by value 10 (`sint16`), then the internal type will automatically change to `sint16` with a value of 40.
 
 ```cpp
-uint16_t value = 4;
-int16_t multiplicator = 10;
+uint16 value = 4;
+sint16 multiplicator = 10;
 Variant var;
 var.set(value);
 var = var * multiplicator;
 //var --> internal type is now sint16
 ```
 
-***Note that inverse operation DOES NOT convert the internal value to (`UINT16`)***.
+*** Note that inverse operation DOES NOT convert the internal value to `uint16`. ***
 
 ```cpp
-int16_t value = 10;
-uint16_t multiplicator = 4;
+sint16 value = 10;
+uint16 multiplicator = 4;
 Variant var;
 var.set(value);
 var = var * multiplicator;
 //var --> internal type stays sint16 (internal type is NOT CHANGED to uint16)
 ```
 
-If the internal type is unsigned (`UINT32`) and the operator's type is signed but of a different bit-size (`SINT16`), the conversion to a signed type also occurs but the size of the new type (in bits) is as big as the biggest type (`SINT32`).
+If the internal type is unsigned (for instance `uint32`) and the operator's type is signed but of a different bit-size (for instance `sint16`), the conversion to a signed type also occurs but the size of the new type (in bits) is as big as the biggest type (in this example, `sint32`).
 
 ```cpp
-uint32_t value = 123456;
-int16_t multiplicator = 100;
+uint32 value = 123456;
+sint16 multiplicator = 100;
 Variant var;
 var.set(value);
 var = var * multiplicator;

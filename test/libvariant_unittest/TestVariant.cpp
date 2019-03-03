@@ -1718,8 +1718,8 @@ TEST_F(TestVariant, testReadmeExamples)
   //### Floating point promotion ###
   {
     Variant var;
-    var = 5; // sets the internal type to 'int' (SInt16 / SInt32).
-    var += 1.5; // promotes the internal type to double (Float64)
+    var = 5; // sets the internal type to 'int' (sint16 / sint32).
+    var += 1.5; // promotes the internal type to double (float64)
     float64 f_value = var.getFloat64(); //internal value is set to 6.5.
     ASSERT_EQ( Variant::FLOAT64, var.getFormat());
     ASSERT_NEAR(f_value, 6.5, 0.0000000000001f);
@@ -1730,20 +1730,20 @@ TEST_F(TestVariant, testReadmeExamples)
     var.setSInt16(5);
     var = var / 2;
     float64 f_value = var.getFloat64(); // returns 2.5
-    sint16  i_value = var.getSInt16(); // returns 2
+    sint16  i_value = var.getSInt16();  // returns 2
     ASSERT_NEAR(f_value, 2.5f, 0.000001f);
     ASSERT_EQ(2, i_value);
   }
  
   //### Value overflow promotion ###
   {
-    sint8  value = 120;
-    sint8  addition = 10;
+    sint8 value = 120;
+    sint8 addition = 10;
     Variant var;
     var.set(value);
-   var += addition; // promotes the internal type to SInt16 with value 130 instead of overflow value.
-    sint8   overflow_value = var.getSInt8(); // results in value -126
-    sint16  promoted_value = var.getSInt16(); // results in value 130
+    var += addition; // promotes the internal type to sint16 with value 130 instead of overflow value.
+    sint8  overflow_value = var.getSInt8();  // results in value -126
+    sint16 promoted_value = var.getSInt16(); // results in value 130
     ASSERT_EQ( Variant::SINT16, var.getFormat());
     ASSERT_EQ(-126, overflow_value);
     ASSERT_EQ( 130, promoted_value);
@@ -1753,8 +1753,8 @@ TEST_F(TestVariant, testReadmeExamples)
  
   //## Automatic unsigned to signed conversions ##
   {
-    uint16   value = 4;
-    sint16  multiplicator = 10;
+    uint16 value = 4;
+    sint16 multiplicator = 10;
     Variant var;
     var.set(value);
     var = var * multiplicator;
@@ -1764,8 +1764,8 @@ TEST_F(TestVariant, testReadmeExamples)
  
   //test inverse
   {
-    sint16  value = 10;
-    uint16   multiplicator = 4;
+    sint16 value = 10;
+    uint16 multiplicator = 4;
     Variant var;
     var.set(value);
     var = var * multiplicator;
@@ -1775,8 +1775,8 @@ TEST_F(TestVariant, testReadmeExamples)
  
   {
     //uint32 vs sint16 --> sint32
-    uint32   value = 123456;
-    sint16  multiplicator = 100;
+    uint32 value = 123456;
+    sint16 multiplicator = 100;
     Variant var;
     var.set(value);
     var = var * multiplicator;
